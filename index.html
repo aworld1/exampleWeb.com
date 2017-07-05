@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    <!-- see http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <style>
+        /* following two viewport lines are equivalent to the meta viewport statement above, needed for Windows */
+        /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html and http://dev.w3.org/csswg/css-device-adapt/ */
+        @-ms-viewport { width: 100vw ; zoom: 100% ; }  @viewport { width: 100vw ; zoom: 100% ; }
+        @-ms-viewport { user-zoom: fixed ; }           @viewport { user-zoom: fixed ; }
+    </style>
+
+    <script src="cordova.js"></script>          <!-- phantom library, needed for Cordova api calls, added during build -->
+    <script src="js/app.js"></script>           <!-- recommended location of your JavaScript code relative to other JS files -->
+    <script src="xdk/init-dev.js"></script>     <!-- normalizes device and document ready events, see README for details -->
+</head>
+
+<body>
+    <h1 id="header">Westview Planner</h1>
+    <button id="searchImage"></button>
+    <button class="gradeSelect" id="nine" onclick="showEightClasses()">9th Grade</button>
+    <button class="gradeSelect" id="ten" onclick="showEightClasses()">10th Grade</button>
+    <button class="gradeSelect" id="eleven" onclick="showEightClasses()">11th Grade</button>
+    <button class="gradeSelect" id="twelve" onclick="showEightClasses()">12th Grade</button>
+    <button class="semesterOne" id="classA" onclick="showOptions()">Select Class</button>
+    <button class="semesterTwo" id="classE" onclick="showOptions()">Select Class</button>
+    <button class="semesterOne" id="classB" onclick="showOptions()">Select Class</button>
+    <button class="semesterTwo" id="classF" onclick="showOptions()">Select Class</button>
+    <button class="semesterOne" id="classC" onclick="showOptions()">Select Class</button>
+    <button class="semesterTwo" id="classG" onclick="showOptions()">Select Class</button>
+    <button class="semesterOne" id="classD" onclick="showOptions()">Select Class</button>
+    <button class="semesterTwo" id="classH" onclick="showOptions()">Select Class</button>
+    <input type="text" placeholder="Search for a class..." onkeyup="searchClasses()" id="search" maxlength=21></input>
+    <link rel="stylesheet" type="text/css" href="style.css"></link>
+    <script src="build/pdf.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

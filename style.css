@@ -1,0 +1,97 @@
+body {
+    background-color: azure;
+}
+#header {
+    text-align: center;
+    color: darkgoldenrod;
+    font-family: monospace;
+    font-size:10vmin;
+}
+.gradeSelect {
+    width: 80vw;
+    height: 10vh;
+    margin-left: 10vw;
+    margin-top: 5vh;
+    outline-style: none;
+    visibility: visible;
+    display:block;
+    border-radius: 2.5vh;
+    font-size:8vmin;
+    font-family: impact;
+    text-align:left;
+}
+.semesterOne {
+  width: 40vw;
+  height: 13vh;
+  margin-left: 9vw;
+  margin-top: 2vh;
+  outline-style: none;
+  visibility: hidden;
+  display:none;
+  font-family: "fantasy";
+  font-size:6vmin;
+  background-color: gold;
+  border-radius: 2.5vh;
+}
+.semesterTwo {
+  width: 40vw;
+  height: 13vh;
+  margin-left: 51vw;
+  margin-top: -13vh;
+  margin-bottom: 2vh;
+  position: absolute;
+  visibility: hidden;
+  display:none;
+  font-family: "fantasy";
+  font-size:6vmin;
+  background-color: black;
+  color: gold;
+  border-radius: 2.5vh;
+}
+#nine {
+    background-color:#FFEA40;
+    margin-top: 10vh;
+    color:#776D20;
+}
+#ten {
+    background-color:hotpink;
+    color:#77206C;
+}
+#eleven {
+    background-color:aquamarine;
+    color:#20775C;
+}
+#twelve {
+    background-color:#00A0FF;
+    color:#1B5374;
+}
+#classA {
+    margin-top: 10vh;
+}
+#classE {
+    margin-top: -13vh;
+}
+#search {
+  visibility: hidden;
+  display: none;
+  margin-top: 10vh;
+  margin-left: 10vw;
+  width:80vw;
+  height:15vh;
+  border-radius: 2.5vh;
+  font-size:8vmin;
+  margin-bottom: 6vh;
+}
+#searchImage {
+  visibility: hidden;
+  display:none;
+  margin-left:77vw;
+  margin-top: 2vh;
+  position: absolute;
+  width: 12vmin;
+  height: 12vmin;
+  background-image: url("search.png");
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+}
