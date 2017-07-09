@@ -181,7 +181,27 @@ function cleanDescription() {
       }
     }
   }
-  console.log("Done cleaning.")
+}
+function getCategory(placement) {
+  var indexOfCategory = -1;
+  for (var x = 0; x < categoryPlacement.length; x++) {
+    if (placement >= categoryPlacement[x]) {
+      indexOfCategory++;
+    }
+  }
+  return categories[indexOfCategory];
+}
+function classInfo(placement) {
+  console.log(getCategory(placement));
+  console.log(classes[placement]);
+  console.log(codes[placement]);
+  console.log(grades[placement]);
+  console.log(credits[placement]);
+  console.log(universityCredits[placement]);
+  console.log(preReqs[placement]);
+  console.log(interests[placement]);
+  console.log(linkedCourses[placement]);
+  console.log(descriptions[placement]);
 }
 function searchClasses() {
     // Declare variables
@@ -215,8 +235,65 @@ function searchClasses() {
             }
             buttons[buttons.length - 1].style.fontFamily = "monospace";
             buttons[buttons.length - 1].style.fontSize = "3.5vmin";
+            buttons[buttons.length - 1].id = i;
+            buttons[buttons.length - 1].onclick = function () { classInfo(this.id) };
         }
     }
+}
+function cleanOthers() {
+  for (var i = 0; i < classes.length;i++) {
+    var moveOn = false;
+    while (!moveOn) {
+      if (classes[i].charAt(classes[i].length - 1) == " ") {
+        classes[i] = classes[i].slice(0,-1);
+      }
+      else {
+        moveOn = true;
+      }
+    }
+    moveOn = false;
+    grades[i] = grades[i].slice(1);
+    while (!moveOn) {
+      if (grades[i].charAt(grades[i].length - 1) == " ") {
+        grades[i] = grades[i].slice(0,-1);
+      }
+      else {
+        moveOn = true;
+      }
+    }
+    credits[i] = credits[i].slice(1);
+    universityCredits[i] = universityCredits[i].slice(1);
+    preReqs[i] = preReqs[i].slice(1);
+    moveOn = false;
+    while (!moveOn) {
+      if (preReqs[i].charAt(preReqs[i].length - 1) == " ") {
+        preReqs[i] = preReqs[i].slice(0,-1);
+      }
+      else {
+        moveOn = true;
+      }
+    }
+    interests[i] = interests[i].slice(1);
+    moveOn = false;
+    while (!moveOn) {
+      if (interests[i].charAt(interests[i].length - 1) == " ") {
+        interests[i] = interests[i].slice(0,-1);
+      }
+      else {
+        moveOn = true;
+      }
+    }
+    linkedCourses[i] = linkedCourses[i].slice(1);
+    moveOn = false;
+    while (!moveOn) {
+      if (linkedCourses[i].charAt(linkedCourses[i].length - 1) == " ") {
+        linkedCourses[i] = linkedCourses[i].slice(0,-1);
+      }
+      else {
+        moveOn = true;
+      }
+    }
+  }
 }
 var buttons = [];
 var categories = [];
@@ -391,6 +468,8 @@ gettext("https://docs.wixstatic.com/ugd/5db6f5_7f8fbcb5bd064026b84356a51b42f5f3.
   catalogText = text;
   organizePDF();
   cleanDescription();
+  cleanOthers();
+  console.log("Done cleaning.")
 }, function (reason) {
   console.error(reason);
 });
