@@ -124,7 +124,7 @@ function isClass(pdf, placement) {
   for (var j = 0; j < 15; j++) {
     // Check for upper case
       if (!(pdf.charAt(j + placement) == pdf.charAt(j + placement).toUpperCase() || (pdf.charAt(j + placement - 1) == "I" && pdf.charAt(j + placement + 1) == "-"))) {
-        if (!(pdf.charAt(placement) == "O" && pdf.charAt(placement + 1) == "R" && pdf.charAt(placement + 2) == "C" && pdf.charAt(placement + 3) == "H" && pdf.charAt(placement + 4) == "E")) {
+        if (!(checkWord("ORCHESTRA",catalogText,placement))) {
           returnVal = false;
         }
       }
@@ -206,6 +206,7 @@ var universityCreditsP = document.getElementById("universityCreditsP");
 var preReqsP = document.getElementById("preReqsP");
 var interestP = document.getElementById("interestP");
 var linkedCoursesP = document.getElementById("linkedCoursesP");
+var discontinuedP = document.getElementById("discontinuedP");
 var descriptionP = document.getElementById("descriptionP");
 function classInfo(placement) {
   categoryP.innerHTML = getCategory(placement);
@@ -217,6 +218,16 @@ function classInfo(placement) {
   preReqsP.innerHTML = preReqs[placement];
   interestP.innerHTML = interests[placement];
   linkedCoursesP.innerHTML = linkedCourses[placement];
+  if (classes[placement].charAt(0) == "L" && classes[placement].charAt(1) == "/") {
+    discontinuedP.innerHTML = "<b>Warning! This class is discontinued and may not be available. Please advise a counsler before taking this class.</b>";
+    discontinuedP.innerHTML += "<br/><br/>Any class with <b>'L/'</b> in front of its name is discontinued.</b>";
+    discontinuedP.style.color = "red";
+  }
+  else {
+    discontinuedP.innerHTML = "No";
+    discontinuedP.style.color = "black";
+  }
+
   descriptionP.innerHTML = descriptions[placement];
   modal.style.display = "block";
   document.body.style.overflowY = "hidden";
