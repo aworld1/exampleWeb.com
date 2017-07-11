@@ -136,6 +136,14 @@ function isClass(pdf, placement) {
   }
   return returnVal;
 }
+function checkWord(string,pdf,placement) {
+  for (var k = 0; k < string.length; k++) {
+    if (!(pdf.charAt(placement + k) == string.charAt(k))) {
+      return false;
+    }
+  }
+  return true;
+}
 function cleanDescription() {
   var reachedPeriod;
   var storedCategory = [];
@@ -272,8 +280,10 @@ function cleanOthers() {
       }
     }
     credits[i] = credits[i].slice(1);
-    universityCredits[i] = universityCredits[i].slice(1);
-    preReqs[i] = preReqs[i].slice(1);
+    credits[i] = credits[i].slice(0,-1);
+    codes[i] = codes[i].slice(0,-1);
+    universityCredits[i] = universityCredits[i].slice(0,-1);
+    preReqs[i] = preReqs[i].slice(0,-1);
     moveOn = false;
     while (!moveOn) {
       if (preReqs[i].charAt(preReqs[i].length - 1) == " ") {
@@ -283,7 +293,6 @@ function cleanOthers() {
         moveOn = true;
       }
     }
-    interests[i] = interests[i].slice(1);
     moveOn = false;
     while (!moveOn) {
       if (interests[i].charAt(interests[i].length - 1) == " ") {
@@ -293,7 +302,6 @@ function cleanOthers() {
         moveOn = true;
       }
     }
-    linkedCourses[i] = linkedCourses[i].slice(1);
     moveOn = false;
     while (!moveOn) {
       if (linkedCourses[i].charAt(linkedCourses[i].length - 1) == " ") {
@@ -352,7 +360,7 @@ function organizePDF() {
   // Skip header
   while (!headerDone) {
     // First category is English, wait until encounter
-    if (catalogText.charAt(i) == "E" && catalogText.charAt(i + 1) == "n" && catalogText.charAt(i + 2) == "g" && catalogText.charAt(i + 3) == "l" && catalogText.charAt(i + 4) == "i" && catalogText.charAt(i + 5) == "s" && catalogText.charAt(i + 6) == "h" && catalogText.charAt(i + 7) == " " && catalogText.charAt(i + 8) == " ") {
+    if (checkWord("English  ",catalogText,i)) {
       headerDone = true;
       i += 9;
     }
@@ -381,7 +389,7 @@ function organizePDF() {
       }
       storedLetters = "";
     }
-    else if (catalogText.charAt(i) == "G" && catalogText.charAt(i + 1) == "r" && catalogText.charAt(i + 2) == "a" && catalogText.charAt(i + 3) == "d" && catalogText.charAt(i + 4) == "e" && catalogText.charAt(i + 5) == "s" && catalogText.charAt(i + 6) == ":" && currentType == "code") {
+    else if (checkWord("Grades:",catalogText,i) && currentType == "code") {
       if (currentType == "code") {
         codes[codes.length] = storedLetters;
         currentType = "grade";
@@ -392,7 +400,7 @@ function organizePDF() {
       }
       storedLetters = "";
     }
-    else if (catalogText.charAt(i) == "C" && catalogText.charAt(i + 1) == "r" && catalogText.charAt(i + 2) == "e" && catalogText.charAt(i + 3) == "d" && catalogText.charAt(i + 4) == "i" && catalogText.charAt(i + 5) == "t" && catalogText.charAt(i + 6) == "s" && catalogText.charAt(i + 7) == ":" && currentType == "grade") {
+    else if (checkWord("Credits: ",catalogText,i) && currentType == "grade") {
       if (currentType == "grade") {
         grades[grades.length] = storedLetters;
         currentType = "credit";
@@ -403,7 +411,7 @@ function organizePDF() {
       }
       storedLetters = "";
     }
-    else if (catalogText.charAt(i + 1) == "U" && catalogText.charAt(i + 2) == "C" && catalogText.charAt(i + 3) == "/" && catalogText.charAt(i + 4) == "C" && catalogText.charAt(i + 5) == "S" && catalogText.charAt(i + 6) == "U" && catalogText.charAt(i + 7) == ":" && currentType == "credit") {
+    else if (checkWord("UC/CSU:",catalogText,i) && currentType == "credit") {
       if (currentType == "credit") {
         credits[credits.length] = storedLetters;
         currentType = "universityCredit";
@@ -414,7 +422,7 @@ function organizePDF() {
       }
       storedLetters = "";
     }
-    else if (catalogText.charAt(i + 1) == "R" && catalogText.charAt(i + 2) == "e" && catalogText.charAt(i + 3) == "c" && catalogText.charAt(i + 4) == "o" && catalogText.charAt(i + 5) == "m" && catalogText.charAt(i + 6) == "m" && catalogText.charAt(i + 7) == "e" && catalogText.charAt(i + 8) == "n" && catalogText.charAt(i + 9) == "d" && currentType == "universityCredit") {
+    else if (checkWord("Recommended Prerequisites:",catalogText,i) && currentType == "universityCredit") {
       if (currentType == "universityCredit") {
         universityCredits[universityCredits.length] = storedLetters;
         currentType = "preReq";
@@ -425,7 +433,7 @@ function organizePDF() {
       }
       storedLetters = "";
     }
-    else if (catalogText.charAt(i + 1) == "I" && catalogText.charAt(i + 2) == "n" && catalogText.charAt(i + 3) == "t" && catalogText.charAt(i + 4) == "e" && catalogText.charAt(i + 5) == "r" && catalogText.charAt(i + 6) == "e" && catalogText.charAt(i + 7) == "s" && catalogText.charAt(i + 8) == "t" && catalogText.charAt(i + 9) == ":" && (currentType == "preReq" || currentType == "universityCredit")) {
+    else if (checkWord("Interest:",catalogText,i) && (currentType == "preReq" || currentType == "universityCredit")) {
       if (currentType == "preReq") {
         preReqs[preReqs.length] = storedLetters;
         currentType = "interest";
@@ -433,7 +441,7 @@ function organizePDF() {
       }
       else if (currentType == "universityCredit") {
         universityCredits[universityCredits.length] = storedLetters;
-        preReqs[preReqs.length] = " None";
+        preReqs[preReqs.length] = "None";
         currentType = "interest";
         i += 10;
       }
@@ -442,7 +450,7 @@ function organizePDF() {
       }
       storedLetters = "";
     }
-    else if (catalogText.charAt(i + 1) == "L" && catalogText.charAt(i + 2) == "i" && catalogText.charAt(i + 3) == "n" && catalogText.charAt(i + 4) == "k" && catalogText.charAt(i + 5) == "e" && catalogText.charAt(i + 6) == "d" && catalogText.charAt(i + 7) == " " && catalogText.charAt(i + 8) == "C" && catalogText.charAt(i + 9) == "o" && (currentType == "interest" || currentType == "preReq")) {
+    else if (checkWord("Linked Course:",catalogText,i) && (currentType == "interest" || currentType == "preReq")) {
       if (currentType == "interest") {
         interests[interests.length] = storedLetters;
         currentType = "linkedCourse";
@@ -450,7 +458,7 @@ function organizePDF() {
       }
       else if (currentType == "preReq") {
         preReqs[preReqs.length] = storedLetters;
-        interests[interests.length] = " None";
+        interests[interests.length] = "None";
         currentType = "linkedCourse";
         i += 15;
       }
@@ -466,13 +474,13 @@ function organizePDF() {
       }
       else if (currentType == "interest") {
         interests[interests.length] = storedLetters;
-        linkedCourses[linkedCourses.length] = " None";
+        linkedCourses[linkedCourses.length] = "None";
         currentType = "description";
       }
       else if (currentType == "preReq") {
         preReqs[preReqs.length] = storedLetters;
-        linkedCourses[linkedCourses.length] = " None";
-        interests[interests.length] = " None";
+        linkedCourses[linkedCourses.length] = "None";
+        interests[interests.length] = "None";
         currentType = "description";
       }
       else {
