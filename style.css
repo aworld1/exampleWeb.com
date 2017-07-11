@@ -1,5 +1,7 @@
 body {
     background-color: azure;
+    background-image:url("background.jpg");
+    background-repeat: repeat;
 }
 #header {
     text-align: center;
@@ -50,18 +52,26 @@ body {
 }
 #nine {
     background-color:#FFEA40;
+    background-image:url("orange.jpg");
+    background-position: center;
     margin-top: 10vh;
     color:#776D20;
 }
 #ten {
+    background-image:url("pink.gif");
+    background-position: center;
     background-color:hotpink;
     color:#77206C;
 }
 #eleven {
+    background-image:url("green.gif");
+    background-position: center;
     background-color:aquamarine;
     color:#20775C;
 }
 #twelve {
+    background-image:url("blue.gif");
+    background-position: center;
     background-color:#00A0FF;
     color:#1B5374;
 }
@@ -94,4 +104,91 @@ body {
   background-size: contain;
   background-color: transparent;
   border: none;
+}
+#acceptClass {
+  width: 10vw;
+  height: 4vh;
+  position: relative;
+  margin-bottom:10vh;
+  align:center;
+  float:right;
+  font-size:3vmin;
+  background-color: white;
+  color: #5cb85c;
+  border-radius: 3.5vh;
+  display:inline;
+}
+/* Pop up styling */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 6; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    margin-bottom:20vh;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {
+  padding: 2px 16px;
+  color:black
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
 }

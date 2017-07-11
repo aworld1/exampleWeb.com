@@ -36,6 +36,11 @@ function showEightClasses() {
 }
 function showOptions() {
   hideEverything();
+  search.style.visibility = "visible";
+  search.style.display = "block";
+  searchImage.style.visibility = "visible";
+  searchImage.style.display = "block";
+  searchClasses();
 }
 function hideEverything() {
   header.style.visibility = "hidden";
@@ -68,13 +73,6 @@ function hideEverything() {
   search.style.display = "none";
   searchImage.style.visibility = "hidden";
   searchImage.style.display = "none";
-}
-function showOptions() {
-  hideEverything();
-  search.style.visibility = "visible";
-  search.style.display = "block";
-  searchImage.style.visibility = "visible";
-  searchImage.style.display = "block";
 }
 var catalogText;
 function gettext(pdfUrl){
@@ -163,7 +161,7 @@ function cleanDescription() {
             categories.splice(categoryLength,1);
           }
           else {
-            categoryPlacement[categoryPlacement.length] = i;
+              categoryPlacement[categoryPlacement.length] = i + 1;
           }
         }
       }
@@ -191,17 +189,29 @@ function getCategory(placement) {
   }
   return categories[indexOfCategory];
 }
+var classP = document.getElementById("classP");
+var categoryP = document.getElementById("categoryP");
+var codeP = document.getElementById("codeP");
+var gradesP = document.getElementById("gradesP");
+var creditsP = document.getElementById("creditsP");
+var universityCreditsP = document.getElementById("universityCreditsP");
+var preReqsP = document.getElementById("preReqsP");
+var interestP = document.getElementById("interestP");
+var linkedCoursesP = document.getElementById("linkedCoursesP");
+var descriptionP = document.getElementById("descriptionP");
 function classInfo(placement) {
-  console.log(getCategory(placement));
-  console.log(classes[placement]);
-  console.log(codes[placement]);
-  console.log(grades[placement]);
-  console.log(credits[placement]);
-  console.log(universityCredits[placement]);
-  console.log(preReqs[placement]);
-  console.log(interests[placement]);
-  console.log(linkedCourses[placement]);
-  console.log(descriptions[placement]);
+  categoryP.innerHTML = getCategory(placement);
+  classP.innerHTML = classes[placement];
+  codeP.innerHTML = codes[placement];
+  gradesP.innerHTML = grades[placement];
+  creditsP.innerHTML = credits[placement];
+  universityCreditsP.innerHTML = universityCredits[placement];
+  preReqsP.innerHTML = preReqs[placement];
+  interestP.innerHTML = interests[placement];
+  linkedCoursesP.innerHTML = linkedCourses[placement];
+  descriptionP.innerHTML = descriptions[placement];
+  modal.style.display = "block";
+  document.body.style.overflowY = "hidden";
 }
 function searchClasses() {
     // Declare variables
@@ -216,7 +226,7 @@ function searchClasses() {
 
     // Loop through all list items, and hide those who don't match the search query
     for (var i = 0; i < classes.length; i++) {
-        if (classes[i].toUpperCase().indexOf(filter) > -1 || codes[i].toUpperCase().indexOf(filter) > -1) {
+        if (classes[i].toUpperCase().indexOf(filter) > -1 || codes[i].toUpperCase().indexOf(filter) > -1 || getCategory(i).toUpperCase().indexOf(filter) > -1) {
             buttons[buttons.length] = document.createElement("BUTTON");
             document.body.appendChild(buttons[buttons.length - 1]);
             buttons[buttons.length - 1].innerHTML = classes[i];
@@ -294,6 +304,35 @@ function cleanOthers() {
       }
     }
   }
+}
+
+// Menu icon setup
+var menu = document.getElementById("nav-icon3");
+var mainNav = document.getElementById("main-nav");
+mainNav.style.display = "none";
+menu.onclick = function() {
+  menu.classList.toggle("open");
+  if (mainNav.style.display == "none") {
+    mainNav.style.display = "block"
+  }
+  else {
+    mainNav.style.display = "none"
+  }
+}
+var modal = document.getElementById('myModal');
+var span = document.getElementsByClassName("close")[0];
+span.onclick = function() {
+    modal.style.display = "none";
+    document.body.style.overflowY = "scroll";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+        document.body.style.overflowY = "scroll";
+    }
+}
+if (!localStorage.myClasses) {
+  localStorage.myClasses = [""];
 }
 var buttons = [];
 var categories = [];
@@ -394,7 +433,7 @@ function organizePDF() {
       }
       else if (currentType == "universityCredit") {
         universityCredits[universityCredits.length] = storedLetters;
-        preReqs[preReqs.length] = "";
+        preReqs[preReqs.length] = " None";
         currentType = "interest";
         i += 10;
       }
@@ -411,7 +450,7 @@ function organizePDF() {
       }
       else if (currentType == "preReq") {
         preReqs[preReqs.length] = storedLetters;
-        interests[interests.length] = "";
+        interests[interests.length] = " None";
         currentType = "linkedCourse";
         i += 15;
       }
@@ -427,13 +466,13 @@ function organizePDF() {
       }
       else if (currentType == "interest") {
         interests[interests.length] = storedLetters;
-        linkedCourses[linkedCourses.length] = "";
+        linkedCourses[linkedCourses.length] = " None";
         currentType = "description";
       }
       else if (currentType == "preReq") {
         preReqs[preReqs.length] = storedLetters;
-        linkedCourses[linkedCourses.length] = "";
-        interests[interests.length] = "";
+        linkedCourses[linkedCourses.length] = " None";
+        interests[interests.length] = " None";
         currentType = "description";
       }
       else {
@@ -469,7 +508,7 @@ gettext("https://docs.wixstatic.com/ugd/5db6f5_7f8fbcb5bd064026b84356a51b42f5f3.
   organizePDF();
   cleanDescription();
   cleanOthers();
-  console.log("Done cleaning.")
+  console.log("Done cleaning.");
 }, function (reason) {
   console.error(reason);
 });
