@@ -12,67 +12,44 @@ var classG = document.getElementById("classG");
 var classH = document.getElementById("classH");
 var search = document.getElementById("search");
 var header = document.getElementById("header");
+var loadIcon = document.getElementById("loadIcon");
 var searchImage = document.getElementById("searchImage");
+function showGrades() {
+  hideEverything();
+  toggleObjects([nine,ten,eleven,twelve,header],"show");
+}
 function showEightClasses() {
   hideEverything();
-  header.style.visibility = "visible";
-  header.style.display = "block";
-  classA.style.visibility = "visible";
-  classB.style.visibility = "visible";
-  classC.style.visibility = "visible";
-  classD.style.visibility = "visible";
-  classE.style.visibility = "visible";
-  classF.style.visibility = "visible";
-  classG.style.visibility = "visible";
-  classH.style.visibility = "visible";
-  classA.style.display = "block";
-  classB.style.display = "block";
-  classC.style.display = "block";
-  classD.style.display = "block";
-  classE.style.display = "block";
-  classF.style.display = "block";
-  classG.style.display = "block";
-  classH.style.display = "block";
+  toggleObjects([classA,classB,classC,classD,classE,classF,classG,classH,header],"show");
 }
 function showOptions() {
   hideEverything();
-  search.style.visibility = "visible";
-  search.style.display = "block";
-  searchImage.style.visibility = "visible";
-  searchImage.style.display = "block";
+  toggleObjects([search,searchImage],"show");
   searchClasses();
 }
 function hideEverything() {
-  header.style.visibility = "hidden";
-  header.style.display = "none";
-  nine.style.visibility = "hidden";
-  ten.style.visibility = "hidden";
-  eleven.style.visibility = "hidden";
-  twelve.style.visibility = "hidden";
-  nine.style.display = "none";
-  ten.style.display = "none";
-  eleven.style.display = "none";
-  twelve.style.display = "none";
-  classA.style.visibility = "hidden";
-  classB.style.visibility = "hidden";
-  classC.style.visibility = "hidden";
-  classD.style.visibility = "hidden";
-  classE.style.visibility = "hidden";
-  classF.style.visibility = "hidden";
-  classG.style.visibility = "hidden";
-  classH.style.visibility = "hidden";
-  classA.style.display = "none";
-  classB.style.display = "none";
-  classC.style.display = "none";
-  classD.style.display = "none";
-  classE.style.display = "none";
-  classF.style.display = "none";
-  classG.style.display = "none";
-  classH.style.display = "none";
-  search.style.visibility = "hidden";
-  search.style.display = "none";
-  searchImage.style.visibility = "hidden";
-  searchImage.style.display = "none";
+  toggleObjects([header,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon],"hide");
+  for (var u = 0; u < buttons.length; u++) {
+    buttons[u].style.display = "none";
+    buttons[u].style.visibility = "none"
+  }
+  buttons = [];
+  modal.style.display = "none";
+  document.body.style.overflowY = "scroll";
+}
+function toggleObjects(array,control) {
+  if (control == "show") {
+    for (var p = 0; p < array.length; p++) {
+      array[p].style.display = "block";
+      array[p].style.visibility = "visible";
+    }
+  }
+  else {
+    for (var p = 0; p < array.length; p++) {
+      array[p].style.display = "none";
+      array[p].style.visibility = "hidden";
+    }
+  }
 }
 var catalogText;
 function gettext(pdfUrl){
@@ -522,11 +499,14 @@ function organizePDF() {
   console.log("Done organizing.")
 } // Close Function
 /* THIS IS WHAT LOADS THE PROGRAM DOWN */
+hideEverything();
+toggleObjects([loadIcon],"show");
 gettext("https://docs.wixstatic.com/ugd/5db6f5_7f8fbcb5bd064026b84356a51b42f5f3.pdf").then(function (text) {
   catalogText = text;
   organizePDF();
   cleanDescription();
   cleanOthers();
+  showGrades();
   console.log("Done cleaning.");
 }, function (reason) {
   console.error(reason);

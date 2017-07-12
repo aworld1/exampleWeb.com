@@ -15,8 +15,8 @@ body {
     margin-left: 10vw;
     margin-top: 5vh;
     outline-style: none;
-    visibility: visible;
-    display:block;
+    visibility: hidden;
+    display:none;
     border-radius: 2.5vh;
     font-size:8vmin;
     font-family: impact;
@@ -118,6 +118,42 @@ body {
   border-radius: 3.5vh;
   display:inline;
 }
+
+/* Loading Circle */
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  position:absolute;
+  width:30vmin;
+  height:30vmin;
+  margin-left:25%;
+  margin-top:15%;
+}
+#loadText {
+  font-size:10vmin;
+  display:inline;
+  position:absolute;
+  width:20vmin;
+  height:20vmin;
+  margin-left:45%;
+  margin-top:20%;
+  font-family:monospace;
+  color:orange;
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 /* Pop up styling */
 
 .modal {
