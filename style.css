@@ -133,16 +133,10 @@ body {
   margin-left:25%;
   margin-top:15%;
 }
-#loadText {
-  font-size:10vmin;
-  display:inline;
-  position:absolute;
-  width:20vmin;
-  height:20vmin;
-  margin-left:45%;
-  margin-top:20%;
-  font-family:monospace;
-  color:orange;
+#loadIcon {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
 }
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
