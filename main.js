@@ -13,22 +13,35 @@ var classH = document.getElementById("classH");
 var search = document.getElementById("search");
 var header = document.getElementById("header");
 var loadIcon = document.getElementById("loadIcon");
+var backButton = document.getElementById("backButton");
 var searchImage = document.getElementById("searchImage");
+var gradeSelected;
+var classSelected;
+var modalOk = document.getElementById("acceptClass");
 function showGrades() {
+  gradeSelected = undefined;
+  classSelected = undefined;
   hideEverything();
   toggleObjects([nine,ten,eleven,twelve,header],"show");
 }
-function showEightClasses() {
+function showEightClasses(grade) {
+  classSelected = undefined;
+  if (grade) {
+    gradeSelected = grade;
+  }
   hideEverything();
-  toggleObjects([classA,classB,classC,classD,classE,classF,classG,classH,header],"show");
+  toggleObjects([classA,classB,classC,classD,classE,classF,classG,classH,header,backButton],"show");
 }
-function showOptions() {
+function showOptions(classNo) {
+  if (classNo) {
+    classSelected = classNo;
+  }
   hideEverything();
-  toggleObjects([search,searchImage],"show");
+  toggleObjects([search,searchImage,backButton],"show");
   searchClasses();
 }
 function hideEverything() {
-  toggleObjects([header,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon],"hide");
+  toggleObjects([header,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton],"hide");
   for (var u = 0; u < buttons.length; u++) {
     buttons[u].style.display = "none";
     buttons[u].style.visibility = "none"
@@ -75,6 +88,14 @@ return pdf.then(function(pdf) { // get all pages text
        return texts.join('');
      });
 });
+}
+backButton.onclick = function() {
+  if (classSelected) {
+    showEightClasses();
+  }
+  else if (gradeSelected) {
+    showGrades();
+  }
 }
 function isLetter(str) {
   return str.length === 1 && str.match(/[a-z]/i);
@@ -257,6 +278,9 @@ function cleanOthers() {
         moveOn = true;
       }
     }
+    if (classes[i].substring(0,7) == "ELL 3-4") {
+      classes[i] = classes[i].substring(0,7);
+    }
     moveOn = false;
     grades[i] = grades[i].slice(1);
     while (!moveOn) {
@@ -326,6 +350,10 @@ window.onclick = function(event) {
         modal.style.display = "none";
         document.body.style.overflowY = "scroll";
     }
+}
+modalOk.onclick = function() {
+  modal.style.display = "none";
+  document.body.style.overflowY = "scroll";
 }
 if (!localStorage.myClasses) {
   localStorage.myClasses = [""];
