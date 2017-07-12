@@ -375,6 +375,11 @@ modalOk.onclick = function() {
 function saveClasses() {
   localStorage.myClasses = JSON.stringify(myClasses);
 }
+function clearClasses() {
+  myClasses = "";
+  localStorage.removeItem("myClasses");
+  localStorage.myClasses;
+}
 var myClasses = [];
 localStorage.myClasses;
 var buttons = [];
@@ -555,7 +560,7 @@ gettext("https://docs.wixstatic.com/ugd/5db6f5_7f8fbcb5bd064026b84356a51b42f5f3.
   cleanOthers();
   console.log("Done cleaning.");
   showGrades();
-  if (localStorage.myClasses.length > 0) {
+  if (localStorage.myClasses != undefined && localStorage.myClasses != "") {
     myClasses = JSON.parse(localStorage.myClasses);
   }
 }, function (reason) {
