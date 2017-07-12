@@ -31,6 +31,19 @@ function showEightClasses(grade) {
   }
   hideEverything();
   toggleObjects([classA,classB,classC,classD,classE,classF,classG,classH,header,backButton],"show");
+  checkClasses([classA,classB,classC,classD,classE,classF,classG,classH]);
+}
+function checkClasses(classesInFunc) {
+  for (var j = 0; j < classesInFunc.length; j++) {
+    if (myClasses[(((gradeSelected - 9) * 8) + j)] != undefined) {
+      classesInFunc[j].innerHTML = myClasses[(((gradeSelected - 9) * 8) + j)];
+      classesInFunc[j].style.fontSize = "5vmin";
+    }
+    else {
+      classesInFunc[j].innerHTML = "Select Class";
+      classesInFunc[j].style.fontSize = "6vmin";
+    }
+  }
 }
 function showOptions(classNo) {
   if (classNo) {
@@ -206,6 +219,7 @@ var interestP = document.getElementById("interestP");
 var linkedCoursesP = document.getElementById("linkedCoursesP");
 var discontinuedP = document.getElementById("discontinuedP");
 var descriptionP = document.getElementById("descriptionP");
+var savePlacement;
 function classInfo(placement) {
   categoryP.innerHTML = getCategory(placement);
   classP.innerHTML = classes[placement];
@@ -216,6 +230,7 @@ function classInfo(placement) {
   preReqsP.innerHTML = preReqs[placement];
   interestP.innerHTML = interests[placement];
   linkedCoursesP.innerHTML = linkedCourses[placement];
+  savePlacement = placement;
   if (classes[placement].charAt(0) == "L" && classes[placement].charAt(1) == "/") {
     discontinuedP.innerHTML = "<b>Warning! This class is discontinued and may not be available. Please advise a counsler before taking this class.</b>";
     discontinuedP.innerHTML += "<br/><br/>Any class with <b>'L/'</b> in front of its name is discontinued.</b>";
@@ -354,10 +369,14 @@ window.onclick = function(event) {
 modalOk.onclick = function() {
   modal.style.display = "none";
   document.body.style.overflowY = "scroll";
+  myClasses[((gradeSelected - 9) * 8) + (classSelected - 1)] = classes[savePlacement];
+  saveClasses();
 }
-if (!localStorage.myClasses) {
-  localStorage.myClasses = [""];
+function saveClasses() {
+  localStorage.myClasses = JSON.stringify(myClasses);
 }
+var myClasses = [];
+localStorage.myClasses;
 var buttons = [];
 var categories = [];
 var categoryPlacement = [];
@@ -534,8 +553,11 @@ gettext("https://docs.wixstatic.com/ugd/5db6f5_7f8fbcb5bd064026b84356a51b42f5f3.
   organizePDF();
   cleanDescription();
   cleanOthers();
-  showGrades();
   console.log("Done cleaning.");
+  showGrades();
+  if (localStorage.myClasses.length > 0) {
+    myClasses = JSON.parse(localStorage.myClasses);
+  }
 }, function (reason) {
   console.error(reason);
 });
