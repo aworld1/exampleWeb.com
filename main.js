@@ -376,7 +376,8 @@ function saveClasses() {
   localStorage.myClasses = JSON.stringify(myClasses);
 }
 function clearClasses() {
-  myClasses = "";
+  myClasses = [];
+  saveClasses();
   localStorage.removeItem("myClasses");
   localStorage.myClasses;
 }
