@@ -45,9 +45,15 @@ function checkClasses(classesInFunc) {
     }
   }
 }
+var inputModal = document.getElementById("inputInfoModal");
 function showOptions(classNo) {
   if (classNo) {
     classSelected = classNo;
+    if (myClasses[((gradeSelected - 9) * 8) + (classSelected - 1)]) {
+      inputModal.style.display = "block";
+      headerInputP.innerHTML = classes[getIdByClassName(myClasses[((gradeSelected - 9) * 8) + (classSelected - 1)])];
+      return;
+    }
   }
   hideEverything();
   toggleObjects([search,searchImage,backButton],"show");
@@ -219,6 +225,7 @@ var interestP = document.getElementById("interestP");
 var linkedCoursesP = document.getElementById("linkedCoursesP");
 var discontinuedP = document.getElementById("discontinuedP");
 var descriptionP = document.getElementById("descriptionP");
+var headerInputP = document.getElementById("headerInputP");
 var savePlacement;
 function classInfo(placement) {
   categoryP.innerHTML = getCategory(placement);
@@ -355,14 +362,23 @@ menu.onclick = function() {
   }
 }
 var modal = document.getElementById('myModal');
-var span = document.getElementsByClassName("close")[0];
-span.onclick = function() {
+var span = document.getElementsByClassName("close");
+var removeClass = document.getElementById("removeClass");
+span[0].onclick = function() {
     modal.style.display = "none";
+    document.body.style.overflowY = "scroll";
+}
+span[1].onclick = function() {
+    inputModal.style.display = "none";
     document.body.style.overflowY = "scroll";
 }
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
+        document.body.style.overflowY = "scroll";
+    }
+    else if (event.target == inputModal) {
+        inputModal.style.display = "none";
         document.body.style.overflowY = "scroll";
     }
 }
@@ -371,9 +387,25 @@ modalOk.onclick = function() {
   document.body.style.overflowY = "scroll";
   myClasses[((gradeSelected - 9) * 8) + (classSelected - 1)] = classes[savePlacement];
   saveClasses();
+  showEightClasses();
+}
+removeClass.onclick = function() {
+  inputModal.style.display = "none";
+  document.body.style.overflowY = "scroll";
+  myClasses[((gradeSelected - 9) * 8) + (classSelected - 1)] = undefined;
+  saveClasses();
+  showEightClasses();
 }
 function saveClasses() {
   localStorage.myClasses = JSON.stringify(myClasses);
+}
+function getIdByClassName(string) {
+  for (var j = 0; j < 192; j++) {
+    if (classes[j] == string) {
+      return j;
+    }
+  }
+  return -1;
 }
 function clearClasses() {
   myClasses = [];

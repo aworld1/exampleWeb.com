@@ -45,7 +45,7 @@
   <ul>
 
   <li>
-  <a href="#">
+  <a href="#" onclick="showGrades()">
   <i class="fa fa-home fa-lg"></i>
   <span class="nav-text">Home</span>
   </a>
@@ -174,7 +174,7 @@
   <li class="darkerli">
   <a href="#">
   <i class="fa fa-align-left fa-lg"></i>
-  <span class="nav-text">Magazines
+  <span class="nav-text">GPA
   </span>
   </a>
   </li>
@@ -197,7 +197,7 @@
   <li class="darkerlishadowdown">
   <a href="#">
   <i class="fa fa-rocket fa-lg"></i>
-  <span class="nav-text">Fun</span>
+  <span class="nav-text">Add School</span>
   </a>
   </li>
 
@@ -261,6 +261,35 @@
         </div>
         <div class="modal-footer">
           <h3 text-align="left">Would you like to add this class?<button id="acceptClass" float="right">OK</button></h3>
+        </div>
+      </div>
+
+    </div>
+    <!-- The Modal -->
+    <div id="inputInfoModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2 id="headerInputP"></h2>
+        </div>
+        <div class="modal-body">
+          <p>
+            <br/>
+            <b>Enter in a grade: </b><br/>
+            <input type="radio" id="inputGradeA">A</input><br/>
+            <input type="radio" id="inputGradeB">B</input><br/>
+            <input type="radio" id="inputGradeC">C</input><br/>
+            <input type="radio" id="inputGradeD">D</input><br/>
+            <input type="radio" id="inputGradeF">F</input><br/>
+            <p><b>In most colleges and universities, the + and - on a grade does not matter.<br/><br/>
+            This means that an A+ is equivalent to an A, and an A-.
+            </b></p>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <h3 text-align="left">Would you like to remove this class?<button id="removeClass" float="right">OK</button></h3>
         </div>
       </div>
 

@@ -105,7 +105,7 @@ body {
   background-color: transparent;
   border: none;
 }
-#acceptClass {
+#acceptClass, #removeClass {
   width: 10vw;
   height: 4vh;
   position: relative;
