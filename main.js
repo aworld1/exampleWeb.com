@@ -107,6 +107,18 @@ function toggleObjects(array,control) {
     }
   }
 }
+var englishCredits = [0,40];
+var socialScienceCredits = [0,30];
+var mathCredits = [0,20];
+var physicalScienceCredits = [0,10];
+var biologicalScienceCredits = [0,10];
+var fineArtCredits = [0,10];
+var exerciseCredits = [0,25];
+var electiveCredits = [0,85];
+function creditsPage() {
+  hideEverything();
+  myCredits();
+}
 var homeBoxes = [];
 function homePage() {
   hideEverything();
@@ -115,12 +127,60 @@ function homePage() {
   createHomeBox("feature", "Featured Class - AP Cancer Human", "Bic boi.");
   createHomeBox("warning", "Warning - Your momma is da ugly AF", "XD MEMES <br/> I can't believe this actually works my life is complete smiley face");
   createHomeBox("check", "Add Classes", "Go to the menu and start building your plan!");
+  loadHomeBoxes();
+}
+function loadHomeBoxes() {
+  // Load boxes off of a site
+  var homeLoaded = false;
+  var currentHomeType = "type";
+  var t = 0;
+  var typeLetters = "";
+  var headerDescLetters = "";
+  var descLetters = "";
+  while (!homeLoaded) {
+    if (checkWord("* ",homePageText,t)) {
+      currentHomeType = "headerDesc";
+      t += 1;
+    }
+    else if (checkWord("** ",homePageText,t)) {
+      currentHomeType = "desc";
+      t += 2;
+    }
+    else if (checkWord("*** ",homePageText,t)) {
+      createHomeBox(typeLetters,headerDescLetters,descLetters);
+      typeLetters = "";
+      headerDescLetters = "";
+      descLetters = "";
+      currentHomeType = "type";
+      t += 3;
+    }
+    else if (checkWord("*****",homePageText,t)) {
+      createHomeBox(typeLetters,headerDescLetters,descLetters);
+      typeLetters = "";
+      headerDescLetters = "";
+      descLetters = "";
+      currentHomeType = "type";
+      homeLoaded = true;
+    }
+    else {
+      if (currentHomeType == "type") {
+        typeLetters += homePageText.charAt(t);
+      }
+      else if (currentHomeType == "headerDesc") {
+        headerDescLetters += homePageText.charAt(t);
+      }
+      else {
+        descLetters += homePageText.charAt(t);
+      }
+    }
+    t++;
+  }
 }
 function createHomeBox(typeBox, headerDesc, description) {
   // Head of Box
   homeBoxes[homeBoxes.length] = document.createElement("DIV");
   document.body.appendChild(homeBoxes[homeBoxes.length - 1]);
-  homeBoxes[homeBoxes.length - 1].className = "homeBox";
+  homeBoxes[homeBoxes.length - 1].className = "homeBox animated bounceInRight";
   homeBoxes[homeBoxes.length - 1].style.marginBottom = "0vh";
   homeBoxes[homeBoxes.length - 1].style.marginTop = "1vh";
   homeBoxes[homeBoxes.length - 1].innerHTML = headerDesc;
@@ -146,7 +206,7 @@ function createHomeBox(typeBox, headerDesc, description) {
   // Body of Box
   homeBoxes[homeBoxes.length] = document.createElement("DIV");
   document.body.appendChild(homeBoxes[homeBoxes.length - 1]);
-  homeBoxes[homeBoxes.length - 1].className = "homeBox";
+  homeBoxes[homeBoxes.length - 1].className = "homeBox animated bounceInRight";
   homeBoxes[homeBoxes.length - 1].innerHTML = description;
   homeBoxes[homeBoxes.length - 1].style.marginBottom = "10vh";
   if (typeBox == "info") {
@@ -166,7 +226,7 @@ function createHomeBox(typeBox, headerDesc, description) {
     homeBoxes[homeBoxes.length - 1].style.borderColor="#0A7C00";
   }
   homeBoxes[homeBoxes.length - 1].style.color = homeBoxes[homeBoxes.length - 1].style.borderColor;
-  homeBoxes[homeBoxes.length - 1].style.fontSize = "4vh";
+  homeBoxes[homeBoxes.length - 1].style.fontSize = "4vmin";
   homeBoxes[homeBoxes.length - 1].style.textAlign = "left";
   homeBoxes[homeBoxes.length - 1].style.paddingLeft = "2vw";
   homeBoxes[homeBoxes.length - 1].style.paddingRight = "2vw";
@@ -614,7 +674,7 @@ function organizePDF() {
         i += 8;
       }
       else {
-        alert("Something went wrong...");
+        alert("Something went wrong...3");
       }
       storedLetters = "";
     }
@@ -717,6 +777,7 @@ function organizePDF() {
   descriptions[descriptions.length] = storedLetters;
   console.log("Done organizing.")
 } // Close Function
+var homePageText;
 /* THIS IS WHAT LOADS THE PROGRAM DOWN */
 hideEverything();
 toggleObjects([loadIcon],"show");
@@ -725,8 +786,13 @@ gettext("https://docs.wixstatic.com/ugd/5db6f5_7f8fbcb5bd064026b84356a51b42f5f3.
   organizePDF();
   cleanDescription();
   cleanOthers();
+  gettext("https://docs.wixstatic.com/ugd/5db6f5_114a15c7d47b4cebb2df37e7e1b9c190.pdf").then(function (text) {
+    homePageText = text;
+    homePage();
+  }, function (reason) {
+    console.error(reason);
+  });
   console.log("Done cleaning.");
-  showGrades();
   if (localStorage.myClasses != undefined && localStorage.myClasses != "") {
     myClasses = JSON.parse(localStorage.myClasses);
   }

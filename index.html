@@ -45,7 +45,7 @@
   <ul>
 
   <li>
-  <a href="#" onclick="homePage()">
+  <a href="#" onclick="homePage()" id="homeButton">
   <i class="fa fa-home fa-lg"></i>
   <span class="nav-text">Home</span>
   </a>
@@ -144,7 +144,7 @@
   </li>
 
   <li class="darkerli">
-  <a href="#">
+  <a href="#" onclick="creditsPage()">
   <i class="fa fa-shopping-cart"></i>
    <span class="nav-text">Credits</span>
   </a>
@@ -167,7 +167,7 @@
   <li class="darkerli">
   <a href="#">
   <i class="fa fa-picture-o fa-lg"></i>
-  <span class="nav-text">Art & Design</span>
+  <span class="nav-text">University Credits</span>
   </a>
   </li>
 
@@ -218,7 +218,7 @@
   <li>
   <a href="#">
   <i class="fa fa-lightbulb-o fa-lg"></i>
-  <span class="nav-text">BLOG</span>
+  <span class="nav-text">Request Idea</span>
   </a>
   </li>
   </ul>
@@ -311,10 +311,10 @@
     <h1 id="header">Westview Planner</h1>
     <button id="backButton"></button>
     <button id="searchImage"></button>
-    <button class="gradeSelect" id="nine" onclick="showEightClasses(9)">9th Grade</button>
-    <button class="gradeSelect" id="ten" onclick="showEightClasses(10)">10th Grade</button>
-    <button class="gradeSelect" id="eleven" onclick="showEightClasses(11)">11th Grade</button>
-    <button class="gradeSelect" id="twelve" onclick="showEightClasses(12)">12th Grade</button>
+    <button class="gradeSelect animated fadeIn" id="nine" onclick="showEightClasses(9)">9th Grade</button>
+    <button class="gradeSelect animated fadeIn" id="ten" onclick="showEightClasses(10)">10th Grade</button>
+    <button class="gradeSelect animated fadeIn" id="eleven" onclick="showEightClasses(11)">11th Grade</button>
+    <button class="gradeSelect animated fadeIn" id="twelve" onclick="showEightClasses(12)">12th Grade</button>
     <button class="semesterOne" id="classA" onclick="showOptions(1)">Select Class</button>
     <button class="semesterTwo" id="classE" onclick="showOptions(5)">Select Class</button>
     <button class="semesterOne" id="classB" onclick="showOptions(2)">Select Class</button>
@@ -325,6 +325,7 @@
     <button class="semesterTwo" id="classH" onclick="showOptions(8)">Select Class</button>
     <input type="text" placeholder="Search for a class..." onkeyup="searchClasses()" id="search" maxlength=21></input>
     <link rel="stylesheet" type="text/css" href="style.css"></link>
+    <link rel="stylesheet" type="text/css" href="animate.css"></link>
     <script src="build/pdf.js"></script>
     <script src="main.js"></script>
     <link rel="stylesheet" type="text/css" href="menu.css"></link>
