@@ -42,8 +42,6 @@ body {
   margin-top: -13vh;
   margin-bottom: 2vh;
   position: absolute;
-  visibility: hidden;
-  display:none;
   font-family: "fantasy";
   font-size:6vmin;
   background-color: black;
@@ -82,8 +80,6 @@ body {
     margin-top: -13vh;
 }
 #search {
-  visibility: hidden;
-  display: none;
   margin-top: 10vh;
   margin-left: 10vw;
   width:80vw;
@@ -93,8 +89,6 @@ body {
   margin-bottom: 6vh;
 }
 #searchImage {
-  visibility: hidden;
-  display:none;
   margin-left:77vw;
   margin-top: 2vh;
   position: absolute;
@@ -169,6 +163,21 @@ body {
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
+
+.homeBox {
+  width: 80%;
+  height: 10%;
+  margin-top: 2%;
+  margin-bottom: 4%;
+  margin-left: 10%;
+  border:1vmin;
+  border-radius: 5vh;
+  border-style:solid;
+  font-family: Verdana;
+  text-align:center;
+  font-size:7vh;
+}
+
 /* Loading Circle */
 
 .loader {

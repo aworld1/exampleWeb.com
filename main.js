@@ -83,10 +83,13 @@ function myCredits() {
 function hideEverything() {
   toggleObjects([header,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton],"hide");
   for (var u = 0; u < buttons.length; u++) {
-    buttons[u].style.display = "none";
-    buttons[u].style.visibility = "none"
+    toggleObjects([buttons[u]],"hide");
+  }
+  for (var u = 0; u < homeBoxes.length; u++) {
+    toggleObjects([homeBoxes[u]],"hide");
   }
   buttons = [];
+  homeBoxes = [];
   modal.style.display = "none";
   document.body.style.overflowY = "scroll";
 }
@@ -103,6 +106,73 @@ function toggleObjects(array,control) {
       array[p].style.visibility = "hidden";
     }
   }
+}
+var homeBoxes = [];
+function homePage() {
+  hideEverything();
+  toggleObjects([header],"show");
+  createHomeBox("info", "Info - Aworld", "Aworld is the creator of this planner application and program. This program is patented.");
+  createHomeBox("feature", "Featured Class - AP Cancer Human", "Bic boi.");
+  createHomeBox("warning", "Warning - Your momma is da ugly AF", "XD MEMES <br/> I can't believe this actually works my life is complete smiley face");
+  createHomeBox("check", "Add Classes", "Go to the menu and start building your plan!");
+}
+function createHomeBox(typeBox, headerDesc, description) {
+  // Head of Box
+  homeBoxes[homeBoxes.length] = document.createElement("DIV");
+  document.body.appendChild(homeBoxes[homeBoxes.length - 1]);
+  homeBoxes[homeBoxes.length - 1].className = "homeBox";
+  homeBoxes[homeBoxes.length - 1].style.marginBottom = "0vh";
+  homeBoxes[homeBoxes.length - 1].style.marginTop = "1vh";
+  homeBoxes[homeBoxes.length - 1].innerHTML = headerDesc;
+  if (typeBox == "info") {
+    homeBoxes[homeBoxes.length - 1].style.background = "#42A5FF url('info.png') no-repeat 3vmin";
+    homeBoxes[homeBoxes.length - 1].style.borderColor="#3233C4";
+  }
+  else if (typeBox == "feature") {
+    homeBoxes[homeBoxes.length - 1].style.background = "#FFEE4B url('star.jpg') no-repeat 3vmin";
+    homeBoxes[homeBoxes.length - 1].style.borderColor="#A09100";
+  }
+  else if (typeBox == "warning") {
+    homeBoxes[homeBoxes.length - 1].style.background = "#FF2D2D url('warning.png') no-repeat 3vmin";
+    homeBoxes[homeBoxes.length - 1].style.borderColor="#970000";
+  }
+  else if (typeBox == "check") {
+    homeBoxes[homeBoxes.length - 1].style.background = "#50FF41 url('check.png') no-repeat 3vmin";
+    homeBoxes[homeBoxes.length - 1].style.borderColor="#0A7C00";
+  }
+  homeBoxes[homeBoxes.length - 1].style.backgroundSize = "8vmin 8vmin";
+  homeBoxes[homeBoxes.length - 1].style.color = homeBoxes[homeBoxes.length - 1].style.borderColor;
+
+  // Body of Box
+  homeBoxes[homeBoxes.length] = document.createElement("DIV");
+  document.body.appendChild(homeBoxes[homeBoxes.length - 1]);
+  homeBoxes[homeBoxes.length - 1].className = "homeBox";
+  homeBoxes[homeBoxes.length - 1].innerHTML = description;
+  homeBoxes[homeBoxes.length - 1].style.marginBottom = "10vh";
+  if (typeBox == "info") {
+    homeBoxes[homeBoxes.length - 1].style.background = "#42A5FF";
+    homeBoxes[homeBoxes.length - 1].style.borderColor="#3233C4";
+  }
+  else if (typeBox == "feature") {
+    homeBoxes[homeBoxes.length - 1].style.background = "#FFEE4B";
+    homeBoxes[homeBoxes.length - 1].style.borderColor="#A09100";
+  }
+  else if (typeBox == "warning") {
+    homeBoxes[homeBoxes.length - 1].style.background = "#FF2D2D";
+    homeBoxes[homeBoxes.length - 1].style.borderColor="#970000";
+  }
+  else if (typeBox == "check") {
+    homeBoxes[homeBoxes.length - 1].style.background = "#50FF41";
+    homeBoxes[homeBoxes.length - 1].style.borderColor="#0A7C00";
+  }
+  homeBoxes[homeBoxes.length - 1].style.color = homeBoxes[homeBoxes.length - 1].style.borderColor;
+  homeBoxes[homeBoxes.length - 1].style.fontSize = "4vh";
+  homeBoxes[homeBoxes.length - 1].style.textAlign = "left";
+  homeBoxes[homeBoxes.length - 1].style.paddingLeft = "2vw";
+  homeBoxes[homeBoxes.length - 1].style.paddingRight = "2vw";
+  homeBoxes[homeBoxes.length - 1].style.width = "75vw";
+  homeBoxes[homeBoxes.length - 1].style.paddingTop = "2vh";
+  homeBoxes[homeBoxes.length - 1].style.paddingBottom = "2vh";
 }
 var catalogText;
 function gettext(pdfUrl){
