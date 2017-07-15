@@ -45,16 +45,16 @@
   <ul>
 
   <li>
-  <a href="#" onclick="showGrades()">
+  <a href="#" onclick="homePage()">
   <i class="fa fa-home fa-lg"></i>
   <span class="nav-text">Home</span>
   </a>
   </li>
 
   <li>
-  <a href="#">
+  <a href="#" onclick="showGrades()">
   <i class="fa fa-user fa-lg"></i>
-  <span class="nav-text">Login</span>
+  <span class="nav-text">Add classes</span>
   </a>
   </li>
 
@@ -125,7 +125,7 @@
   <li class="darkerlishadow">
   <a href="#">
   <i class="fa fa-clock-o fa-lg"></i>
-  <span class="nav-text">News</span>
+  <span class="nav-text">Switch Plan</span>
   </a>
   </li>
 
@@ -146,7 +146,7 @@
   <li class="darkerli">
   <a href="#">
   <i class="fa fa-shopping-cart"></i>
-   <span class="nav-text">Shopping</span>
+   <span class="nav-text">Credits</span>
   </a>
   </li>
 
@@ -160,7 +160,7 @@
   <li class="darkerli">
   <a href="#">
   <i class="fa fa-flask fa-lg"></i>
-  <span class="nav-text">Web Tools</span>
+  <span class="nav-text">Verify Classes</span>
   </a>
   </li>
 
@@ -197,7 +197,7 @@
   <li class="darkerlishadowdown">
   <a href="#">
   <i class="fa fa-rocket fa-lg"></i>
-  <span class="nav-text">Add School</span>
+  <span class="nav-text">Add/Switch School</span>
   </a>
   </li>
 
@@ -216,16 +216,13 @@
 
   <ul class="logout">
   <li>
-                     <a href="#">
-                           <i class="fa fa-lightbulb-o fa-lg"></i>
-                          <span class="nav-text">
-                              BLOG
-                          </span>
-
-                      </a>
+  <a href="#">
+  <i class="fa fa-lightbulb-o fa-lg"></i>
+  <span class="nav-text">BLOG</span>
+  </a>
   </li>
   </ul>
-          </nav>
+</nav>
           <!-- THIS ABOVE IS THE MENU -->
 
     <div id="nav-icon3">
@@ -275,16 +272,32 @@
           <h2 id="headerInputP"></h2>
         </div>
         <div class="modal-body">
+          <p>When you are done with your class, input your grades so we can track your GPA.</p>
           <p>
-            <br/>
-            <b>Enter in a grade: </b><br/>
-            <input type="radio" id="inputGradeA">A</input><br/>
-            <input type="radio" id="inputGradeB">B</input><br/>
-            <input type="radio" id="inputGradeC">C</input><br/>
-            <input type="radio" id="inputGradeD">D</input><br/>
-            <input type="radio" id="inputGradeF">F</input><br/>
-            <p><b>In most colleges and universities, the + and - on a grade does not matter.<br/><br/>
-            This means that an A+ is equivalent to an A, and an A-.
+            <div class="dropdown">
+              <button class="dropbtn">Select a grade (Q1)</button>
+              <div class="dropdown-content">
+                <a href="#" onclick="addGrade('A',1)">A</a>
+                <a href="#" onclick="addGrade('B',1)">B</a>
+                <a href="#" onclick="addGrade('C',1)">C</a>
+                <a href="#" onclick="addGrade('D',1)">D</a>
+                <a href="#" onclick="addGrade('F',1)">F</a>
+                <a href="#" onclick="addGrade(undefined,1)">Remove Grade</a>
+              </div>
+            </div>
+              <div class="dropdown">
+                <button class="dropbtn">Select a grade (Q2)</button>
+                <div class="dropdown-content">
+                  <a href="#" onclick="addGrade('A',2)">A</a>
+                  <a href="#" onclick="addGrade('B',2)">B</a>
+                  <a href="#" onclick="addGrade('C',2)">C</a>
+                  <a href="#" onclick="addGrade('D',2)">D</a>
+                  <a href="#" onclick="addGrade('F',2)">F</a>
+                  <a href="#" onclick="addGrade(undefined,2)">Remove Grade</a>
+                </div>
+            </div><br/>
+            <p><b>In most colleges and universities, the <font color="blue">+</font> and <font color="blue">-</font> on a grade does not matter.<br/><br/>
+            This means that an <font color="blue">A+</font> is equivalent to an <font color="blue">A</font>, and an <font color="blue">A-</font>.
             </b></p>
           </p>
         </div>

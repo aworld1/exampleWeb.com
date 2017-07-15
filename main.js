@@ -52,12 +52,33 @@ function showOptions(classNo) {
     if (myClasses[((gradeSelected - 9) * 8) + (classSelected - 1)]) {
       inputModal.style.display = "block";
       headerInputP.innerHTML = classes[getIdByClassName(myClasses[((gradeSelected - 9) * 8) + (classSelected - 1)])];
+      if (myGrades[2 * (((gradeSelected - 9) * 8) + (classSelected - 1))] != undefined) {
+        gradeDropDownA.innerHTML = "Selected Q1 Grade: <b>" + myGrades[2 * (((gradeSelected - 9) * 8) + (classSelected - 1))] + "</b>";
+      }
+      else {
+        gradeDropDownA.innerHTML = "Select a Q1 grade";
+      }
+      if (myGrades[2 * (((gradeSelected - 9) * 8) + (classSelected - 1)) + 1] != undefined) {
+        gradeDropDownB.innerHTML = "Selected Q2 Grade: <b>" + myGrades[2 * (((gradeSelected - 9) * 8) + (classSelected - 1)) + 1] + "</b>";
+      }
+      else {
+        gradeDropDownB.innerHTML = "Select a Q2 grade";
+      }
       return;
     }
   }
   hideEverything();
   toggleObjects([search,searchImage,backButton],"show");
   searchClasses();
+}
+function myCredits() {
+  for (var i = 0; i < 32; i++) {
+    if (myClasses[i] != undefined) {
+      if (credits[getIdByClassName(myClasses[i])].length <= 5) {
+        console.log(credits[getIdByClassName(myClasses[i])] + " " + getCategory(getIdByClassName(myClasses[i])))
+      }
+    }
+  }
 }
 function hideEverything() {
   toggleObjects([header,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton],"hide");
@@ -150,8 +171,21 @@ function isClass(pdf, placement) {
           returnVal = false;
         }
       }
+      /*else if (!((checkSpecialChars(pdf.charAt(j + placement),[" ","."]) && j > 0) || checkSpecialChars(pdf.charAt(j + placement),["–","’","-"]) || (pdf.charAt(j + placement) == "/" && !checkWord("UC/CSU",j + placement - 2)) || isLetter(pdf.charAt(j + placement)))) {
+        if (!(j > 1 && checkSpecialChars(pdf.charAt(j + placement),["1","2","3","4","5","6","7","8","9","0","(",":"]))) {
+          returnVal = false;
+        }
+      }*/
   }
   return returnVal;
+}
+function checkSpecialChars(string,arrayX) {
+  for (var f = 0; f < arrayX.length; f++) {
+    if (string == arrayX[f]) {
+      return true;
+    }
+  }
+  return false;
 }
 function checkWord(string,pdf,placement) {
   for (var k = 0; k < string.length; k++) {
@@ -393,11 +427,16 @@ removeClass.onclick = function() {
   inputModal.style.display = "none";
   document.body.style.overflowY = "scroll";
   myClasses[((gradeSelected - 9) * 8) + (classSelected - 1)] = undefined;
+  myGrades[2 * (((gradeSelected - 9) * 8) + (classSelected - 1))] = undefined;
+  myGrades[2 * (((gradeSelected - 9) * 8) + (classSelected - 1)) + 1] = undefined;
   saveClasses();
   showEightClasses();
 }
 function saveClasses() {
   localStorage.myClasses = JSON.stringify(myClasses);
+}
+function saveGrades() {
+  localStorage.myGrades = JSON.stringify(myGrades);
 }
 function getIdByClassName(string) {
   for (var j = 0; j < 192; j++) {
@@ -409,12 +448,37 @@ function getIdByClassName(string) {
 }
 function clearClasses() {
   myClasses = [];
+  myGrades = [];
   saveClasses();
+  saveGrades();
   localStorage.removeItem("myClasses");
   localStorage.myClasses;
+  localStorage.removeItem("myGrades");
+  localStorage.myGrades;
 }
+function addGrade(gradeInput,quarter) {
+  quarter--;
+  myGrades[2 * (((gradeSelected - 9) * 8) + (classSelected - 1)) + quarter] = gradeInput;
+  saveGrades();
+  if (gradeInput && quarter == 0) {
+    gradeDropDownA.innerHTML = "Selected Q1 Grade: <b>" + gradeInput + "</b>";
+  }
+  else if (gradeInput && quarter == 1) {
+    gradeDropDownB.innerHTML = "Selected Q2 Grade: <b>" + gradeInput + "</b>";
+  }
+  else if (quarter == 0) {
+    gradeDropDownA.innerHTML = "Select a Q1 grade";
+  }
+  else {
+    gradeDropDownB.innerHTML = "Select a Q2 grade";
+  }
+}
+var gradeDropDownA = document.getElementsByClassName("dropbtn")[0];
+var gradeDropDownB = document.getElementsByClassName("dropbtn")[1];
 var myClasses = [];
+var myGrades = [];
 localStorage.myClasses;
+localStorage.myGrades;
 var buttons = [];
 var categories = [];
 var categoryPlacement = [];
@@ -540,7 +604,7 @@ function organizePDF() {
       }
       storedLetters = "";
     }
-    else if (catalogText.charAt(i - 1) == " " && catalogText.charAt(i - 2) == " " && catalogText.charAt(i) == catalogText.charAt(i).toUpperCase() && (currentType == "linkedCourse" || currentType == "interest" || currentType == "preReq")) {
+    else if (checkWord("  ",catalogText,i - 2) && catalogText.charAt(i - 3) != ";" && catalogText.charAt(i) == catalogText.charAt(i).toUpperCase() && (currentType == "linkedCourse" || currentType == "interest" || currentType == "preReq")) {
       if (currentType == "linkedCourse") {
         linkedCourses[linkedCourses.length] = storedLetters;
         currentType = "description";
@@ -595,6 +659,9 @@ gettext("https://docs.wixstatic.com/ugd/5db6f5_7f8fbcb5bd064026b84356a51b42f5f3.
   showGrades();
   if (localStorage.myClasses != undefined && localStorage.myClasses != "") {
     myClasses = JSON.parse(localStorage.myClasses);
+  }
+  if (localStorage.myGrades != undefined && localStorage.myGrades != "") {
+    myGrades = JSON.parse(localStorage.myGrades);
   }
 }, function (reason) {
   console.error(reason);
