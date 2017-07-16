@@ -237,11 +237,11 @@ function creditsPage() {
     creditTextArray[j].innerHTML = tempCreditArray[j][0] + "/" + tempCreditArray[j][1];
     if (tempCreditArray[j][0] < tempCreditArray[j][1]) {
       document.getElementById("credIcon" + j).style.backgroundImage = 'url("x.png")';
-      document.getElementById("credIcon" + j).className += " animated shake";
+      document.getElementById("credIcon" + j).className = "credIcon animated shake";
     }
     else {
       document.getElementById("credIcon" + j).style.backgroundImage = 'url("checkCred.png")';
-      document.getElementById("credIcon" + j).className += " animated tada";
+      document.getElementById("credIcon" + j).className = "credIcon animated tada";
     }
   }
 }
@@ -254,6 +254,16 @@ function homePage() {
   createHomeBox("warning", "Warning - Your momma is da ugly AF", "XD MEMES <br/> I can't believe this actually works my life is complete smiley face");
   createHomeBox("check", "Add Classes", "Go to the menu and start building your plan!");
   loadHomeBoxes();
+}
+function checkDups(arr) {
+	var dupValues = [];
+  arr.sort();
+	for (var i = 0; i < arr.length - 1; i++) {
+  	if (arr[i] == arr[i + 1]) {
+    	dupValues.push(arr[i]);
+    }
+  }
+  return dupValues;
 }
 function loadHomeBoxes() {
   // Load boxes off of a site
