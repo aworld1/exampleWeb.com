@@ -12,6 +12,7 @@ var classG = document.getElementById("classG");
 var classH = document.getElementById("classH");
 var search = document.getElementById("search");
 var header = document.getElementById("header");
+var creditPage = document.getElementById("creditContainer");
 var loadIcon = document.getElementById("loadIcon");
 var backButton = document.getElementById("backButton");
 var searchImage = document.getElementById("searchImage");
@@ -71,17 +72,125 @@ function showOptions(classNo) {
   toggleObjects([search,searchImage,backButton],"show");
   searchClasses();
 }
+var englishCredits = [0,40];
+var socialScienceCredits = [0,30];
+var mathCredits = [0,20];
+var physicalScienceCredits = [0,10];
+var biologicalScienceCredits = [0,10];
+var fineArtCredits = [0,10];
+var exerciseCredits = [0,25];
+var electiveCredits = [0,85];
+var foreignCredits = [0,0];
 function myCredits() {
+  englishCredits = [0,40];
+  socialScienceCredits = [0,30];
+  mathCredits = [0,20];
+  physicalScienceCredits = [0,10];
+  biologicalScienceCredits = [0,10];
+  fineArtCredits = [0,10];
+  exerciseCredits = [0,25];
+  electiveCredits = [0,85];
+  foreignCredits = [0,0];
   for (var i = 0; i < 32; i++) {
     if (myClasses[i] != undefined) {
-      if (credits[getIdByClassName(myClasses[i])].length <= 5) {
-        console.log(credits[getIdByClassName(myClasses[i])] + " " + getCategory(getIdByClassName(myClasses[i])))
+      // If the class exists
+      if (credits[getIdByClassName(myClasses[i])].length <= 2 && Number(credits[getIdByClassName(myClasses[i])]) == 20) {
+        // If it's a 20 credit class
+        if (getCategory(getIdByClassName(myClasses[i])) == "English" || getCategory(getIdByClassName(myClasses[i])) == "EnglishLanguageDevelopment") {
+          englishCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "SocialSciences") {
+          socialScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "Mathematics") {
+          mathCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "PhysicalSciences") {
+          physicalScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "BiologicalSciences") {
+          biologicalScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "FineArts") {
+          fineArtCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "PhysicalEducation") {
+          exerciseCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "WorldLanguage") {
+          foreignCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+        }
+        else {
+          electiveCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+        }
+      }
+      if (credits[getIdByClassName(myClasses[i])].length <= 2) {
+        // If it's a normal class
+        if (getCategory(getIdByClassName(myClasses[i])) == "English" || getCategory(getIdByClassName(myClasses[i])) == "EnglishLanguageDevelopment") {
+          englishCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "SocialSciences") {
+          socialScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "Mathematics") {
+          mathCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "PhysicalSciences") {
+          physicalScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "BiologicalSciences") {
+          biologicalScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "FineArts") {
+          fineArtCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "PhysicalEducation") {
+          exerciseCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "WorldLanguage") {
+          foreignCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+        }
+        else {
+          electiveCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+        }
+      }
+      else {
+        // If it has words in it
+        if (checkWord("Varies",credits[getIdByClassName(myClasses[i])],0)) {
+          electiveCredits[0] += 10;
+        }
+        else if (checkWord("10 Math/10 Elective",credits[getIdByClassName(myClasses[i])],0)) {
+          electiveCredits[0] += 10;
+          mathCredits[0] += 10;
+        }
+        else if (checkWord("5 Health/5 PE",credits[getIdByClassName(myClasses[i])],0)) {
+          exerciseCredits[0] += 10;
+        }
+        else if (checkWord("10 PE/10 Elect.",credits[getIdByClassName(myClasses[i])],0)) {
+          electiveCredits[0] += 10;
+          exerciseCredits[0] += 10;
+        }
+        else if (checkWord("5 PE/15 Fine Art",credits[getIdByClassName(myClasses[i])],0)) {
+          exerciseCredits[0] += 5;
+          fineArtCredits[0] += 15;
+        }
+        else if (checkWord("5 PE/15 Electives",credits[getIdByClassName(myClasses[i])],0)) {
+          electiveCredits[0] += 15;
+          exerciseCredits[0] += 5;
+        }
       }
     }
   }
+  creditArray = [englishCredits,socialScienceCredits,exerciseCredits,mathCredits,fineArtCredits,physicalScienceCredits,biologicalScienceCredits,foreignCredits];
+  for (var i = 0; i < creditArray.length; i++) {
+    if (creditArray[i][0] > creditArray[i][1]) {
+      electiveCredits[0] += Number(creditArray[i][0]) - Number(creditArray[i][1]);
+    }
+  }
+  console.log("Done credit calculation.");
 }
 function hideEverything() {
-  toggleObjects([header,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton],"hide");
+  toggleObjects([header,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage],"hide");
   for (var u = 0; u < buttons.length; u++) {
     toggleObjects([buttons[u]],"hide");
   }
@@ -107,17 +216,32 @@ function toggleObjects(array,control) {
     }
   }
 }
-var englishCredits = [0,40];
-var socialScienceCredits = [0,30];
-var mathCredits = [0,20];
-var physicalScienceCredits = [0,10];
-var biologicalScienceCredits = [0,10];
-var fineArtCredits = [0,10];
-var exerciseCredits = [0,25];
-var electiveCredits = [0,85];
+var englishCreditText = document.getElementById("englishCreditText");
+var socialCreditText = document.getElementById("socialCreditText");
+var mathCreditText = document.getElementById("mathCreditText");
+var physicalCreditText = document.getElementById("physicalCreditText");
+var bioCreditText = document.getElementById("bioCreditText");
+var fineArtCreditText = document.getElementById("fineArtCreditText");
+var PECreditText = document.getElementById("PECreditText");
+var electiveCreditText = document.getElementById("electiveCreditText");
+var langCreditText = document.getElementById("langCreditText");
+var creditArray = [englishCredits,socialScienceCredits,exerciseCredits,mathCredits,fineArtCredits,physicalScienceCredits,biologicalScienceCredits,foreignCredits];
 function creditsPage() {
   hideEverything();
   myCredits();
+  creditPage.style.visibility = "visible";
+  creditPage.style.display = "block";
+  var creditTextArray = [englishCreditText,socialCreditText,mathCreditText,physicalCreditText,bioCreditText,fineArtCreditText,PECreditText,electiveCreditText,langCreditText];
+  var tempCreditArray = [englishCredits,socialScienceCredits,mathCredits,physicalScienceCredits,biologicalScienceCredits,fineArtCredits,exerciseCredits,electiveCredits,foreignCredits];
+  for (var j = 0; j < creditTextArray.length; j++) {
+    creditTextArray[j].innerHTML = tempCreditArray[j][0] + "/" + tempCreditArray[j][1];
+    if (tempCreditArray[j][0] < tempCreditArray[j][1]) {
+      document.getElementById("credIcon" + j).style.backgroundImage = 'url("x.png")';
+    }
+    else {
+      document.getElementById("credIcon" + j).style.backgroundImage = 'url("checkCred.png")';
+    }
+  }
 }
 var homeBoxes = [];
 function homePage() {
@@ -180,7 +304,7 @@ function createHomeBox(typeBox, headerDesc, description) {
   // Head of Box
   homeBoxes[homeBoxes.length] = document.createElement("DIV");
   document.body.appendChild(homeBoxes[homeBoxes.length - 1]);
-  homeBoxes[homeBoxes.length - 1].className = "homeBox animated bounceInRight";
+  homeBoxes[homeBoxes.length - 1].className = "homeBox animated bounceInLeft";
   homeBoxes[homeBoxes.length - 1].style.marginBottom = "0vh";
   homeBoxes[homeBoxes.length - 1].style.marginTop = "1vh";
   homeBoxes[homeBoxes.length - 1].innerHTML = headerDesc;
@@ -778,6 +902,7 @@ function organizePDF() {
   console.log("Done organizing.")
 } // Close Function
 var homePageText;
+document.body.style.overflowX = "hidden";
 /* THIS IS WHAT LOADS THE PROGRAM DOWN */
 hideEverything();
 toggleObjects([loadIcon],"show");

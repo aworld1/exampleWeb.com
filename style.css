@@ -177,6 +177,55 @@ body {
   text-align:center;
   font-size:7vmin;
 }
+.credIcon {
+  display: inline-block;
+  vertical-align: top;
+  width:10vmin;
+  height:10vmin;
+  margin-top:-2vh;
+  margin-left:15vw;
+  z-index:2.5;
+  background-size:10vmin 10vmin;
+}
+#credHead {
+  margin-top:5%;
+  text-align: center;
+  font-size:15vmin;
+  color:#7C4300;
+}
+.encompassCreditEntry {
+  border-radius:2.5vmin;
+  border:.5vmin;
+  border-style:solid;
+  border-color:#583000;
+  background-color:#A15800;
+}
+.creditInfoText {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  float:right;
+  margin-right:5vw;
+  font-size:5vmin;
+  color:blue;
+}
+.boldCredit {
+  display: inline-block;
+  vertical-align: top;
+  margin-left:10vw;
+  text-align: left;
+  font-size:5vmin;
+  color:brown;
+}
+#creditContainer {
+  background: url("brown.gif");
+  border-radius:5vmin;
+  border:1vmin;
+  border-style:solid;
+  border-color:#583000;
+  background-repeat:repeat;
+  background-size:100% 100%;
+}
 
 /* Loading Circle */
 
