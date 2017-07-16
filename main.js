@@ -160,23 +160,23 @@ function myCredits() {
           electiveCredits[0] += 10;
         }
         else if (checkWord("10 Math/10 Elective",credits[getIdByClassName(myClasses[i])],0)) {
-          electiveCredits[0] += 10;
-          mathCredits[0] += 10;
+          electiveCredits[0] += 5;
+          mathCredits[0] += 5;
         }
         else if (checkWord("5 Health/5 PE",credits[getIdByClassName(myClasses[i])],0)) {
           exerciseCredits[0] += 10;
         }
         else if (checkWord("10 PE/10 Elect.",credits[getIdByClassName(myClasses[i])],0)) {
-          electiveCredits[0] += 10;
-          exerciseCredits[0] += 10;
+          electiveCredits[0] += 5;
+          exerciseCredits[0] += 5;
         }
         else if (checkWord("5 PE/15 Fine Art",credits[getIdByClassName(myClasses[i])],0)) {
-          exerciseCredits[0] += 5;
-          fineArtCredits[0] += 15;
+          exerciseCredits[0] += 2.5;
+          fineArtCredits[0] += 7.5;
         }
         else if (checkWord("5 PE/15 Electives",credits[getIdByClassName(myClasses[i])],0)) {
-          electiveCredits[0] += 15;
-          exerciseCredits[0] += 5;
+          electiveCredits[0] += 2.5;
+          exerciseCredits[0] += 7.5;
         }
       }
     }
@@ -237,9 +237,11 @@ function creditsPage() {
     creditTextArray[j].innerHTML = tempCreditArray[j][0] + "/" + tempCreditArray[j][1];
     if (tempCreditArray[j][0] < tempCreditArray[j][1]) {
       document.getElementById("credIcon" + j).style.backgroundImage = 'url("x.png")';
+      document.getElementById("credIcon" + j).className += " animated shake";
     }
     else {
       document.getElementById("credIcon" + j).style.backgroundImage = 'url("checkCred.png")';
+      document.getElementById("credIcon" + j).className += " animated tada";
     }
   }
 }
