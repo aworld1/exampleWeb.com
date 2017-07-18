@@ -191,14 +191,16 @@ body {
   margin-top:5%;
   text-align: center;
   font-size:15vmin;
-  color:#7C4300;
+  color:#001FE9;
 }
 .encompassCreditEntry {
   border-radius:2.5vmin;
   border:.5vmin;
   border-style:solid;
-  border-color:#583000;
-  background-color:#A15800;
+  border-color:#005C96;
+  width:80%;
+  margin-left:10%;
+  background-color:#008AE1;
 }
 .creditInfoText {
   display: inline-block;
@@ -217,7 +219,7 @@ body {
   font-size:5vmin;
   color:brown;
 }
-#creditContainer {
+/*#creditContainer {
   background: url("brown.gif");
   border-radius:5vmin;
   border:1vmin;
@@ -225,7 +227,7 @@ body {
   border-color:#583000;
   background-repeat:repeat;
   background-size:100% 100%;
-}
+}*/
 
 /* Loading Circle */
 
