@@ -13,6 +13,7 @@ var classH = document.getElementById("classH");
 var search = document.getElementById("search");
 var header = document.getElementById("header");
 var creditPage = document.getElementById("creditContainer");
+var universityCreditPage = document.getElementById("universityCreditContainer");
 var loadIcon = document.getElementById("loadIcon");
 var backButton = document.getElementById("backButton");
 var searchImage = document.getElementById("searchImage");
@@ -148,7 +149,7 @@ function myCredits() {
           exerciseCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
         }
         else if (getCategory(getIdByClassName(myClasses[i])) == "WorldLanguage") {
-          foreignCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+          foreignCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
         }
         else {
           electiveCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
@@ -190,7 +191,7 @@ function myCredits() {
   console.log("Done credit calculation.");
 }
 function hideEverything() {
-  toggleObjects([header,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage],"hide");
+  toggleObjects([header,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage],"hide");
   for (var u = 0; u < buttons.length; u++) {
     toggleObjects([buttons[u]],"hide");
   }
@@ -242,6 +243,92 @@ function creditsPage() {
     else {
       document.getElementById("credIcon" + j).style.backgroundImage = 'url("checkCred.png")';
       document.getElementById("credIcon" + j).className = "credIcon animated tada";
+    }
+  }
+}
+function universityCreditsPage() {
+  hideEverything();
+  myUniversityCredits();
+  universityCreditPage.style.visibility = "visible";
+  universityCreditPage.style.display = "block";
+  var tempUncredArr = [unCredA,unCredB,unCredC,unCredD,unCredE,unCredF,unCredG];
+  for (var j = 0; j < 7; j++) {
+    document.getElementById("unCred" + (j + 1)).innerHTML =  tempUncredArr[j][0] + "/" + tempUncredArr[j][1];
+    if (tempUncredArr[j][0] < tempUncredArr[j][1]) {
+      document.getElementById("uncredIcon" + j).style.backgroundImage = 'url("x.png")';
+      document.getElementById("uncredIcon" + j).className = "credIcon animated shake";
+    }
+    else {
+      document.getElementById("uncredIcon" + j).style.backgroundImage = 'url("checkCred.png")';
+      document.getElementById("uncredIcon" + j).className = "credIcon animated tada";
+    }
+  }
+}
+var unCredA = [0,2];
+var unCredB = [0,4];
+var unCredC = [0,3];
+var unCredD  = [0,2];
+var unCredE  = [0,2];
+var unCredF = [0,1];
+var unCredG = [0,1];
+function myUniversityCredits() {
+  unCredA = [0,2];
+  unCredB = [0,4];
+  unCredC = [0,3];
+  unCredD  = [0,2];
+  unCredE  = [0,2];
+  unCredF = [0,1];
+  unCredG = [0,1];
+  for (var i = 0; i < 32; i++) {
+    if (myClasses[i] != undefined) {
+      // If the class exists
+      if (universityCredits[getIdByClassName(myClasses[i])].length == 1 || universityCredits[getIdByClassName(myClasses[i])].length == 6) {
+        if (universityCredits[getIdByClassName(myClasses[i])].charAt(0) == "A") {
+          unCredA[0]++;
+          alert(myClasses[i]);
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(0) == "B") {
+          unCredB[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(0) == "C") {
+          unCredC[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(0) == "D") {
+          unCredD[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(0) == "E") {
+          unCredE[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(0) == "F") {
+          unCredF[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(0) == "G") {
+          unCredG[0]++;
+        }
+      }
+      if (universityCredits[getIdByClassName(myClasses[i])].length == 6) {
+        if (universityCredits[getIdByClassName(myClasses[i])].charAt(5) == "A") {
+          unCredA[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(5) == "B") {
+          unCredB[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(5) == "C") {
+          unCredC[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(5) == "D") {
+          unCredD[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(5) == "E") {
+          unCredE[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(5) == "F") {
+          unCredF[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(5) == "G") {
+          unCredG[0]++;
+        }
+      }
     }
   }
 }

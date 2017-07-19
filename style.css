@@ -8,6 +8,7 @@ body {
     color: darkgoldenrod;
     font-family: monospace;
     font-size:10vmin;
+    animation-duration: 1.5s;
 }
 .gradeSelect {
     width: 80vw;
@@ -186,12 +187,21 @@ body {
   margin-left:7vw;
   z-index:2.5;
   background-size:10vmin 10vmin;
+  animation-delay: 1s;
 }
 #credHead {
   margin-top:5%;
   text-align: center;
   font-size:15vmin;
   color:#001FE9;
+  animation-duration: 5s;
+}
+#uncredHead {
+  margin-top:5%;
+  text-align: center;
+  font-size:15vmin;
+  color:#001FE9;
+  animation-duration: 5s;
 }
 .encompassCreditEntry {
   border-radius:2.5vmin;

@@ -165,7 +165,7 @@
   </li>
 
   <li class="darkerli">
-  <a href="#">
+  <a href="#" onclick="universityCreditsPage()">
   <i class="fa fa-picture-o fa-lg"></i>
   <span class="nav-text">University Credits</span>
   </a>
@@ -308,7 +308,7 @@
 
     </div>
     <div id="creditContainer" class="animated fadeIn">
-      <h1 id="credHead">Credits</h1>
+      <h1 id="credHead" class="animated infinite tada">Credits</h1>
       <div class="encompassCreditEntry"><div id="credIcon0" class="credIcon"></div>
       <p class="boldCredit"><b>English</b></p><p id="englishCreditText" class="creditInfoText"></p>
       </div><br/><br/>
@@ -337,8 +337,32 @@
       <p class="boldCredit"><b>World Language</b></p><p id="langCreditText" class="creditInfoText"></p>
       </div><br/>
     </div>
+    <div id="universityCreditContainer" class="animated fadeIn">
+      <h1 id="uncredHead" class="animated infinite tada">University Credits</h1>
+      <div class="encompassCreditEntry"><div id="uncredIcon0" class="credIcon"></div>
+      <p class="boldCredit"><b>(A) History/Social Science</b></p><p id="unCred1" class="creditInfoText"></p>
+      </div><br/><br/>
+      <div class="encompassCreditEntry"><div id="uncredIcon1" class="credIcon"></div>
+      <p class="boldCredit"><b>(B) English</b></p><p id="unCred2" class="creditInfoText"></p>
+      </div><br/><br/>
+      <div class="encompassCreditEntry"><div id="uncredIcon2" class="credIcon"></div>
+      <p class="boldCredit"><b>(C) Mathematics</b></p><p id="unCred3" class="creditInfoText"></p>
+      </div><br/><br/>
+      <div class="encompassCreditEntry"><div id="uncredIcon3" class="credIcon"></div>
+      <p class="boldCredit"><b>(D) Laboratory Science</b></p><p id="unCred4" class="creditInfoText"></p>
+      </div><br/><br/>
+      <div class="encompassCreditEntry"><div id="uncredIcon4" class="credIcon"></div>
+      <p class="boldCredit"><b>(E) Language Other than English</b></p><p id="unCred5" class="creditInfoText"></p>
+      </div><br/><br/>
+      <div class="encompassCreditEntry"><div id="uncredIcon5" class="credIcon"></div>
+      <p class="boldCredit"><b>(F) Visual and Performing Arts</b></p><p id="unCred6" class="creditInfoText"></p>
+      </div><br/><br/>
+      <div class="encompassCreditEntry"><div id="uncredIcon6" class="credIcon"></div>
+      <p class="boldCredit"><b>(G) College Prep Elective</b></p><p id="unCred7" class="creditInfoText"></p>
+      </div><br/>
+    </div>
     <div class="loader" id="loadIcon"></div>
-    <h1 id="header">Westview Planner</h1>
+    <h1 id="header" class="animated infinite pulse">Westview Planner</h1>
     <button id="backButton"></button>
     <button id="searchImage"></button>
     <button class="gradeSelect animated fadeIn" id="nine" onclick="showEightClasses(9)">9th Grade</button>
