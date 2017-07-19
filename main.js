@@ -14,6 +14,7 @@ var search = document.getElementById("search");
 var header = document.getElementById("header");
 var creditPage = document.getElementById("creditContainer");
 var universityCreditPage = document.getElementById("universityCreditContainer");
+var gpaPageContain = document.getElementById("gpaPage");
 var loadIcon = document.getElementById("loadIcon");
 var backButton = document.getElementById("backButton");
 var searchImage = document.getElementById("searchImage");
@@ -191,7 +192,7 @@ function myCredits() {
   console.log("Done credit calculation.");
 }
 function hideEverything() {
-  toggleObjects([header,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage],"hide");
+  toggleObjects([header,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage,gpaPageContain],"hide");
   for (var u = 0; u < buttons.length; u++) {
     toggleObjects([buttons[u]],"hide");
   }
@@ -285,7 +286,6 @@ function myUniversityCredits() {
       if (universityCredits[getIdByClassName(myClasses[i])].length == 1 || universityCredits[getIdByClassName(myClasses[i])].length == 6) {
         if (universityCredits[getIdByClassName(myClasses[i])].charAt(0) == "A") {
           unCredA[0]++;
-          alert(myClasses[i]);
         }
         else if (universityCredits[getIdByClassName(myClasses[i])].charAt(0) == "B") {
           unCredB[0]++;
@@ -638,6 +638,75 @@ function classInfo(placement) {
   descriptionP.innerHTML = descriptions[placement];
   modal.style.display = "block";
   document.body.style.overflowY = "hidden";
+}
+function gpaPage() {
+  hideEverything();
+  toggleObjects(gpaPageContain,"show");
+  console.log(myGPA()[0]);
+}
+function myGPA() {
+  var gpaTracker = [0,0,0]; // One for GPA, other for amount of grades, and one for unweighted
+  for (var i = 0; i < 64; i++) {
+      if (myGrades[i] == "A" && checkWord("AP ",myClasses[Math.floor(i/2)],0)) {
+        gpaTracker[0] += 5;
+        gpaTracker[2] += 4;
+        gpaTracker[1]++;
+      }
+      else if (myGrades[i] == "B" && checkWord("AP ",myClasses[Math.floor(i/2)],0)) {
+        gpaTracker[0] += 4;
+        gpaTracker[2] += 3;
+        gpaTracker[1]++;
+      }
+      else if (myGrades[i] == "C" && checkWord("AP ",myClasses[Math.floor(i/2)],0)) {
+        gpaTracker[0] += 3;
+        gpaTracker[2] += 2;
+        gpaTracker[1]++;
+      }
+      else if (myGrades[i] == "D" && checkWord("AP ",myClasses[Math.floor(i/2)],0)) {
+        gpaTracker[0] += 2;
+        gpaTracker[2] += 1;
+        gpaTracker[1]++;
+      }
+      else if (myGrades[i] == "F" && checkWord("AP ",myClasses[Math.floor(i/2)],0)) {
+        gpaTracker[0] += 0;
+        gpaTracker[2] += 0;
+        gpaTracker[1]++;
+      }
+      else if (myGrades[i] == "A" && !(checkWord("AP ",myClasses[Math.floor(i/2)],0))) {
+        gpaTracker[0] += 4;
+        gpaTracker[2] += 4;
+        gpaTracker[1]++;
+      }
+      else if (myGrades[i] == "B" && !(checkWord("AP ",myClasses[Math.floor(i/2)],0))) {
+        gpaTracker[0] += 3;
+        gpaTracker[2] += 3;
+        gpaTracker[1]++;
+      }
+      else if (myGrades[i] == "C" && !(checkWord("AP ",myClasses[Math.floor(i/2)],0))) {
+        gpaTracker[0] += 2;
+        gpaTracker[2] += 2;
+        gpaTracker[1]++;
+      }
+      else if (myGrades[i] == "D" && !(checkWord("AP ",myClasses[Math.floor(i/2)],0))) {
+        gpaTracker[0] += 1;
+        gpaTracker[2] += 1;
+        gpaTracker[1]++;
+      }
+      else if (myGrades[i] == "F" && !(checkWord("AP ",myClasses[Math.floor(i/2)],0))) {
+        gpaTracker[0] += 0;
+        gpaTracker[2] += 0;
+        gpaTracker[1]++;
+      }
+  }
+  if (gpaTracker[1] != 0) {
+    gpaTracker[0] /= gpaTracker[1];
+    gpaTracker[2] /= gpaTracker[1];
+  }
+  else {
+    gpaTracker[0] == "N/A";
+    gpaTracker[2] == "N/A";
+  }
+  return [gpaTracker[0],gpaTracker[2]];
 }
 function searchClasses() {
     // Declare variables
