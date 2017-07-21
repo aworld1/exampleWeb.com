@@ -228,13 +228,13 @@ body {
   margin-left:30vw;
   border-color:darkgreen;
   background-color:green;
-  color:darkgreen;
+  color:white;
 }
 #unweightedGPACirc {
   margin-left:15vw;
-  border-color:darkred;
-  background-color:red;
-  color:darkred;
+  border-color:gray;
+  background-color:white;
+  color:green;
 }
 .encompassCreditEntry {
   border-radius:2.5vmin;
@@ -275,6 +275,21 @@ body {
   }
   .gpaTitle {
     margin-top:20vh;
+  }
+  .gpaCirc {
+    width:15vh;
+    height:15vh;
+    font-size:8vw;
+    line-height:15vh;
+  }
+  #weightedGPACirc {
+    margin-left:15vw;
+  }
+  #unweightedGPACirc {
+    margin-left:7.5vw;
+  }
+  #inputInfoModal {
+    margin-bottom:30vh;
   }
 }
 .loader {

@@ -336,11 +336,12 @@ var homeBoxes = [];
 function homePage() {
   hideEverything();
   toggleObjects([header],"show");
-  createHomeBox("info", "Info - Aworld", "Aworld is the creator of this planner application and program. This program is patented.");
-  createHomeBox("feature", "Featured Class - AP Cancer Human", "Bic boi.");
-  createHomeBox("warning", "Warning - Your momma is da ugly AF", "XD MEMES <br/> I can't believe this actually works my life is complete smiley face");
+  createHomeBox("info", "AP Classes", "AP classes boost your weighted GPA, but not your unweighted one. It's recommended not to take AP classes if you aren't ready for them.");
   createHomeBox("check", "Add Classes", "Go to the menu and start building your plan!");
-  loadHomeBoxes();
+  createHomeBox("info", "Credits", "While regular credits are required for graduating high school, university credits are only needed if applying to a UC/CSU college.");
+  createHomeBox("feature", "Creator", "The creator of this planner is Aworld Games. The following program is patented.");
+  createHomeBox("warning", "Remember", "Remember to keep both GPAs up, weighted and unweighted");
+  //loadHomeBoxes();
 }
 function checkDups(arr) {
 	var dupValues = [];
