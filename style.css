@@ -2,6 +2,7 @@ body {
     background-color: azure;
     background-image:url("background.jpg");
     background-repeat: repeat;
+    overflow-x:hidden;
 }
 #header {
     text-align: center;
@@ -101,7 +102,7 @@ body {
   border: none;
 }
 #acceptClass, #removeClass {
-  width: 10vw;
+  width: 20vw;
   height: 4vh;
   position: relative;
   margin-bottom:10vh;
@@ -195,6 +196,7 @@ body {
   font-size:15vmin;
   color:#001FE9;
   animation-duration: 5s;
+  overflow: hidden;
 }
 #uncredHead {
   margin-top:5%;
@@ -202,6 +204,7 @@ body {
   font-size:15vmin;
   color:#001FE9;
   animation-duration: 5s;
+  overflow: hidden;
 }
 .encompassCreditEntry {
   border-radius:2.5vmin;
@@ -216,6 +219,7 @@ body {
   display: inline-block;
   vertical-align: top;
   text-align: center;
+  position: static;
   float:right;
   margin-right:5vw;
   font-size:5vmin;
@@ -229,18 +233,17 @@ body {
   font-size:5vmin;
   color:brown;
 }
-/*#creditContainer {
-  background: url("brown.gif");
-  border-radius:5vmin;
-  border:1vmin;
-  border-style:solid;
-  border-color:#583000;
-  background-repeat:repeat;
-  background-size:100% 100%;
-}*/
-
-/* Loading Circle */
-
+@media (orientation:portrait) {
+  .boldCredit, .creditInfoText {
+    font-size:3.5vmin;
+  }
+  .credIcon {
+    width:5vmin;
+    height:5vmin;
+    margin-top:2vh;
+    background-size:5vmin 5vmin;
+  }
+}
 .loader {
   border: 16px solid #f3f3f3;
   border-radius: 50%;

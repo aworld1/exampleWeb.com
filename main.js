@@ -809,12 +809,14 @@ var menu = document.getElementById("nav-icon3");
 var mainNav = document.getElementById("main-nav");
 mainNav.style.display = "none";
 menu.onclick = function() {
-  menu.classList.toggle("open");
-  if (mainNav.style.display == "none") {
-    mainNav.style.display = "block"
-  }
-  else {
-    mainNav.style.display = "none"
+  if (loadedApp) {
+    menu.classList.toggle("open");
+    if (mainNav.style.display == "none") {
+      mainNav.style.display = "block";
+    }
+    else {
+      mainNav.style.display = "none";
+    }
   }
 }
 var modal = document.getElementById('myModal');
@@ -1070,6 +1072,7 @@ function organizePDF() {
   console.log("Done organizing.")
 } // Close Function
 var homePageText;
+var loadedApp = false;
 document.body.style.overflowX = "hidden";
 /* THIS IS WHAT LOADS THE PROGRAM DOWN */
 hideEverything();
@@ -1081,6 +1084,7 @@ gettext("https://docs.wixstatic.com/ugd/5db6f5_7f8fbcb5bd064026b84356a51b42f5f3.
   cleanOthers();
   gettext("https://docs.wixstatic.com/ugd/5db6f5_114a15c7d47b4cebb2df37e7e1b9c190.pdf").then(function (text) {
     homePageText = text;
+    loadedApp = true;
     homePage();
   }, function (reason) {
     console.error(reason);
