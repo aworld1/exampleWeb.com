@@ -190,7 +190,7 @@ body {
   background-size:10vmin 10vmin;
   animation-delay: 1s;
 }
-#credHead {
+#credHead, #uncredHead {
   margin-top:5%;
   text-align: center;
   font-size:15vmin;
@@ -198,13 +198,43 @@ body {
   animation-duration: 5s;
   overflow: hidden;
 }
-#uncredHead {
+#gpaHead {
   margin-top:5%;
   text-align: center;
   font-size:15vmin;
   color:#001FE9;
-  animation-duration: 5s;
+  animation-duration: 3s;
   overflow: hidden;
+}
+.gpaCirc {
+  border-radius: 50%;
+  width:10vw;
+  height:10vw;
+  border-style:solid;
+  border-width:1vmax;
+  display:inline-block;
+  margin-top:4vh;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 10vw;
+  font-size: 4vw;
+  font-weight: bold;
+}
+.gpaTitle {
+  text-align: center;
+  font-size:8vmin;
+}
+#weightedGPACirc {
+  margin-left:30vw;
+  border-color:darkgreen;
+  background-color:green;
+  color:darkgreen;
+}
+#unweightedGPACirc {
+  margin-left:15vw;
+  border-color:darkred;
+  background-color:red;
+  color:darkred;
 }
 .encompassCreditEntry {
   border-radius:2.5vmin;
@@ -242,6 +272,9 @@ body {
     height:5vmin;
     margin-top:2vh;
     background-size:5vmin 5vmin;
+  }
+  .gpaTitle {
+    margin-top:20vh;
   }
 }
 .loader {

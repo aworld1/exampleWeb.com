@@ -639,10 +639,14 @@ function classInfo(placement) {
   modal.style.display = "block";
   document.body.style.overflowY = "hidden";
 }
+var unwCircle = document.getElementById("unweightedGPACirc");
+var wCircle = document.getElementById("weightedGPACirc");
 function gpaPage() {
   hideEverything();
-  toggleObjects(gpaPageContain,"show");
-  console.log(myGPA()[0]);
+  gpaPageContain.style.display = "block";
+  gpaPageContain.style.visibility = "visible";
+  wCircle.innerHTML = Math.round(100*myGPA()[0])/100;
+  unwCircle.innerHTML = Math.round(100*myGPA()[1])/100;
 }
 function myGPA() {
   var gpaTracker = [0,0,0]; // One for GPA, other for amount of grades, and one for unweighted
