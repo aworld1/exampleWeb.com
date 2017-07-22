@@ -574,13 +574,16 @@ function verifyClasses() {
     createVerifyBox("You must take a Social Science class in 11th Grade");
   }
   if (!(checkCategory("English",24,31))) {
-    createVerifyBox("You must take a English class in 12th Grade");
+    createVerifyBox("You must take an English class in 12th Grade");
   }
   if (!(checkCategory("SocialSciences",24,31))) {
     createVerifyBox("You must take a Math class in 12th Grade");
   }
   if (!creditsComplete()) {
     createVerifyBox("Your credits are not complete, check them in the menu");
+  }
+  if (homeBoxes.length == 0) {
+    createVerifyBox("Your schedule is perfect!");
   }
 }
 function createVerifyBox(name) {
