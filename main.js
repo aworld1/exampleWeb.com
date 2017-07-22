@@ -40,7 +40,12 @@ function checkClasses(classesInFunc) {
   for (var j = 0; j < classesInFunc.length; j++) {
     if (myClasses[(((gradeSelected - 9) * 8) + j)] != undefined) {
       classesInFunc[j].innerHTML = myClasses[(((gradeSelected - 9) * 8) + j)];
-      classesInFunc[j].style.fontSize = "5vmin";
+      if (classesInFunc[j].innerHTML.length < 20) {
+        classesInFunc[j].style.fontSize = "5vmin";
+      }
+      else {
+        classesInFunc[j].style.fontSize = "3vmin";
+      }
     }
     else {
       classesInFunc[j].innerHTML = "Select Class";
@@ -192,7 +197,7 @@ function myCredits() {
   console.log("Done credit calculation.");
 }
 function hideEverything() {
-  toggleObjects([header,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage,gpaPageContain],"hide");
+  toggleObjects([header,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage,gpaPageContain,verifyHead],"hide");
   for (var u = 0; u < buttons.length; u++) {
     toggleObjects([buttons[u]],"hide");
   }
@@ -349,9 +354,22 @@ function checkDups(arr) {
 	for (var i = 0; i < arr.length - 1; i++) {
   	if (arr[i] == arr[i + 1]) {
     	dupValues.push(arr[i]);
+      var duplicate = arr[i]
+      while (duplicate == arr[i+1] && i < arr.length - 1) {
+      	i++;
+      }
     }
   }
+  parseClasses();
   return dupValues;
+}
+function parseClasses() {
+  if (localStorage.myClasses != undefined && localStorage.myClasses != "") {
+    myClasses = JSON.parse(localStorage.myClasses);
+  }
+  if (localStorage.myGrades != undefined && localStorage.myGrades != "") {
+    myGrades = JSON.parse(localStorage.myGrades);
+  }
 }
 function loadHomeBoxes() {
   // Load boxes off of a site
@@ -510,6 +528,88 @@ function isCode(pdf, placement) {
     }
   }
   return returnVal;
+}
+var verifyHead = document.getElementById("verifyHead");
+function verifyPage() {
+  hideEverything();
+  verifyHead.style.display = "block";
+  verifyHead.style.visibility = "visible";
+  verifyClasses();
+}
+function verifyClasses() {
+  var duplicateClasses = checkDups(myClasses);
+  for (var i = 0; i < duplicateClasses.length; i++) {
+    if (duplicateClasses[i]) {
+      createVerifyBox("Duplicate Class: " + duplicateClasses[i]);
+    }
+  }
+  if (!(checkCategory("English",0,7))) {
+    createVerifyBox("You must take an English class in 9th Grade");
+  }
+  if (!(checkCategory("Mathematics",0,7))) {
+    createVerifyBox("You must take a Math class in 9th Grade");
+  }
+  if (!(checkCategory("PhysicalEducation",0,7))) {
+    createVerifyBox("You must take a Physical Education class in 9th Grade");
+  }
+  if (!checkClass(myClasses,"ENS 1-2",0,7)) {
+    createVerifyBox("You must take ENS 1-2 in 9th Grade");
+  }
+  if (!(checkCategory("English",8,15))) {
+    createVerifyBox("You must take an English class in 10th Grade");
+  }
+  if (!(checkCategory("Mathematics",8,15))) {
+    createVerifyBox("You must take a Math class in 10th Grade");
+  }
+  if (!(checkCategory("SocialSciences",8,15))) {
+    createVerifyBox("You must take a Social Science class in 10th Grade");
+  }
+  if (!(checkCategory("English",16,23))) {
+    createVerifyBox("You must take an English class in 11th Grade");
+  }
+  if (!(checkCategory("SocialSciences",16,23))) {
+    createVerifyBox("You must take a Social Science class in 11th Grade");
+  }
+  if (!(checkCategory("English",24,31))) {
+    createVerifyBox("You must take a English class in 12th Grade");
+  }
+  if (!(checkCategory("SocialSciences",24,31))) {
+    createVerifyBox("You must take a Math class in 12th Grade");
+  }
+  if (!creditsComplete()) {
+    createVerifyBox("Your credits are not complete, check them in the menu");
+  }
+}
+function createVerifyBox(name) {
+  homeBoxes[homeBoxes.length] = document.createElement("DIV");
+  document.body.appendChild(homeBoxes[homeBoxes.length - 1]);
+  homeBoxes[homeBoxes.length - 1].className = "verifyBox animated bounceInLeft";
+  homeBoxes[homeBoxes.length - 1].innerHTML = name;
+}
+function creditsComplete() {
+  myCredits();
+  for (var i = 0; i < creditArray.length; i++) {
+    if (creditArray[i][0] < creditArray[i][1]) {
+      return false;
+    }
+  }
+  return true;
+}
+function checkClass(classArr, classname, numberStart, numberEnd) {
+  for (var x = numberStart; x < numberEnd; x++) {
+    if (classArr[x] == classname) {
+      return true;
+    }
+  }
+  return false;
+}
+function checkCategory(categoryName,numberStart,numberEnd) {
+  for (var x = numberStart; x <= numberEnd; x++) {
+    if (getCategory(getIdByClassName(myClasses[x])) == categoryName) {
+      return true;
+    }
+  }
+  return false;
 }
 function isClass(pdf, placement) {
   var returnVal = true;
@@ -1095,12 +1195,7 @@ gettext("https://docs.wixstatic.com/ugd/5db6f5_7f8fbcb5bd064026b84356a51b42f5f3.
     console.error(reason);
   });
   console.log("Done cleaning.");
-  if (localStorage.myClasses != undefined && localStorage.myClasses != "") {
-    myClasses = JSON.parse(localStorage.myClasses);
-  }
-  if (localStorage.myGrades != undefined && localStorage.myGrades != "") {
-    myGrades = JSON.parse(localStorage.myGrades);
-  }
+  parseClasses();
 }, function (reason) {
   console.error(reason);
 });
