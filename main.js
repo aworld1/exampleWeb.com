@@ -542,6 +542,9 @@ function verifyClasses() {
     if (duplicateClasses[i]) {
       createVerifyBox("Duplicate Class: " + duplicateClasses[i]);
     }
+    else {
+      createVerifyBox("You are taking more than one Off Roll, this is not recommended");
+    }
   }
   if (!(checkCategory("English",0,7))) {
     createVerifyBox("You must take an English class in 9th Grade");
@@ -583,7 +586,7 @@ function verifyClasses() {
 function createVerifyBox(name) {
   homeBoxes[homeBoxes.length] = document.createElement("DIV");
   document.body.appendChild(homeBoxes[homeBoxes.length - 1]);
-  homeBoxes[homeBoxes.length - 1].className = "verifyBox animated bounceInLeft";
+  homeBoxes[homeBoxes.length - 1].className = "verifyBox animated bounceInUp";
   homeBoxes[homeBoxes.length - 1].innerHTML = name;
 }
 function creditsComplete() {
