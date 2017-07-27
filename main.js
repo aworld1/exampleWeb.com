@@ -15,6 +15,7 @@ var header = document.getElementById("header");
 var creditPage = document.getElementById("creditContainer");
 var universityCreditPage = document.getElementById("universityCreditContainer");
 var gpaPageContain = document.getElementById("gpaContainer");
+var counselorContainer = document.getElementById("counselorContainer");
 var loadIcon = document.getElementById("loadIcon");
 var backButton = document.getElementById("backButton");
 var searchImage = document.getElementById("searchImage");
@@ -88,6 +89,16 @@ var fineArtCredits = [0,10];
 var exerciseCredits = [0,25];
 var electiveCredits = [0,85];
 var foreignCredits = [0,0];
+function createMailLink(thisemail,thissubject,thisBody) {
+	var mailLink = "https://mail.google.com/mail/u/0/?view=cm&fs=1&to=";
+  mailLink += thisemail;
+  mailLink += "&su=";
+  mailLink += thissubject.split(' ').join('+');
+  mailLink += "&body=";
+  mailLink += thisBody.split(' ').join('+');
+  mailLink += "+&ui=2&tf=1&shva=1";
+  return mailLink;
+}
 function myCredits() {
   englishCredits = [0,40];
   socialScienceCredits = [0,30];
@@ -197,7 +208,7 @@ function myCredits() {
   console.log("Done credit calculation.");
 }
 function hideEverything() {
-  toggleObjects([header,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage,gpaPageContain,verifyHead],"hide");
+  toggleObjects([header,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage,gpaPageContain,verifyHead,counselorContainer],"hide");
   for (var u = 0; u < buttons.length; u++) {
     toggleObjects([buttons[u]],"hide");
   }
@@ -337,6 +348,79 @@ function myUniversityCredits() {
     }
   }
 }
+function counselorPage() {
+  hideEverything();
+  counselorContainer.style.display = "block";
+  counselorContainer.style.visibility = "visible";
+}
+var counselorEmail = document.getElementById("studentInput");
+var studentCode = document.getElementById("counselorInput");
+function sendToCounselor() {
+  location.assign(createMailLink(counselorEmail.value,"Counselor Review for School Plan", document.getElementById("counselorEmailText").innerHTML + encodeClasses()));
+}
+function refreshToCode() {
+  myClasses = decodeClasses(studentCode.value)[0];
+  myGrades = decodeClasses(studentCode.value)[1];
+}
+function encodeClasses() {
+  var myCode = "";
+  for (var i = 0; i < 32; i++) {
+    if (!getIdByClassName(myClasses[i])) {
+      myCode += "000";
+    }
+    else if (getIdByClassName(myClasses[i]) >= 100) {
+      myCode += getIdByClassName(myClasses[i]);
+    }
+    else if (getIdByClassName(myClasses[i]) >= 10) {
+      myCode += ("0" + getIdByClassName(myClasses[i]));
+    }
+    else if (getIdByClassName(myClasses[i]) >= 1) {
+      myCode += ("00" + getIdByClassName(myClasses[i]));
+    }
+    else {
+      myCode += "0*1";
+    }
+  }
+  for (var i = 0; i < 64; i++) {
+    if (myGrades[i]) {
+      myCode += myGrades[i];
+    }
+    else {
+      myCode += "0";
+    }
+  }
+  return myCode;
+}
+function decodeClasses(code) {
+  decodedClasses = [];
+  decodedGrades = [];
+  for (var i = 0; i < 32; i++) {
+    if (code.charAt(i*3) == "0" && code.charAt(i*3+1) == "*" && code.charAt(i*3+2) == "1") {
+      decodedClasses.push(undefined);
+    }
+    else if (code.charAt(i*3) == "0" && code.charAt(i*3+1) == "0" && code.charAt(i*3+2) == "0") {
+      decodedClasses.push(classes[0]);
+    }
+    else if (code.charAt(i*3) == "0" && code.charAt(i*3+1) == "0") {
+      decodedClasses.push(classes[Number(code.charAt(i*3+2))]);
+    }
+    else if (code.charAt(i*3) == "0") {
+      decodedClasses.push(classes[Number(code.charAt(i*3+1) + code.charAt(i*3+2))]);
+    }
+    else {
+      decodedClasses.push(classes[Number(code.charAt(i*3) + code.charAt(i*3+1) + code.charAt(i*3+2))]);
+    }
+  }
+  for (var i = 96; i < 160; i++) {
+    if (code.charAt(i) == "0") {
+      decodedGrades.push(undefined);
+    }
+    else {
+      decodedGrades.push(code.charAt(i));
+    }
+  }
+  return [decodedClasses,decodedGrades];
+}
 var homeBoxes = [];
 function homePage() {
   hideEverything();
@@ -348,9 +432,10 @@ function homePage() {
   createHomeBox("warning", "Remember", "Remember to keep both GPAs up, weighted and unweighted");
   //loadHomeBoxes();
 }
-function checkDups(arr) {
+function checkDups(myArr) {
 	var dupValues = [];
-  arr.sort();
+  var arr = myArr;
+  arr.concat().sort();
 	for (var i = 0; i < arr.length - 1; i++) {
   	if (arr[i] == arr[i + 1]) {
     	dupValues.push(arr[i]);
@@ -360,7 +445,6 @@ function checkDups(arr) {
       }
     }
   }
-  parseClasses();
   return dupValues;
 }
 function parseClasses() {
@@ -733,7 +817,7 @@ function classInfo(placement) {
   linkedCoursesP.innerHTML = linkedCourses[placement];
   savePlacement = placement;
   if (classes[placement].charAt(0) == "L" && classes[placement].charAt(1) == "/") {
-    discontinuedP.innerHTML = "<b>Warning! This class is discontinued and may not be available. Please advise a counsler before taking this class.</b>";
+    discontinuedP.innerHTML = "<b>Warning! This class is discontinued and may not be available. Please advise a counselor before taking this class.</b>";
     discontinuedP.innerHTML += "<br/><br/>Any class with <b>'L/'</b> in front of its name is discontinued.</b>";
     discontinuedP.style.color = "red";
   }

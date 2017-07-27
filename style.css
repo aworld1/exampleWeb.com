@@ -106,6 +106,7 @@ body {
   background-size: contain;
   background-color: transparent;
   border: none;
+  outline: none;
 }
 #acceptClass, #removeClass {
   width: 20vw;
@@ -119,6 +120,7 @@ body {
   color: #5cb85c;
   border-radius: 3.5vh;
   display:inline;
+  outline: none;
 }
 #backButton {
   position:absolute;
@@ -262,6 +264,57 @@ body {
   border-color:gray;
   background-color:white;
   color:green;
+}
+#counselorEmailText {
+  display:none;
+  visibility: hidden;
+}
+#studentInput, #counselorInput {
+  margin-left:18vw;
+  width:50vw;
+  height:10vh;
+  border-radius:2.5vh;
+  font-size:5vmin;
+  margin-bottom:4vh;
+  vertical-align: top;
+}
+#studentInput {
+  margin-bottom:10vh;
+}
+#counselorDescA {
+  margin-top:20vh;
+}
+#studentButton, #counselorButton {
+  width:10vh;
+  height:10vh;
+  margin-left:5vw;
+  border-radius:4vh;
+  background-color:green;
+  outline: none;
+  font-size:5vmin;
+  color:white;
+}
+#revertButton {
+  margin-left:35vw;
+  width:30vw;
+  height:10vh;
+  border-radius:5vh;
+  background-color:green;
+  color:white;
+  font-size:4vmin;
+}
+.counselorDesc {
+  margin-left:18vw;
+  font-size:3vmin;
+  color:green;
+  max-width:calc(55vw + 10vh - 6vmin);
+  background-color:white;
+  border:solid;
+  border-width:0.5vmin;
+  border-color:green;
+  border-radius:3vmin;
+  padding-left:4vmin;
+  padding-right:2vmin;
 }
 .encompassCreditEntry {
   border-radius:2.5vmin;
