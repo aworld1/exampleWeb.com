@@ -347,6 +347,12 @@ body {
   .boldCredit, .creditInfoText {
     font-size:3.5vmin;
   }
+  .counselorDesc {
+    margin-left:13vw;
+  }
+  #studentInput, #counselorInput {
+    margin-left:13vw;
+  }
   .credIcon {
     width:5vmin;
     height:5vmin;
