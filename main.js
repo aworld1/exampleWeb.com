@@ -412,7 +412,7 @@ function refreshToCode() {
 function optionsPage() {
   hideEverything();
   toggleObjects([optionsContain],"show");
-  document.getElementById("optionFadeHead").innerHTML = "Result Pop-Up Image Fade Speed (" + localStorage.optionFade + ")";
+  document.getElementById("optionFadeHead").innerHTML = "Result Pop-Up Fade Speed (" + localStorage.optionFade + ")";
 }
 function encodeClasses() {
   var myCode = "";
@@ -1116,7 +1116,7 @@ function saveGrades() {
 }
 function optionFadeUpdate(update) {
   localStorage.optionFade = update;
-  document.getElementById("optionFadeHead").innerHTML = "Result Pop-Up Image Fade Speed (" + update + ")";
+  document.getElementById("optionFadeHead").innerHTML = "Result Pop-Up Fade Speed (" + update + ")";
 }
 function getIdByClassName(string) {
   for (var j = 0; j < 192; j++) {
@@ -1331,26 +1331,28 @@ function organizePDF() {
   console.log("Done organizing.")
 } // Close Function
 var homePageText;
+localStorage.school = "Westview";
 var loadedApp = false;
 document.body.style.overflowX = "hidden";
-/* THIS IS WHAT LOADS THE PROGRAM DOWN */
-hideEverything();
-toggleObjects([loadIcon],"show");
-gettext("https://docs.wixstatic.com/ugd/5db6f5_7f8fbcb5bd064026b84356a51b42f5f3.pdf").then(function (text) {
-  catalogText = text;
-  organizePDF();
-  cleanDescription();
-  cleanOthers();
-  gettext("https://docs.wixstatic.com/ugd/5db6f5_114a15c7d47b4cebb2df37e7e1b9c190.pdf").then(function (text) {
-    homePageText = text;
-    loadedApp = true;
-    homePage();
+function loadWestview() {
+  hideEverything();
+  toggleObjects([loadIcon],"show");
+  gettext("https://docs.wixstatic.com/ugd/5db6f5_7f8fbcb5bd064026b84356a51b42f5f3.pdf").then(function (text) {
+    catalogText = text;
+    organizePDF();
+    cleanDescription();
+    cleanOthers();
+    gettext("https://docs.wixstatic.com/ugd/5db6f5_114a15c7d47b4cebb2df37e7e1b9c190.pdf").then(function (text) {
+      homePageText = text;
+      loadedApp = true;
+      homePage();
+    }, function (reason) {
+      console.error(reason);
+    });
+    console.log("Done cleaning.");
+    parseClasses();
   }, function (reason) {
     console.error(reason);
   });
-  console.log("Done cleaning.");
-  parseClasses();
-}, function (reason) {
-  console.error(reason);
-});
-/* THIS IS WHAT LOADS THE PROGRAM UP */
+}
+loadWestview();
