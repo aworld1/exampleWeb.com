@@ -213,7 +213,7 @@ body {
   background-size:10vmin 10vmin;
   animation-delay: 1s;
 }
-#credHead, #uncredHead {
+#credHead, #uncredHead, #optionHead {
   margin-top:5%;
   text-align: center;
   font-size:15vmin;
@@ -353,9 +353,8 @@ body {
 }
 #optionFade {
   margin: 0 auto;
-  margin-top:20vh;
-  width:50vw;
-  margin-left:25vw;
+  margin-top:5vh;
+  margin-left:38vw;
 }
 .encompassCreditEntry {
   border-radius:2.5vmin;
@@ -390,6 +389,9 @@ body {
   }
   .counselorDesc {
     margin-left:13vw;
+  }
+  #optionFade {
+    margin-left:15vw;
   }
   #studentInput, #counselorInput {
     margin-left:13vw;

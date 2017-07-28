@@ -35,15 +35,25 @@ var otherTimeoutOfDiv;
 var popUpPic = document.getElementById("picOfPopUp");
 var descPopUp = document.getElementById("descOfPopUp");
 function fadeInFadeOut(passBool,time,desc) {
+  if (localStorage.optionFade == "Fast") {
+    time /= 1.5;
+  }
+  else if (localStorage.optionFade == "Hidden") {
+    return;
+  }
   clearTimeout(timeoutOfDiv);
   clearTimeout(otherTimeoutOfDiv);
   descOfPopUp.innerHTML = desc;
   toggleObjects([popUpPic,popUpDiv],"show");
   if (passBool) {
     popUpPic.style.backgroundImage = 'url("check.png")';
+    document.getElementById("descOfPopUp").style.borderColor = "green";
+    document.getElementById("descOfPopUp").style.color = "green";
   }
   else {
     popUpPic.style.backgroundImage = 'url("x.png")';
+    document.getElementById("descOfPopUp").style.borderColor = "red";
+    document.getElementById("descOfPopUp").style.color = "red";
   }
   popUpDiv.className = "animated fadeIn";
   timeoutOfDiv = setTimeout(function() {
@@ -402,6 +412,7 @@ function refreshToCode() {
 function optionsPage() {
   hideEverything();
   toggleObjects([optionsContain],"show");
+  document.getElementById("optionFadeHead").innerHTML = "Result Pop-Up Image Fade Speed (" + localStorage.optionFade + ")";
 }
 function encodeClasses() {
   var myCode = "";
@@ -1103,6 +1114,10 @@ function saveClasses() {
 function saveGrades() {
   localStorage.myGrades = JSON.stringify(myGrades);
 }
+function optionFadeUpdate(update) {
+  localStorage.optionFade = update;
+  document.getElementById("optionFadeHead").innerHTML = "Result Pop-Up Image Fade Speed (" + update + ")";
+}
 function getIdByClassName(string) {
   for (var j = 0; j < 192; j++) {
     if (classes[j] == string) {
@@ -1144,6 +1159,9 @@ var myClasses = [];
 var myGrades = [];
 localStorage.myClasses;
 localStorage.myGrades;
+if (!localStorage.optionFade) {
+  localStorage.optionFade = "Normal";
+}
 var buttons = [];
 var categories = [];
 var categoryPlacement = [];

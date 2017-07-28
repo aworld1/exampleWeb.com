@@ -307,7 +307,7 @@
       </div>
 
     </div>
-    <div id="counselorContainer">
+    <div id="counselorContainer" class="animated fadeIn">
       <p id="counselorDescA" class="counselorDesc">I am a student and I would like to email my counselor my plan</p>
       <input id="studentInput" type="search" placeholder="Counselor Email"></input><button id="studentButton" onclick="sendToCounselor()">OK</button><br/>
       <p id="counselorDescB" class="counselorDesc">I am a counselor and I would like to check my student's plan</p>
@@ -315,13 +315,14 @@
       <p class="counselorDesc" id="#revertDesc">Would you like to revert your classes back to before you inserted the code?</p>
       <button id="revertButton" onclick="parseClasses(); fadeInFadeOut(true,1000,'Reverted Classes')">Revert Classes</button>
     </div>
-    <div id="optionsContain">
+    <div id="optionsContain" class="animated fadeIn">
+      <h1 id="optionHead">Options</h1>
       <div class="dropdown" id="optionFade">
-        <button class="dropbtn">Result Pop-Up Image Fade Speed</button>
+        <button class="dropbtn" id="optionFadeHead">Result Pop-Up Image Fade Speed (Normal)</button>
         <div class="dropdown-content">
-          <a href="#">Normal</a>
-          <a href="#">Fast</a>
-          <a href="#">Hidden</a>
+          <a href="#" onclick="optionFadeUpdate('Normal')">Normal</a>
+          <a href="#" onclick="optionFadeUpdate('Fast')">Fast</a>
+          <a href="#" onclick="optionFadeUpdate('Hidden')">Hidden</a>
         </div>
       </div>
     </div>
