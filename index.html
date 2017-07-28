@@ -180,7 +180,7 @@
   </li>
 
   <li class="darkerli">
-  <a href="#">
+  <a href="#" onclick="optionsPage()">
   <i class="fa fa-gamepad fa-lg"></i>
   <span class="nav-text">Options</span>
   </a>
@@ -311,9 +311,19 @@
       <p id="counselorDescA" class="counselorDesc">I am a student and I would like to email my counselor my plan</p>
       <input id="studentInput" type="search" placeholder="Counselor Email"></input><button id="studentButton" onclick="sendToCounselor()">OK</button><br/>
       <p id="counselorDescB" class="counselorDesc">I am a counselor and I would like to check my student's plan</p>
-      <input id="counselorInput" type="search" placeholder="Student Code"></input><button id="counselorButton" onclick="refreshToCode()">OK</button><br/>
+      <input id="counselorInput" type="search" placeholder="Student Code" maxlength="160"></input><button id="counselorButton" onclick="refreshToCode()">OK</button><br/>
       <p class="counselorDesc" id="#revertDesc">Would you like to revert your classes back to before you inserted the code?</p>
-      <button id="revertButton" onclick="parseClasses()">Revert Classes</button>
+      <button id="revertButton" onclick="parseClasses(); fadeInFadeOut(true,1000,'Reverted Classes')">Revert Classes</button>
+    </div>
+    <div id="optionsContain">
+      <div class="dropdown" id="optionFade">
+        <button class="dropbtn">Result Pop-Up Image Fade Speed</button>
+        <div class="dropdown-content">
+          <a href="#">Normal</a>
+          <a href="#">Fast</a>
+          <a href="#">Hidden</a>
+        </div>
+      </div>
     </div>
     <div id="creditContainer" class="animated fadeIn">
       <h1 id="credHead" class="animated infinite tada">Credits</h1>
@@ -379,10 +389,12 @@
     <p id="counselorEmailText" display="none" visibility="hidden">
 Hi counselor, I would like you to review my plan please, so I could get some feedback. Thank you! %0A %0A
 This email was sent through UniPlan, made by Aworld. %0A %0A
+Student Information Below %0A %0A
 My name is: %0A %0A
-Extra Notes from me, the student: None %0A %0A
-Check out my plan by going onto the app and putting in the following code: %0A %0A
+My concerns about my plan are: %0A %0A
+Check out my plan by going onto the UniPlan app and putting in the following code in the "Counselor" page: %0A %0A
 </p>
+    <div id="popUpDiv"><div id="picOfPopUp"></div><div id="descOfPopUp"></div></div>
     <div class="loader" id="loadIcon"></div>
     <h1 id="header">UniPlan</h1>
     <button id="backButton"></button>

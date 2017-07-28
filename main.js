@@ -19,6 +19,7 @@ var counselorContainer = document.getElementById("counselorContainer");
 var loadIcon = document.getElementById("loadIcon");
 var backButton = document.getElementById("backButton");
 var searchImage = document.getElementById("searchImage");
+var optionsContain = document.getElementById("optionsContain");
 var gradeSelected;
 var classSelected;
 var modalOk = document.getElementById("acceptClass");
@@ -27,6 +28,28 @@ function showGrades() {
   classSelected = undefined;
   hideEverything();
   toggleObjects([nine,ten,eleven,twelve,header],"show");
+}
+var popUpDiv = document.getElementById("popUpDiv");
+var timeoutOfDiv;
+var otherTimeoutOfDiv;
+var popUpPic = document.getElementById("picOfPopUp");
+var descPopUp = document.getElementById("descOfPopUp");
+function fadeInFadeOut(passBool,time,desc) {
+  clearTimeout(timeoutOfDiv);
+  clearTimeout(otherTimeoutOfDiv);
+  descOfPopUp.innerHTML = desc;
+  toggleObjects([popUpPic,popUpDiv],"show");
+  if (passBool) {
+    popUpPic.style.backgroundImage = 'url("check.png")';
+  }
+  else {
+    popUpPic.style.backgroundImage = 'url("x.png")';
+  }
+  popUpDiv.className = "animated fadeIn";
+  timeoutOfDiv = setTimeout(function() {
+    popUpDiv.className = "animated fadeOut";
+    otherTimeoutOfDiv = setTimeout(function() {toggleObjects([popUpPic,popUpDiv],"hide"); },1000)
+  },time);
 }
 function showEightClasses(grade) {
   classSelected = undefined;
@@ -208,7 +231,7 @@ function myCredits() {
   console.log("Done credit calculation.");
 }
 function hideEverything() {
-  toggleObjects([header,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage,gpaPageContain,verifyHead,counselorContainer],"hide");
+  toggleObjects([header,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage,gpaPageContain,verifyHead,counselorContainer,optionsContain,popUpDiv],"hide");
   for (var u = 0; u < buttons.length; u++) {
     toggleObjects([buttons[u]],"hide");
   }
@@ -356,11 +379,29 @@ function counselorPage() {
 var counselorEmail = document.getElementById("studentInput");
 var studentCode = document.getElementById("counselorInput");
 function sendToCounselor() {
-  location.assign(createMailLink(counselorEmail.value,"Counselor Review for School Plan", document.getElementById("counselorEmailText").innerHTML + encodeClasses()));
+  if (counselorEmail.value.indexOf("@") > -1 && counselorEmail.value.indexOf(".") > -1) {
+    location.assign(createMailLink(counselorEmail.value,"Counselor Review for School Plan", document.getElementById("counselorEmailText").innerHTML + encodeClasses()));
+  }
+  else {
+    fadeInFadeOut(false,1000,"Invalid Email");
+  }
 }
+var decodeSuccessBool;
 function refreshToCode() {
-  myClasses = decodeClasses(studentCode.value)[0];
-  myGrades = decodeClasses(studentCode.value)[1];
+  decodeSuccessBool = true;
+  decodeClasses(studentCode.value);
+  if (decodeSuccessBool) {
+    myClasses = decodeClasses(studentCode.value)[0];
+    myGrades = decodeClasses(studentCode.value)[1];
+    fadeInFadeOut(true,1000,"Classes Inserted");
+  }
+  else {
+    fadeInFadeOut(false,1000,"Invalid Code");
+  }
+}
+function optionsPage() {
+  hideEverything();
+  toggleObjects([optionsContain],"show");
 }
 function encodeClasses() {
   var myCode = "";
@@ -394,32 +435,35 @@ function encodeClasses() {
 function decodeClasses(code) {
   decodedClasses = [];
   decodedGrades = [];
-  for (var i = 0; i < 32; i++) {
-    if (code.charAt(i*3) == "0" && code.charAt(i*3+1) == "*" && code.charAt(i*3+2) == "1") {
-      decodedClasses.push(undefined);
+  if (code.length == 160) {
+    for (var i = 0; i < 32; i++) {
+      if (code.charAt(i*3) == "0" && code.charAt(i*3+1) == "*" && code.charAt(i*3+2) == "1") {
+        decodedClasses.push(undefined);
+      }
+      else if (code.charAt(i*3) == "0" && code.charAt(i*3+1) == "0" && code.charAt(i*3+2) == "0") {
+        decodedClasses.push(classes[0]);
+      }
+      else if (code.charAt(i*3) == "0" && code.charAt(i*3+1) == "0") {
+        decodedClasses.push(classes[Number(code.charAt(i*3+2))]);
+      }
+      else if (code.charAt(i*3) == "0") {
+        decodedClasses.push(classes[Number(code.charAt(i*3+1) + code.charAt(i*3+2))]);
+      }
+      else {
+        decodedClasses.push(classes[Number(code.charAt(i*3) + code.charAt(i*3+1) + code.charAt(i*3+2))]);
+      }
     }
-    else if (code.charAt(i*3) == "0" && code.charAt(i*3+1) == "0" && code.charAt(i*3+2) == "0") {
-      decodedClasses.push(classes[0]);
+    for (var i = 96; i < 160; i++) {
+      if (code.charAt(i) == "0") {
+        decodedGrades.push(undefined);
+      }
+      else {
+        decodedGrades.push(code.charAt(i));
+      }
     }
-    else if (code.charAt(i*3) == "0" && code.charAt(i*3+1) == "0") {
-      decodedClasses.push(classes[Number(code.charAt(i*3+2))]);
-    }
-    else if (code.charAt(i*3) == "0") {
-      decodedClasses.push(classes[Number(code.charAt(i*3+1) + code.charAt(i*3+2))]);
-    }
-    else {
-      decodedClasses.push(classes[Number(code.charAt(i*3) + code.charAt(i*3+1) + code.charAt(i*3+2))]);
-    }
+    return [decodedClasses,decodedGrades];
   }
-  for (var i = 96; i < 160; i++) {
-    if (code.charAt(i) == "0") {
-      decodedGrades.push(undefined);
-    }
-    else {
-      decodedGrades.push(code.charAt(i));
-    }
-  }
-  return [decodedClasses,decodedGrades];
+  decodeSuccessBool = false;
 }
 var homeBoxes = [];
 function homePage() {
@@ -1041,6 +1085,7 @@ modalOk.onclick = function() {
   myClasses[((gradeSelected - 9) * 8) + (classSelected - 1)] = classes[savePlacement];
   saveClasses();
   showEightClasses();
+  fadeInFadeOut(true,1000,"Class Added");
 }
 removeClass.onclick = function() {
   inputModal.style.display = "none";
@@ -1050,6 +1095,7 @@ removeClass.onclick = function() {
   myGrades[2 * (((gradeSelected - 9) * 8) + (classSelected - 1)) + 1] = undefined;
   saveClasses();
   showEightClasses();
+  fadeInFadeOut(true,1000,"Class Removed");
 }
 function saveClasses() {
   localStorage.myClasses = JSON.stringify(myClasses);
