@@ -765,7 +765,7 @@ function isClass(pdf, placement) {
           returnVal = false;
         }
       }
-      else if (!((pdf.charAt(j + placement) == " " && j > 0) || pdf.charAt(j + placement) == "–" || (pdf.charAt(j + placement) == "." && j > 0) || pdf.charAt(j + placement) == "’" || (pdf.charAt(j + placement) == "/" && pdf.charAt(j + placement - 1) != "C" && pdf.charAt(j + placement + 1) != "C") || pdf.charAt(j + placement) == "-" || isLetter(pdf.charAt(j + placement)))) {
+      else if (!((pdf.charAt(j + placement) == " " && j > 0) || pdf.charAt(j + placement) == "–" || (pdf.charAt(j + placement) == ")" && pdf.charAt(j + placement - 2) == "(") || (pdf.charAt(j + placement) == "." && j > 0) || pdf.charAt(j + placement) == "’" || (pdf.charAt(j + placement) == "/" && pdf.charAt(j + placement - 1) != "C" && pdf.charAt(j + placement + 1) != "C") || pdf.charAt(j + placement) == "-" || isLetter(pdf.charAt(j + placement)))) {
         if (!(j > 1 && (pdf.charAt(j + placement) == "1" || pdf.charAt(j + placement) == "2" || pdf.charAt(j + placement) == "3" || pdf.charAt(j + placement) == "4" || pdf.charAt(j + placement) == "5" || pdf.charAt(j + placement) == "6" || pdf.charAt(j + placement) == "7" || pdf.charAt(j + placement) == "8" || pdf.charAt(j + placement) == "9" || pdf.charAt(j + placement) == "0" || pdf.charAt(j + placement) == ":" || pdf.charAt(j + placement) == "("))) {
           returnVal = false;
         }
@@ -872,7 +872,7 @@ function classInfo(placement) {
   linkedCoursesP.innerHTML = linkedCourses[placement];
   savePlacement = placement;
   if (classes[placement].charAt(0) == "L" && classes[placement].charAt(1) == "/") {
-    discontinuedP.innerHTML = "<b>Warning! This class is discontinued and may not be available. Please advise a counselor before taking this class.</b>";
+    discontinuedP.innerHTML = "<b>Warning! This class is discontinued/only available for special education students and may not be available. Please advise a counselor before taking this class.</b>";
     discontinuedP.innerHTML += "<br/><br/>Any class with <b>'L/'</b> in front of its name is discontinued.</b>";
     discontinuedP.style.color = "red";
   }
@@ -996,59 +996,87 @@ function searchClasses() {
     }
 }
 function cleanOthers() {
-  for (var i = 0; i < classes.length;i++) {
+  if (localStorage.school == "Westview") {
+    for (var i = 0; i < classes.length;i++) {
+      var moveOn = false;
+      while (!moveOn) {
+        if (classes[i].charAt(classes[i].length - 1) == " ") {
+          classes[i] = classes[i].slice(0,-1);
+        }
+        else {
+          moveOn = true;
+        }
+      }
+      if (classes[i].substring(0,7) == "ELL 3-4") {
+        classes[i] = classes[i].substring(0,7);
+      }
+      moveOn = false;
+      grades[i] = grades[i].slice(1);
+      while (!moveOn) {
+        if (grades[i].charAt(grades[i].length - 1) == " ") {
+          grades[i] = grades[i].slice(0,-1);
+        }
+        else {
+          moveOn = true;
+        }
+      }
+      credits[i] = credits[i].slice(1);
+      credits[i] = credits[i].slice(0,-1);
+      codes[i] = codes[i].slice(0,-1);
+      universityCredits[i] = universityCredits[i].slice(0,-1);
+      preReqs[i] = preReqs[i].slice(0,-1);
+      moveOn = false;
+      while (!moveOn) {
+        if (preReqs[i].charAt(preReqs[i].length - 1) == " ") {
+          preReqs[i] = preReqs[i].slice(0,-1);
+        }
+        else {
+          moveOn = true;
+        }
+      }
+      moveOn = false;
+      while (!moveOn) {
+        if (interests[i].charAt(interests[i].length - 1) == " ") {
+          interests[i] = interests[i].slice(0,-1);
+        }
+        else {
+          moveOn = true;
+        }
+      }
+      moveOn = false;
+      while (!moveOn) {
+        if (linkedCourses[i].charAt(linkedCourses[i].length - 1) == " ") {
+          linkedCourses[i] = linkedCourses[i].slice(0,-1);
+        }
+        else {
+          moveOn = true;
+        }
+      }
+    }
+  }
+  else if (localStorage.school == "Del Norte") {
+    for (var x = 0; x < classes.length; x++) {
+      if (classes[x].indexOf("COURSE TITLE COURSE NUMBER") > -1) {
+        categories[categories.length] = classes[x].slice(0,classes[x].indexOf("COURSE TITLE COURSE NUMBER") - 2);
+        categoryPlacement.push(x);
+        if (checkWord("PE / ATHLETICS",categories[categories.length - 1],0)) {
+          categories[categories.length - 1] = "PE / ATHLETICS";
+        }
+        if (checkWord("PHYSICAL EDUCATION St",categories[categories.length - 1],0)) {
+          categories[categories.length - 1] = "PHYSICAL EDUCATION";
+        }
+        classes[x] = classes[x].slice(classes[x].indexOf("COURSE TITLE COURSE NUMBER") + 26,classes[x].length);
+      }
+    }
     var moveOn = false;
-    while (!moveOn) {
-      if (classes[i].charAt(classes[i].length - 1) == " ") {
-        classes[i] = classes[i].slice(0,-1);
-      }
-      else {
-        moveOn = true;
-      }
-    }
-    if (classes[i].substring(0,7) == "ELL 3-4") {
-      classes[i] = classes[i].substring(0,7);
-    }
-    moveOn = false;
-    grades[i] = grades[i].slice(1);
-    while (!moveOn) {
-      if (grades[i].charAt(grades[i].length - 1) == " ") {
-        grades[i] = grades[i].slice(0,-1);
-      }
-      else {
-        moveOn = true;
-      }
-    }
-    credits[i] = credits[i].slice(1);
-    credits[i] = credits[i].slice(0,-1);
-    codes[i] = codes[i].slice(0,-1);
-    universityCredits[i] = universityCredits[i].slice(0,-1);
-    preReqs[i] = preReqs[i].slice(0,-1);
-    moveOn = false;
-    while (!moveOn) {
-      if (preReqs[i].charAt(preReqs[i].length - 1) == " ") {
-        preReqs[i] = preReqs[i].slice(0,-1);
-      }
-      else {
-        moveOn = true;
-      }
-    }
-    moveOn = false;
-    while (!moveOn) {
-      if (interests[i].charAt(interests[i].length - 1) == " ") {
-        interests[i] = interests[i].slice(0,-1);
-      }
-      else {
-        moveOn = true;
-      }
-    }
-    moveOn = false;
-    while (!moveOn) {
-      if (linkedCourses[i].charAt(linkedCourses[i].length - 1) == " ") {
-        linkedCourses[i] = linkedCourses[i].slice(0,-1);
-      }
-      else {
-        moveOn = true;
+    for (var i = 0; i < classes.length;i++) {
+      while (!moveOn) {
+        if (classes[i].charAt(classes[i].length - 1) == " ") {
+          classes[i] = classes[i].slice(0,-1);
+        }
+        else {
+          moveOn = true;
+        }
       }
     }
   }
@@ -1177,171 +1205,281 @@ var descriptions = [];
 function organizePDF() {
   var headerDone = false;
   var i = 0;
-  // Skip header
-  while (!headerDone) {
-    // First category is English, wait until encounter
-    if (checkWord("English  ",catalogText,i)) {
-      headerDone = true;
-      i += 9;
-    }
-    else {
-      i++;
-    }
-  }
-  categories[categories.length] = "English";
-  categoryPlacement[categoryPlacement.length] = 0;
-  // Start Organizing
   var currentType = "class";
   var storedLetters = "";
-  while (i < catalogText.length) {
-    // Check to see if the type changed
-    // If it did, dump out all of the text into the prev type
-
-    // Checking for type switch
-
-    if (isCode(catalogText,i) && currentType == "class") {
-      if (currentType == "class") {
-        classes[classes.length] = storedLetters;
-        currentType = "code";
+  if (localStorage.school == "Westview") {
+    // Skip header
+    while (!headerDone) {
+      // First category is English, wait until encounter
+      if (checkWord("English  ",catalogText,i)) {
+        headerDone = true;
+        i += 9;
       }
       else {
-        alert("Something went wrong...1");
-      }
-      storedLetters = "";
-    }
-    else if (checkWord("Grades:",catalogText,i) && currentType == "code") {
-      if (currentType == "code") {
-        codes[codes.length] = storedLetters;
-        currentType = "grade";
-        i += 7;
-      }
-      else {
-        alert("Something went wrong...2");
-      }
-      storedLetters = "";
-    }
-    else if (checkWord("Credits: ",catalogText,i) && currentType == "grade") {
-      if (currentType == "grade") {
-        grades[grades.length] = storedLetters;
-        currentType = "credit";
-        i += 8;
-      }
-      else {
-        alert("Something went wrong...3");
-      }
-      storedLetters = "";
-    }
-    else if (checkWord("UC/CSU:",catalogText,i) && currentType == "credit") {
-      if (currentType == "credit") {
-        credits[credits.length] = storedLetters;
-        currentType = "universityCredit";
-        i += 8;
-      }
-      else {
-        alert("Something went wrong...4");
-      }
-      storedLetters = "";
-    }
-    else if (checkWord("Recommended Prerequisites:",catalogText,i) && currentType == "universityCredit") {
-      if (currentType == "universityCredit") {
-        universityCredits[universityCredits.length] = storedLetters;
-        currentType = "preReq";
-        i += 27;
-      }
-      else {
-        alert("Something went wrong...5");
-      }
-      storedLetters = "";
-    }
-    else if (checkWord("Interest:",catalogText,i) && (currentType == "preReq" || currentType == "universityCredit")) {
-      if (currentType == "preReq") {
-        preReqs[preReqs.length] = storedLetters;
-        currentType = "interest";
-        i += 10;
-      }
-      else if (currentType == "universityCredit") {
-        universityCredits[universityCredits.length] = storedLetters;
-        preReqs[preReqs.length] = "None";
-        currentType = "interest";
-        i += 10;
-      }
-      else {
-        alert("Something went wrong...6");
-      }
-      storedLetters = "";
-    }
-    else if (checkWord("Linked Course:",catalogText,i) && (currentType == "interest" || currentType == "preReq")) {
-      if (currentType == "interest") {
-        interests[interests.length] = storedLetters;
-        currentType = "linkedCourse";
-        i += 15;
-      }
-      else if (currentType == "preReq") {
-        preReqs[preReqs.length] = storedLetters;
-        interests[interests.length] = "None";
-        currentType = "linkedCourse";
-        i += 15;
-      }
-      else {
-        alert("Something went wrong...7");
-      }
-      storedLetters = "";
-    }
-    else if (checkWord("  ",catalogText,i - 2) && catalogText.charAt(i - 3) != ";" && catalogText.charAt(i) == catalogText.charAt(i).toUpperCase() && (currentType == "linkedCourse" || currentType == "interest" || currentType == "preReq")) {
-      if (currentType == "linkedCourse") {
-        linkedCourses[linkedCourses.length] = storedLetters;
-        currentType = "description";
-      }
-      else if (currentType == "interest") {
-        interests[interests.length] = storedLetters;
-        linkedCourses[linkedCourses.length] = "None";
-        currentType = "description";
-      }
-      else if (currentType == "preReq") {
-        preReqs[preReqs.length] = storedLetters;
-        linkedCourses[linkedCourses.length] = "None";
-        interests[interests.length] = "None";
-        currentType = "description";
-      }
-      else {
-        alert("Something went wrong...8");
-      }
-      storedLetters = "";
-    }
-    else if (isClass(catalogText,i) & currentType == "description") {
-      if (currentType == "description") {
-        descriptions[descriptions.length] = storedLetters;
-        currentType = "class";
-      }
-      else {
-        alert("Something went wrong...9");
-      }
-      storedLetters = "";
-    }
-
-    // End checking
-
-    else {
-        storedLetters += catalogText.charAt(i);
         i++;
+      }
     }
-  } // Close While loop
-  // Final data
-  descriptions[descriptions.length] = storedLetters;
-  console.log("Done organizing.")
+    categories[categories.length] = "English";
+    categoryPlacement[categoryPlacement.length] = 0;
+    // Start Organizing
+    while (i < catalogText.length) {
+      // Check to see if the type changed
+      // If it did, dump out all of the text into the prev type
+
+      // Checking for type switch
+
+      if (isCode(catalogText,i) && currentType == "class") {
+        if (currentType == "class") {
+          classes[classes.length] = storedLetters;
+          currentType = "code";
+        }
+        else {
+          alert("Something went wrong...1");
+        }
+        storedLetters = "";
+      }
+      else if (checkWord("Grades:",catalogText,i) && currentType == "code") {
+        if (currentType == "code") {
+          codes[codes.length] = storedLetters;
+          currentType = "grade";
+          i += 7;
+        }
+        else {
+          alert("Something went wrong...2");
+        }
+        storedLetters = "";
+      }
+      else if (checkWord("Credits: ",catalogText,i) && currentType == "grade") {
+        if (currentType == "grade") {
+          grades[grades.length] = storedLetters;
+          currentType = "credit";
+          i += 8;
+        }
+        else {
+          alert("Something went wrong...3");
+        }
+        storedLetters = "";
+      }
+      else if (checkWord("UC/CSU:",catalogText,i) && currentType == "credit") {
+        if (currentType == "credit") {
+          credits[credits.length] = storedLetters;
+          currentType = "universityCredit";
+          i += 8;
+        }
+        else {
+          alert("Something went wrong...4");
+        }
+        storedLetters = "";
+      }
+      else if (checkWord("Recommended Prerequisites:",catalogText,i) && currentType == "universityCredit") {
+        if (currentType == "universityCredit") {
+          universityCredits[universityCredits.length] = storedLetters;
+          currentType = "preReq";
+          i += 27;
+        }
+        else {
+          alert("Something went wrong...5");
+        }
+        storedLetters = "";
+      }
+      else if (checkWord("Interest:",catalogText,i) && (currentType == "preReq" || currentType == "universityCredit")) {
+        if (currentType == "preReq") {
+          preReqs[preReqs.length] = storedLetters;
+          currentType = "interest";
+          i += 10;
+        }
+        else if (currentType == "universityCredit") {
+          universityCredits[universityCredits.length] = storedLetters;
+          preReqs[preReqs.length] = "None";
+          currentType = "interest";
+          i += 10;
+        }
+        else {
+          alert("Something went wrong...6");
+        }
+        storedLetters = "";
+      }
+      else if (checkWord("Linked Course:",catalogText,i) && (currentType == "interest" || currentType == "preReq")) {
+        if (currentType == "interest") {
+          interests[interests.length] = storedLetters;
+          currentType = "linkedCourse";
+          i += 15;
+        }
+        else if (currentType == "preReq") {
+          preReqs[preReqs.length] = storedLetters;
+          interests[interests.length] = "None";
+          currentType = "linkedCourse";
+          i += 15;
+        }
+        else {
+          alert("Something went wrong...7");
+        }
+        storedLetters = "";
+      }
+      else if (checkWord("  ",catalogText,i - 2) && catalogText.charAt(i - 3) != ";" && catalogText.charAt(i) == catalogText.charAt(i).toUpperCase() && (currentType == "linkedCourse" || currentType == "interest" || currentType == "preReq")) {
+        if (currentType == "linkedCourse") {
+          linkedCourses[linkedCourses.length] = storedLetters;
+          currentType = "description";
+        }
+        else if (currentType == "interest") {
+          interests[interests.length] = storedLetters;
+          linkedCourses[linkedCourses.length] = "None";
+          currentType = "description";
+        }
+        else if (currentType == "preReq") {
+          preReqs[preReqs.length] = storedLetters;
+          linkedCourses[linkedCourses.length] = "None";
+          interests[interests.length] = "None";
+          currentType = "description";
+        }
+        else {
+          alert("Something went wrong...8");
+        }
+        storedLetters = "";
+      }
+      else if (isClass(catalogText,i) && currentType == "description") {
+        if (currentType == "description") {
+          descriptions[descriptions.length] = storedLetters;
+          currentType = "class";
+        }
+        else {
+          alert("Something went wrong...9");
+        }
+        storedLetters = "";
+      }
+
+      // End checking
+
+      else {
+          storedLetters += catalogText.charAt(i);
+          i++;
+      }
+    } // Close While loop
+    // Final data
+    descriptions[descriptions.length] = storedLetters;
+    console.log("Done organizing.");
+  }
+  else if (localStorage.school == "Del Norte") {
+    // Skip Header
+    while (!headerDone) {
+      // First category is English, wait until encounter
+      if (checkWord("ENGLISH  ",catalogText,i)) {
+        headerDone = true;
+      }
+      else {
+        i++;
+      }
+    }
+    while (i < catalogText.length) {
+      // Check to see if the type changed
+      // If it did, dump out all of the text into the prev type
+
+      // Checking for type switch
+
+      if (isCode(catalogText,i) && currentType == "class") {
+        if (currentType == "class") {
+          classes[classes.length] = storedLetters;
+          currentType = "code";
+        }
+        else {
+          alert("Something went wrong...1");
+        }
+        storedLetters = "";
+      }
+      else if (checkWord("Recommended Completion of: ",catalogText,i) && currentType == "code") {
+        if (currentType == "code") {
+          codes[codes.length] = storedLetters;
+          currentType = "preReq";
+          i += 27;
+        }
+        else {
+          alert("Something went wrong...2");
+        }
+        storedLetters = "";
+      }
+      else if (checkWord("Grade ",catalogText,i) && currentType == "preReq") {
+        if (currentType == "preReq") {
+          preReqs[preReqs.length] = storedLetters;
+          currentType = "grade";
+          i += 6;
+        }
+        else {
+          alert("Something went wrong...4");
+        }
+        storedLetters = "";
+      }
+      else if (checkWord("  ",catalogText,i - 2) && !checkWord("  Physics strongly recommended",catalogText,i - 2) && catalogText.charAt(i) == catalogText.charAt(i).toUpperCase() && (currentType == "grade" || currentType == "preReq")) {
+        if (currentType == "grade") {
+          grades[grades.length] = storedLetters;
+          currentType = "description";
+        }
+        else if (currentType == "preReq") {
+          preReqs[preReqs.length] = storedLetters;
+          grades[grades.length] = "Not Specified";
+          i++;
+        }
+        else {
+          alert("Something went wrong...8");
+        }
+        storedLetters = "";
+      }
+      else if (isClass(catalogText,i) && !checkWord("AVID 5-6  AVID 7-8 follows the weekly str",catalogText,i) && !checkWord("AVID 5-6  AVID 7-8 follows the weekly str",catalogText,i - 1) && !checkWord("AVID 5-6  AVID 7-8 follows the weekly str",catalogText,i - 2) && !checkWord("AVID 5-6  AVID 7-8 follows the weekly str",catalogText,i - 3) && !checkWord("AVID 5-6  AVID 7-8 follows the weekly str",catalogText,i - 4) && (currentType == "description" || currentType == "preReq")) {
+        if (currentType == "description") {
+          descriptions[descriptions.length] = storedLetters;
+          currentType = "class";
+        }
+        else if (currentType == "preReq") {
+          preReqs[preReqs.length] = storedLetters;
+          descriptions[descriptions.length] = "None";
+          grades[grades.length] = "Not Specified";
+          currentType = "class";
+        }
+        else {
+          alert("Something went wrong...9");
+        }
+        storedLetters = "";
+      }
+
+      // End checking
+
+      else {
+          storedLetters += catalogText.charAt(i);
+          i++;
+      }
+      //console.log(i);
+    } // Close While loop
+    // Final Data
+    descriptions[descriptions.length] = storedLetters;
+    for (var x = 0; x < classes.length; x++) {
+      credits.push(10);
+      linkedCourses.push("Del Norte does not provide linked course information");
+      universityCredits.push("Del Norte does not provide UC/CSU Credit information");
+      interests.push("Del Norte does not provide Class Interest information");
+    }
+    console.log("Done organizing.");
+  } // Close If Statement
 } // Close Function
 var homePageText;
 localStorage.school = "Westview";
 var loadedApp = false;
 document.body.style.overflowX = "hidden";
-function loadWestview() {
+function loadSchool() {
   hideEverything();
   toggleObjects([loadIcon],"show");
-  gettext("https://docs.wixstatic.com/ugd/5db6f5_7f8fbcb5bd064026b84356a51b42f5f3.pdf").then(function (text) {
-    catalogText = text;
-    organizePDF();
+  var pdfName = "";
+  if (localStorage.school == "Westview") {
+    pdfName = "https://docs.wixstatic.com/ugd/5db6f5_7f8fbcb5bd064026b84356a51b42f5f3.pdf";
+  }
+  else if (localStorage.school == "Del Norte") {
+    pdfName = "http://docs.wixstatic.com/ugd/5db6f5_558a721747e245edb511714213350339.pdf";
+  }
+  gettext(pdfName).then(function (text) {
+  catalogText = text;
+  organizePDF();
+  if (localStorage.school == "Westview") {
     cleanDescription();
-    cleanOthers();
+  }
+  cleanOthers();
     gettext("https://docs.wixstatic.com/ugd/5db6f5_114a15c7d47b4cebb2df37e7e1b9c190.pdf").then(function (text) {
       homePageText = text;
       loadedApp = true;
@@ -1355,4 +1493,4 @@ function loadWestview() {
     console.error(reason);
   });
 }
-loadWestview();
+loadSchool();
