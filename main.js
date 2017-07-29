@@ -142,92 +142,129 @@ function myCredits() {
   exerciseCredits = [0,25];
   electiveCredits = [0,85];
   foreignCredits = [0,0];
-  for (var i = 0; i < 32; i++) {
-    if (myClasses[i] != undefined) {
-      // If the class exists
-      if (credits[getIdByClassName(myClasses[i])].length <= 2 && Number(credits[getIdByClassName(myClasses[i])]) == 20) {
-        // If it's a 20 credit class
-        if (getCategory(getIdByClassName(myClasses[i])) == "English" || getCategory(getIdByClassName(myClasses[i])) == "EnglishLanguageDevelopment") {
-          englishCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+  if (localStorage.school == "Westview") {
+    for (var i = 0; i < 32; i++) {
+      if (myClasses[i] != undefined) {
+        // If the class exists
+        if (credits[getIdByClassName(myClasses[i])].length <= 2 && Number(credits[getIdByClassName(myClasses[i])]) == 20) {
+          // If it's a 20 credit class
+          if (getCategory(getIdByClassName(myClasses[i])) == "English" || getCategory(getIdByClassName(myClasses[i])) == "EnglishLanguageDevelopment") {
+            englishCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+          }
+          else if (getCategory(getIdByClassName(myClasses[i])) == "SocialSciences") {
+            socialScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+          }
+          else if (getCategory(getIdByClassName(myClasses[i])) == "Mathematics") {
+            mathCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+          }
+          else if (getCategory(getIdByClassName(myClasses[i])) == "PhysicalSciences") {
+            physicalScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+          }
+          else if (getCategory(getIdByClassName(myClasses[i])) == "BiologicalSciences") {
+            biologicalScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+          }
+          else if (getCategory(getIdByClassName(myClasses[i])) == "FineArts") {
+            fineArtCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+          }
+          else if (getCategory(getIdByClassName(myClasses[i])) == "PhysicalEducation") {
+            exerciseCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+          }
+          else if (getCategory(getIdByClassName(myClasses[i])) == "WorldLanguage") {
+            foreignCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+          }
+          else {
+            electiveCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+          }
         }
-        else if (getCategory(getIdByClassName(myClasses[i])) == "SocialSciences") {
-          socialScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
-        }
-        else if (getCategory(getIdByClassName(myClasses[i])) == "Mathematics") {
-          mathCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
-        }
-        else if (getCategory(getIdByClassName(myClasses[i])) == "PhysicalSciences") {
-          physicalScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
-        }
-        else if (getCategory(getIdByClassName(myClasses[i])) == "BiologicalSciences") {
-          biologicalScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
-        }
-        else if (getCategory(getIdByClassName(myClasses[i])) == "FineArts") {
-          fineArtCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
-        }
-        else if (getCategory(getIdByClassName(myClasses[i])) == "PhysicalEducation") {
-          exerciseCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
-        }
-        else if (getCategory(getIdByClassName(myClasses[i])) == "WorldLanguage") {
-          foreignCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+        if (credits[getIdByClassName(myClasses[i])].length <= 2) {
+          // If it's a normal class
+          if (getCategory(getIdByClassName(myClasses[i])) == "English" || getCategory(getIdByClassName(myClasses[i])) == "EnglishLanguageDevelopment") {
+            englishCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+          }
+          else if (getCategory(getIdByClassName(myClasses[i])) == "SocialSciences") {
+            socialScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+          }
+          else if (getCategory(getIdByClassName(myClasses[i])) == "Mathematics") {
+            mathCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+          }
+          else if (getCategory(getIdByClassName(myClasses[i])) == "PhysicalSciences") {
+            physicalScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+          }
+          else if (getCategory(getIdByClassName(myClasses[i])) == "BiologicalSciences") {
+            biologicalScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+          }
+          else if (getCategory(getIdByClassName(myClasses[i])) == "FineArts") {
+            fineArtCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+          }
+          else if (getCategory(getIdByClassName(myClasses[i])) == "PhysicalEducation") {
+            exerciseCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+          }
+          else if (getCategory(getIdByClassName(myClasses[i])) == "WorldLanguage") {
+            foreignCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+          }
+          else {
+            electiveCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+          }
         }
         else {
-          electiveCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+          // If it has words in it
+          if (checkWord("Varies",credits[getIdByClassName(myClasses[i])],0)) {
+            electiveCredits[0] += 10;
+          }
+          else if (checkWord("10 Math/10 Elective",credits[getIdByClassName(myClasses[i])],0)) {
+            electiveCredits[0] += 5;
+            mathCredits[0] += 5;
+          }
+          else if (checkWord("5 Health/5 PE",credits[getIdByClassName(myClasses[i])],0)) {
+            exerciseCredits[0] += 10;
+          }
+          else if (checkWord("10 PE/10 Elect.",credits[getIdByClassName(myClasses[i])],0)) {
+            electiveCredits[0] += 5;
+            exerciseCredits[0] += 5;
+          }
+          else if (checkWord("5 PE/15 Fine Art",credits[getIdByClassName(myClasses[i])],0)) {
+            exerciseCredits[0] += 2.5;
+            fineArtCredits[0] += 7.5;
+          }
+          else if (checkWord("5 PE/15 Electives",credits[getIdByClassName(myClasses[i])],0)) {
+            electiveCredits[0] += 2.5;
+            exerciseCredits[0] += 7.5;
+          }
         }
       }
-      if (credits[getIdByClassName(myClasses[i])].length <= 2) {
-        // If it's a normal class
-        if (getCategory(getIdByClassName(myClasses[i])) == "English" || getCategory(getIdByClassName(myClasses[i])) == "EnglishLanguageDevelopment") {
-          englishCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+    }
+  }
+  else if (localStorage.school == "Del Norte") {
+    for (var i = 0; i < 32; i++) {
+      if (myClasses[i] != undefined) {
+        if (getCategory(getIdByClassName(myClasses[i])) == "ENGLISH") {
+          englishCredits[0] += 5;
         }
-        else if (getCategory(getIdByClassName(myClasses[i])) == "SocialSciences") {
-          socialScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+        else if (getCategory(getIdByClassName(myClasses[i])) == "SOCIAL SCIENCE") {
+          socialScienceCredits[0] += 5;
         }
-        else if (getCategory(getIdByClassName(myClasses[i])) == "Mathematics") {
-          mathCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
-        }
-        else if (getCategory(getIdByClassName(myClasses[i])) == "PhysicalSciences") {
-          physicalScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
-        }
-        else if (getCategory(getIdByClassName(myClasses[i])) == "BiologicalSciences") {
-          biologicalScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
-        }
-        else if (getCategory(getIdByClassName(myClasses[i])) == "FineArts") {
-          fineArtCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
-        }
-        else if (getCategory(getIdByClassName(myClasses[i])) == "PhysicalEducation") {
-          exerciseCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
-        }
-        else if (getCategory(getIdByClassName(myClasses[i])) == "WorldLanguage") {
-          foreignCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
-        }
-        else {
-          electiveCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
-        }
-      }
-      else {
-        // If it has words in it
-        if (checkWord("Varies",credits[getIdByClassName(myClasses[i])],0)) {
-          electiveCredits[0] += 10;
-        }
-        else if (checkWord("10 Math/10 Elective",credits[getIdByClassName(myClasses[i])],0)) {
-          electiveCredits[0] += 5;
+        else if (getCategory(getIdByClassName(myClasses[i])) == "MATHEMATICS") {
           mathCredits[0] += 5;
         }
-        else if (checkWord("5 Health/5 PE",credits[getIdByClassName(myClasses[i])],0)) {
-          exerciseCredits[0] += 10;
+        else if (getCategory(getIdByClassName(myClasses[i])) == "SCIENCES") {
+          if (myClasses[i].indexOf("Physic") > -1) {
+            physicalScienceCredits[0] += 5;
+          }
+          else if (myClasses[i].indexOf("Bio") > -1) {
+            biologicalScienceCredits[0] += 5;
+          }
         }
-        else if (checkWord("10 PE/10 Elect.",credits[getIdByClassName(myClasses[i])],0)) {
-          electiveCredits[0] += 5;
+        else if (getCategory(getIdByClassName(myClasses[i])) == "ELECTIVES – FINE ARTS") {
+          fineArtCredits[0] += 5;
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])).indexOf("PHYSICAL EDUCATION") > -1 || getCategory(getIdByClassName(myClasses[i])) == "HEALTH" || getCategory(getIdByClassName(myClasses[i])) == "PE / ATHLETICS") {
           exerciseCredits[0] += 5;
         }
-        else if (checkWord("5 PE/15 Fine Art",credits[getIdByClassName(myClasses[i])],0)) {
-          exerciseCredits[0] += 2.5;
-          fineArtCredits[0] += 7.5;
+        else if (getCategory(getIdByClassName(myClasses[i])) == "WORLD LANGUAGES") {
+          foreignCredits[0] += 5;
         }
-        else if (checkWord("5 PE/15 Electives",credits[getIdByClassName(myClasses[i])],0)) {
-          electiveCredits[0] += 2.5;
-          exerciseCredits[0] += 7.5;
+        else {
+          electiveCredits[0] += 5;
         }
       }
     }
@@ -653,7 +690,6 @@ function isLetter(str) {
 }
 function isCode(pdf, placement) {
   var returnVal = true;
-  if (localStorage.school == "Westview") {
   // Check if the char is a number
   for (var j = 0; j < 6; j++) {
     if (isNaN(pdf.charAt(j + placement)) || pdf.charAt(j + placement) == " ") {
@@ -661,23 +697,10 @@ function isCode(pdf, placement) {
     }
   }
   // Check for both hyphen and dash
-    if (!(pdf.charAt(placement + 6) == "-" || pdf.charAt(placement + 7) == "-" || pdf.charAt(placement + 6) == "–" || pdf.charAt(placement + 7) == "–")) {
-      // Check for & symbol or a space (for single codes)
-      if (!(pdf.charAt(placement + 6) == "&" || pdf.charAt(placement + 7) == "&" || pdf.charAt(placement + 6) == " " || pdf.charAt(placement + 7) == " ")) {
-        returnVal = false;
-      }
-    }
-  }
-  else if (localStorage.school == "Rancho Bernardo") {
-    for (var j = 0; j < 6; j++) {
-      if (isNaN(pdf.charAt(j + placement)) || pdf.charAt(j + placement) == " ") {
-        returnVal = false;
-      }
-    }
-    for (var j = 8; j < 13; j++) {
-      if (isNaN(pdf.charAt(j + placement)) || pdf.charAt(j + placement) == " ") {
-        returnVal = false;
-      }
+  if (!(pdf.charAt(placement + 6) == "-" || pdf.charAt(placement + 7) == "-" || pdf.charAt(placement + 6) == "–" || pdf.charAt(placement + 7) == "–")) {
+    // Check for & symbol or a space (for single codes)
+    if (!(pdf.charAt(placement + 6) == "&" || pdf.charAt(placement + 7) == "&" || pdf.charAt(placement + 6) == " " || pdf.charAt(placement + 7) == " ")) {
+      returnVal = false;
     }
   }
   return returnVal;
@@ -1124,6 +1147,11 @@ function cleanOthers() {
         classes[i] = "O" + classes[i];
       }
     }
+    for (var i = 0; i < categories.length; i++) {
+      if (checkWord("EALTH",categories[i],0)) {
+        categories[i] = "H" + categories[i];
+      }
+    }
   }
 }
 
@@ -1491,6 +1519,7 @@ function organizePDF() {
           storedLetters += catalogText.charAt(i);
           i++;
       }
+      //console.log(i);
     } // Close While loop
     // Final Data
     descriptions[descriptions.length] = storedLetters;
@@ -1502,130 +1531,9 @@ function organizePDF() {
     }
     console.log("Done organizing.");
   } // Close If Statement
-  else if (localStorage.school == "Rancho Bernardo") {
-    // Skip Header
-    while (!headerDone) {
-      // First category is English, wait until encounter
-      if (checkWord("        RBHS                                                  COURSE DESCRIPTIONS                                   ",catalogText,i)) {
-        headerDone = true;
-        i += 131;
-      }
-      else {
-        i++;
-      }
-    }
-    currentType = "category";
-    while (i < catalogText.length) {
-      // Check to see if the type changed
-      // If it did, dump out all of the text into the prev type
-
-      // Checking for type switch
-      if (checkWord("        RBHS                                                  COURSE DESCRIPTIONS                                   ",catalogText,i)) {
-        currentType = "category";
-        i += 131;
-      }
-      if (isCode(catalogText,i) && currentType == "class") {
-        if (currentType == "class") {
-          classes[classes.length] = storedLetters;
-          currentType = "code";
-        }
-        else {
-          alert("Something went wrong...1");
-        }
-        storedLetters = "";
-      }
-      else if (checkWord("Grades ",catalogText,i) && (currentType == "code" || currentType == "preReq")) {
-        if (currentType == "code") {
-          codes[codes.length] = storedLetters;
-          currentType = "preReq";
-          i += 7;
-        }
-        else if (currentType == "preReq") {
-          preReqs.push(storedLetters);
-        }
-        else {
-          alert("Something went wrong...2");
-        }
-        storedLetters = "";
-      }
-      else if (checkWord("Recommended Prerequisite:",catalogText,i) && (currentType == "grade" || currentType == "code")) {
-        if (currentType == "code") {
-          codes[codes.length] = storedLetters;
-          currentType = "grade";
-          i += 26;
-        }
-        else if (currentType == "grade") {
-          grades.push(storedLetters);
-        }
-        else {
-          alert("Something went wrong...4");
-        }
-        storedLetters = "";
-      }
-      else if (checkWord("  ",catalogText,i - 2) && catalogText.charAt(i) == catalogText.charAt(i).toUpperCase() && (currentType == "grade" || currentType == "preReq")) {
-        if (currentType == "grade") {
-          grades[grades.length] = storedLetters;
-          currentType = "description";
-        }
-        else if (currentType == "preReq") {
-          preReqs[preReqs.length] = storedLetters;
-          currentType = "description";
-          i++;
-        }
-        else {
-          alert(currentType);
-        }
-        storedLetters = "";
-      }
-      else if (isClass(catalogText,i) && (currentType == "description" || currentType == "category" || currentType == "grade" || currentType == "preReq")) {
-        if (checkWord("        RBHS                                                  COURSE DESCRIPTIONS                                   ",catalogText,i)) {
-          currentType = "category";
-          i += 131;
-        }
-        else {
-          if (currentType == "description") {
-            descriptions[descriptions.length] = storedLetters;
-            currentType = "class";
-          }
-          else if (currentType == "category") {
-            categories.push(storedLetters);
-            currentType = "class";
-          }
-          else if (currentType == "grade") {
-            grades.push(storedLetters);
-            currentType = "class";
-          }
-          else if (currentType == "preReq") {
-            preReqs.push(storedLetters);
-            currentType = "class";
-          }
-          else {
-            alert(currentType);
-          }
-        }
-        storedLetters = "";
-      }
-
-      // End checking
-
-      else {
-          storedLetters += catalogText.charAt(i);
-          i++;
-      }
-      console.log(i + " " + currentType);
-    } // Close While loop
-    // Final Data
-    descriptions[descriptions.length] = storedLetters;
-    for (var x = 0; x < classes.length; x++) {
-      credits.push(5);
-      linkedCourses.push("Del Norte does not provide Linked Course information");
-      universityCredits.push("Del Norte does not provide UC/CSU Credit information");
-      interests.push("Del Norte does not provide Class Interest information");
-    }
-  }
 } // Close Function
 var homePageText;
-localStorage.school = "Westview";
+localStorage.school = "Del Norte";
 var loadedApp = false;
 document.body.style.overflowX = "hidden";
 function loadSchool() {
@@ -1638,23 +1546,20 @@ function loadSchool() {
   else if (localStorage.school == "Del Norte") {
     pdfName = "http://docs.wixstatic.com/ugd/5db6f5_558a721747e245edb511714213350339.pdf";
   }
-  else if (localStorage.school == "Rancho Bernardo") {
-    pdfName = "https://docs.wixstatic.com/ugd/5db6f5_749b051cc285439f8c575337c53ebfbe.pdf";
-  }
   gettext(pdfName).then(function (text) {
-    catalogText = text;
-    organizePDF();
-    cleanDescription();
-    cleanOthers();
-      gettext("https://docs.wixstatic.com/ugd/5db6f5_114a15c7d47b4cebb2df37e7e1b9c190.pdf").then(function (text) {
-        homePageText = text;
-        loadedApp = true;
-        homePage();
-      }, function (reason) {
-        console.error(reason);
-      });
-      console.log("Done cleaning.");
-      parseClasses();
+  catalogText = text;
+  organizePDF();
+  cleanDescription();
+  cleanOthers();
+    gettext("https://docs.wixstatic.com/ugd/5db6f5_114a15c7d47b4cebb2df37e7e1b9c190.pdf").then(function (text) {
+      homePageText = text;
+      loadedApp = true;
+      homePage();
+    }, function (reason) {
+      console.error(reason);
+    });
+    console.log("Done cleaning.");
+    parseClasses();
   }, function (reason) {
     console.error(reason);
   });
