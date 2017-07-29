@@ -653,6 +653,7 @@ function isLetter(str) {
 }
 function isCode(pdf, placement) {
   var returnVal = true;
+  if (localStorage.school == "Westview") {
   // Check if the char is a number
   for (var j = 0; j < 6; j++) {
     if (isNaN(pdf.charAt(j + placement)) || pdf.charAt(j + placement) == " ") {
@@ -660,10 +661,23 @@ function isCode(pdf, placement) {
     }
   }
   // Check for both hyphen and dash
-  if (!(pdf.charAt(placement + 6) == "-" || pdf.charAt(placement + 7) == "-" || pdf.charAt(placement + 6) == "–" || pdf.charAt(placement + 7) == "–")) {
-    // Check for & symbol or a space (for single codes)
-    if (!(pdf.charAt(placement + 6) == "&" || pdf.charAt(placement + 7) == "&" || pdf.charAt(placement + 6) == " " || pdf.charAt(placement + 7) == " ")) {
-      returnVal = false;
+    if (!(pdf.charAt(placement + 6) == "-" || pdf.charAt(placement + 7) == "-" || pdf.charAt(placement + 6) == "–" || pdf.charAt(placement + 7) == "–")) {
+      // Check for & symbol or a space (for single codes)
+      if (!(pdf.charAt(placement + 6) == "&" || pdf.charAt(placement + 7) == "&" || pdf.charAt(placement + 6) == " " || pdf.charAt(placement + 7) == " ")) {
+        returnVal = false;
+      }
+    }
+  }
+  else if (localStorage.school == "Rancho Bernardo") {
+    for (var j = 0; j < 6; j++) {
+      if (isNaN(pdf.charAt(j + placement)) || pdf.charAt(j + placement) == " ") {
+        returnVal = false;
+      }
+    }
+    for (var j = 8; j < 13; j++) {
+      if (isNaN(pdf.charAt(j + placement)) || pdf.charAt(j + placement) == " ") {
+        returnVal = false;
+      }
     }
   }
   return returnVal;
@@ -1477,7 +1491,6 @@ function organizePDF() {
           storedLetters += catalogText.charAt(i);
           i++;
       }
-      //console.log(i);
     } // Close While loop
     // Final Data
     descriptions[descriptions.length] = storedLetters;
@@ -1489,9 +1502,130 @@ function organizePDF() {
     }
     console.log("Done organizing.");
   } // Close If Statement
+  else if (localStorage.school == "Rancho Bernardo") {
+    // Skip Header
+    while (!headerDone) {
+      // First category is English, wait until encounter
+      if (checkWord("        RBHS                                                  COURSE DESCRIPTIONS                                   ",catalogText,i)) {
+        headerDone = true;
+        i += 131;
+      }
+      else {
+        i++;
+      }
+    }
+    currentType = "category";
+    while (i < catalogText.length) {
+      // Check to see if the type changed
+      // If it did, dump out all of the text into the prev type
+
+      // Checking for type switch
+      if (checkWord("        RBHS                                                  COURSE DESCRIPTIONS                                   ",catalogText,i)) {
+        currentType = "category";
+        i += 131;
+      }
+      if (isCode(catalogText,i) && currentType == "class") {
+        if (currentType == "class") {
+          classes[classes.length] = storedLetters;
+          currentType = "code";
+        }
+        else {
+          alert("Something went wrong...1");
+        }
+        storedLetters = "";
+      }
+      else if (checkWord("Grades ",catalogText,i) && (currentType == "code" || currentType == "preReq")) {
+        if (currentType == "code") {
+          codes[codes.length] = storedLetters;
+          currentType = "preReq";
+          i += 7;
+        }
+        else if (currentType == "preReq") {
+          preReqs.push(storedLetters);
+        }
+        else {
+          alert("Something went wrong...2");
+        }
+        storedLetters = "";
+      }
+      else if (checkWord("Recommended Prerequisite:",catalogText,i) && (currentType == "grade" || currentType == "code")) {
+        if (currentType == "code") {
+          codes[codes.length] = storedLetters;
+          currentType = "grade";
+          i += 26;
+        }
+        else if (currentType == "grade") {
+          grades.push(storedLetters);
+        }
+        else {
+          alert("Something went wrong...4");
+        }
+        storedLetters = "";
+      }
+      else if (checkWord("  ",catalogText,i - 2) && catalogText.charAt(i) == catalogText.charAt(i).toUpperCase() && (currentType == "grade" || currentType == "preReq")) {
+        if (currentType == "grade") {
+          grades[grades.length] = storedLetters;
+          currentType = "description";
+        }
+        else if (currentType == "preReq") {
+          preReqs[preReqs.length] = storedLetters;
+          currentType = "description";
+          i++;
+        }
+        else {
+          alert(currentType);
+        }
+        storedLetters = "";
+      }
+      else if (isClass(catalogText,i) && (currentType == "description" || currentType == "category" || currentType == "grade" || currentType == "preReq")) {
+        if (checkWord("        RBHS                                                  COURSE DESCRIPTIONS                                   ",catalogText,i)) {
+          currentType = "category";
+          i += 131;
+        }
+        else {
+          if (currentType == "description") {
+            descriptions[descriptions.length] = storedLetters;
+            currentType = "class";
+          }
+          else if (currentType == "category") {
+            categories.push(storedLetters);
+            currentType = "class";
+          }
+          else if (currentType == "grade") {
+            grades.push(storedLetters);
+            currentType = "class";
+          }
+          else if (currentType == "preReq") {
+            preReqs.push(storedLetters);
+            currentType = "class";
+          }
+          else {
+            alert(currentType);
+          }
+        }
+        storedLetters = "";
+      }
+
+      // End checking
+
+      else {
+          storedLetters += catalogText.charAt(i);
+          i++;
+      }
+      console.log(i + " " + currentType);
+    } // Close While loop
+    // Final Data
+    descriptions[descriptions.length] = storedLetters;
+    for (var x = 0; x < classes.length; x++) {
+      credits.push(5);
+      linkedCourses.push("Del Norte does not provide Linked Course information");
+      universityCredits.push("Del Norte does not provide UC/CSU Credit information");
+      interests.push("Del Norte does not provide Class Interest information");
+    }
+  }
 } // Close Function
 var homePageText;
-localStorage.school = "Del Norte";
+localStorage.school = "Westview";
 var loadedApp = false;
 document.body.style.overflowX = "hidden";
 function loadSchool() {
@@ -1508,19 +1642,19 @@ function loadSchool() {
     pdfName = "https://docs.wixstatic.com/ugd/5db6f5_749b051cc285439f8c575337c53ebfbe.pdf";
   }
   gettext(pdfName).then(function (text) {
-  catalogText = text;
-  organizePDF();
-  cleanDescription();
-  cleanOthers();
-    gettext("https://docs.wixstatic.com/ugd/5db6f5_114a15c7d47b4cebb2df37e7e1b9c190.pdf").then(function (text) {
-      homePageText = text;
-      loadedApp = true;
-      homePage();
-    }, function (reason) {
-      console.error(reason);
-    });
-    console.log("Done cleaning.");
-    parseClasses();
+    catalogText = text;
+    organizePDF();
+    cleanDescription();
+    cleanOthers();
+      gettext("https://docs.wixstatic.com/ugd/5db6f5_114a15c7d47b4cebb2df37e7e1b9c190.pdf").then(function (text) {
+        homePageText = text;
+        loadedApp = true;
+        homePage();
+      }, function (reason) {
+        console.error(reason);
+      });
+      console.log("Done cleaning.");
+      parseClasses();
   }, function (reason) {
     console.error(reason);
   });
