@@ -943,56 +943,66 @@ function gpaPage() {
   gpaPageContain.style.visibility = "visible";
   wCircle.innerHTML = Math.round(100*myGPA()[0])/100;
   unwCircle.innerHTML = Math.round(100*myGPA()[1])/100;
+  if (isInt(myGPA()[0])) {
+    wCircle.innerHTML += ".0";
+  }
+  if (isInt(myGPA()[1])) {
+    unwCircle.innerHTML += ".0";
+  }
 }
 function myGPA() {
   var gpaTracker = [0,0,0]; // One for GPA, other for amount of grades, and one for unweighted
+  var isAp;
   for (var i = 0; i < 64; i++) {
-      if (myGrades[i] == "A" && checkWord("AP ",myClasses[Math.floor(i/2)],0)) {
+      if (myClasses[Math.floor(i/2)]) {
+        isAp = (checkWord("AP ",myClasses[Math.floor(i/2)],0) || descriptions[getIdByClassName(myClasses[Math.floor(i/2)])].indexOf("A=5, B=4, C=3") > -1);
+      }
+      if (myGrades[i] == "A" && isAp) {
         gpaTracker[0] += 5;
         gpaTracker[2] += 4;
         gpaTracker[1]++;
       }
-      else if (myGrades[i] == "B" && checkWord("AP ",myClasses[Math.floor(i/2)],0)) {
+      else if (myGrades[i] == "B" && isAp) {
         gpaTracker[0] += 4;
         gpaTracker[2] += 3;
         gpaTracker[1]++;
       }
-      else if (myGrades[i] == "C" && checkWord("AP ",myClasses[Math.floor(i/2)],0)) {
+      else if (myGrades[i] == "C" && isAp) {
         gpaTracker[0] += 3;
         gpaTracker[2] += 2;
         gpaTracker[1]++;
       }
-      else if (myGrades[i] == "D" && checkWord("AP ",myClasses[Math.floor(i/2)],0)) {
+      else if (myGrades[i] == "D" && isAp) {
         gpaTracker[0] += 2;
         gpaTracker[2] += 1;
         gpaTracker[1]++;
       }
-      else if (myGrades[i] == "F" && checkWord("AP ",myClasses[Math.floor(i/2)],0)) {
+      else if (myGrades[i] == "F" && isAp) {
         gpaTracker[0] += 0;
         gpaTracker[2] += 0;
         gpaTracker[1]++;
       }
-      else if (myGrades[i] == "A" && !(checkWord("AP ",myClasses[Math.floor(i/2)],0))) {
+      else if (myGrades[i] == "A" && !isAp) {
         gpaTracker[0] += 4;
         gpaTracker[2] += 4;
         gpaTracker[1]++;
       }
-      else if (myGrades[i] == "B" && !(checkWord("AP ",myClasses[Math.floor(i/2)],0))) {
+      else if (myGrades[i] == "B" && !isAp) {
         gpaTracker[0] += 3;
         gpaTracker[2] += 3;
         gpaTracker[1]++;
       }
-      else if (myGrades[i] == "C" && !(checkWord("AP ",myClasses[Math.floor(i/2)],0))) {
+      else if (myGrades[i] == "C" && !isAp) {
         gpaTracker[0] += 2;
         gpaTracker[2] += 2;
         gpaTracker[1]++;
       }
-      else if (myGrades[i] == "D" && !(checkWord("AP ",myClasses[Math.floor(i/2)],0))) {
+      else if (myGrades[i] == "D" && !isAp) {
         gpaTracker[0] += 1;
         gpaTracker[2] += 1;
         gpaTracker[1]++;
       }
-      else if (myGrades[i] == "F" && !(checkWord("AP ",myClasses[Math.floor(i/2)],0))) {
+      else if (myGrades[i] == "F" && !isAp) {
         gpaTracker[0] += 0;
         gpaTracker[2] += 0;
         gpaTracker[1]++;
@@ -1007,6 +1017,9 @@ function myGPA() {
     gpaTracker[2] == "N/A";
   }
   return [gpaTracker[0],gpaTracker[2]];
+}
+function isInt(n) {
+   return n % 1 === 0;
 }
 function searchClasses() {
     // Declare variables
@@ -1533,7 +1546,7 @@ function organizePDF() {
   } // Close If Statement
 } // Close Function
 var homePageText;
-localStorage.school = "Del Norte";
+localStorage.school = "Westview";
 var loadedApp = false;
 document.body.style.overflowX = "hidden";
 function loadSchool() {
