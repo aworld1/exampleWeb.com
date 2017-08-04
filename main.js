@@ -1196,6 +1196,7 @@ var confirmOk = document.getElementById("confirmButton");
 var confirmTaskToDo;
 function confirmTask(task) {
   toggleObjects([confirmModal],"show");
+  typeConfirm.value = "";
   confirmTaskToDo = task;
 }
 span[0].onclick = function() {
