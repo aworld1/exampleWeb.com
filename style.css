@@ -108,7 +108,7 @@ body {
   border: none;
   outline: none;
 }
-#acceptClass, #removeClass {
+#acceptClass, #removeClass, #confirmButton {
   width: 20vw;
   height: 4vh;
   position: relative;
@@ -121,6 +121,12 @@ body {
   border-radius: 3.5vh;
   display:inline;
   outline: none;
+}
+#typeConfirm {
+  width:50vmin;
+  height:5vmin;
+  border-radius: 2.5vmin;
+  font-size:3vmin;
 }
 #backButton {
   position:absolute;

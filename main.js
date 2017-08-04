@@ -425,8 +425,12 @@ function counselorPage() {
 }
 var counselorEmail = document.getElementById("studentInput");
 var studentCode = document.getElementById("counselorInput");
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
 function sendToCounselor() {
-  if (counselorEmail.value.indexOf("@") > -1 && counselorEmail.value.indexOf(".") > -1) {
+  if (validateEmail(counselorEmail.value)) {
     location.assign(createMailLink(counselorEmail.value,"Counselor Review for School Plan", document.getElementById("counselorEmailText").innerHTML + encodeClasses()));
   }
   else {
@@ -520,7 +524,8 @@ function homePage() {
   createHomeBox("info", "AP Classes", "AP classes boost your weighted GPA, but not your unweighted one. It's recommended not to take AP classes if you aren't ready for them.");
   createHomeBox("check", "Add Classes", "Go to the menu and start building your plan!");
   createHomeBox("info", "Credits", "While regular credits are required for graduating high school, university credits are only needed if applying to a UC/CSU college.");
-  createHomeBox("feature", "Creator", "The creator of this planner is Aworld Games. The following program is patented.");
+  createHomeBox("feature", "Creator", "The creator of this planner is Aworld. The following program has a provisonal patent filed.");
+  createHomeBox("check", "Home Page Moderation", "Want a spot on this home page? Send us an email on the contact page and we will consider putting your note as a notification!");
   createHomeBox("warning", "Remember", "Remember to keep both GPAs up, weighted and unweighted");
   //loadHomeBoxes();
 }
@@ -1186,12 +1191,23 @@ menu.onclick = function() {
 var modal = document.getElementById('myModal');
 var span = document.getElementsByClassName("close");
 var removeClass = document.getElementById("removeClass");
+var confirmModal = document.getElementById("confirmModal");
+var confirmOk = document.getElementById("confirmButton");
+var confirmTaskToDo;
+function confirmTask(task) {
+  toggleObjects([confirmModal],"show");
+  confirmTaskToDo = task;
+}
 span[0].onclick = function() {
     modal.style.display = "none";
     document.body.style.overflowY = "scroll";
 }
 span[1].onclick = function() {
     inputModal.style.display = "none";
+    document.body.style.overflowY = "scroll";
+}
+span[2].onclick = function() {
+    confirmModal.style.display = "none";
     document.body.style.overflowY = "scroll";
 }
 window.onclick = function(event) {
@@ -1203,6 +1219,24 @@ window.onclick = function(event) {
         inputModal.style.display = "none";
         document.body.style.overflowY = "scroll";
     }
+    else if (event.target == confirmModal) {
+        confirmModal.style.display = "none";
+        document.body.style.overflowY = "scroll";
+    }
+}
+var typeConfirm = document.getElementById("typeConfirm");
+confirmOk.onclick = function () {
+  if (typeConfirm.value == "CONFIRM") {
+    confirmModal.style.display = "none";
+    document.body.style.overflowY = "scroll";
+    eval(confirmTaskToDo);
+    if (confirmTaskToDo == "parseClasses()") {
+      fadeInFadeOut(true,1000,'Reverted Classes');
+    }
+  }
+  else {
+    fadeInFadeOut(false,1000,'CONFIRM not typed');
+  }
 }
 modalOk.onclick = function() {
   modal.style.display = "none";
