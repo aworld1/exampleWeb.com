@@ -89,6 +89,7 @@ function checkClasses(classesInFunc) {
 }
 var inputModal = document.getElementById("inputInfoModal");
 function showOptions(classNo) {
+  cleanGrades();
   if (classNo) {
     classSelected = classNo;
     if (myClasses[((gradeSelected - 9) * 8) + (classSelected - 1)]) {
@@ -444,6 +445,7 @@ function refreshToCode() {
   if (decodeSuccessBool) {
     myClasses = decodeClasses(studentCode.value)[0];
     myGrades = decodeClasses(studentCode.value)[1];
+    cleanGrades();
     fadeInFadeOut(true,1000,"Classes Inserted");
   }
   else {
@@ -717,6 +719,13 @@ function verifyPage() {
   verifyHead.style.visibility = "visible";
   verifyClasses();
 }
+function cleanGrades() {
+  for (var i = 0; i < 64; i++) {
+    if (myClasses[Math.floor(i/2)] && (myGrades[i] != "A" && myGrades[i] != "B" && myGrades[i] != "C" && myGrades[i] != "D" && myGrades[i] != "F")) {
+      myGrades[i] = undefined;
+    }
+  }
+}
 function verifyClasses() {
   var duplicateClasses = checkDups(myClasses);
   for (var i = 0; i < duplicateClasses.length; i++) {
@@ -736,7 +745,7 @@ function verifyClasses() {
   if (!(checkCategory("PhysicalEducation",0,7))) {
     createVerifyBox("You must take a Physical Education class in 9th Grade");
   }
-  if (!checkClass(myClasses,"ENS 1-2",0,7)) {
+  if (!(checkClass(myClasses,"ENS 1-2",0,7) || checkClass(myClasses,"ENS 1-2 ONLINE",0,7))) {
     createVerifyBox("You must take ENS 1-2 in 9th Grade");
   }
   if (!(checkCategory("English",8,15))) {
@@ -944,6 +953,7 @@ var unwCircle = document.getElementById("unweightedGPACirc");
 var wCircle = document.getElementById("weightedGPACirc");
 function gpaPage() {
   hideEverything();
+  cleanGrades();
   gpaPageContain.style.display = "block";
   gpaPageContain.style.visibility = "visible";
   wCircle.innerHTML = Math.round(100*myGPA()[0])/100;
@@ -1288,6 +1298,7 @@ function clearClasses() {
 function addGrade(gradeInput,quarter) {
   quarter--;
   myGrades[2 * (((gradeSelected - 9) * 8) + (classSelected - 1)) + quarter] = gradeInput;
+  cleanGrades();
   saveGrades();
   if (gradeInput && quarter == 0) {
     gradeDropDownA.innerHTML = "Selected Q1 Grade: <b>" + gradeInput + "</b>";
