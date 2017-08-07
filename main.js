@@ -12,6 +12,10 @@ var classG = document.getElementById("classG");
 var classH = document.getElementById("classH");
 var search = document.getElementById("search");
 var header = document.getElementById("header");
+var triClasses = document.getElementById("triClasses");
+var triOne = document.getElementsByClassName("triOne");
+var triTwo = document.getElementsByClassName("triTwo");
+var triThree = document.getElementsByClassName("triThree");
 var creditPage = document.getElementById("creditContainer");
 var universityCreditPage = document.getElementById("universityCreditContainer");
 var gpaPageContain = document.getElementById("gpaContainer");
@@ -22,6 +26,7 @@ var searchImage = document.getElementById("searchImage");
 var optionsContain = document.getElementById("optionsContain");
 var gradeSelected;
 var classSelected;
+var numberOfClasses;
 var modalOk = document.getElementById("acceptClass");
 function showGrades() {
   gradeSelected = undefined;
@@ -61,29 +66,65 @@ function fadeInFadeOut(passBool,time,desc) {
     otherTimeoutOfDiv = setTimeout(function() {toggleObjects([popUpPic,popUpDiv],"hide"); },1000)
   },time);
 }
+var triClassA = document.getElementById("triClassA");
+var triClassB = document.getElementById("triClassB");
+var triClassC = document.getElementById("triClassC");
+var triClassD = document.getElementById("triClassD");
+var triClassE = document.getElementById("triClassE");
+var triClassF = document.getElementById("triClassF");
+var triClassG = document.getElementById("triClassG");
+var triClassH = document.getElementById("triClassH");
+var triClassI = document.getElementById("triClassI");
+var triClassJ = document.getElementById("triClassJ");
+var triClassK = document.getElementById("triClassK");
+var triClassL = document.getElementById("triClassL");
+var triClassM = document.getElementById("triClassM");
+var triClassN = document.getElementById("triClassN");
+var triClassO = document.getElementById("triClassO");
 function showEightClasses(grade) {
   classSelected = undefined;
   if (grade) {
     gradeSelected = grade;
   }
   hideEverything();
-  toggleObjects([classA,classB,classC,classD,classE,classF,classG,classH,header,backButton],"show");
-  checkClasses([classA,classB,classC,classD,classE,classF,classG,classH]);
+  if (numberOfClasses == 32) {
+    toggleObjects([classA,classB,classC,classD,classE,classF,classG,classH,header,backButton],"show");
+    checkClasses([classA,classB,classC,classD,classE,classF,classG,classH]);
+  }
+  else if (numberOfClasses == 60) {
+    toggleObjects([triClasses,header,backButton],"show");
+    for (var x = 0; x < 15; x++) {
+      checkClasses([triClassA,triClassB,triClassC,triClassD,triClassE,triClassF,triClassG,triClassH,triClassI,triClassJ,triClassK,triClassL,triClassM,triClassN,triClassO]);
+    }
+  }
 }
 function checkClasses(classesInFunc) {
   for (var j = 0; j < classesInFunc.length; j++) {
-    if (myClasses[(((gradeSelected - 9) * 8) + j)] != undefined) {
-      classesInFunc[j].innerHTML = myClasses[(((gradeSelected - 9) * 8) + j)];
+    if (myClasses[(((gradeSelected - 9) * (numberOfClasses/4)) + j)] != undefined) {
+      classesInFunc[j].innerHTML = myClasses[(((gradeSelected - 9) * (numberOfClasses/4)) + j)];
       if (classesInFunc[j].innerHTML.length < 20) {
-        classesInFunc[j].style.fontSize = "5vmin";
+        if (numberOfClasses == 32) {
+          classesInFunc[j].style.fontSize = "5vmin";
+        }
+        else if (numberOfClasses == 60) {
+          classesInFunc[j].style.fontSize = "4vmin";
+        }
       }
       else {
-        classesInFunc[j].style.fontSize = "3vmin";
+        if (numberOfClasses == 32) {
+          classesInFunc[j].style.fontSize = "3vmin";
+        }
+        else if (numberOfClasses == 60) {
+          classesInFunc[j].style.fontSize = "2.5vmin";
+        }
       }
     }
     else {
-      classesInFunc[j].innerHTML = "Select Class";
       classesInFunc[j].style.fontSize = "6vmin";
+      if (numberOfClasses == 60) {
+        classesInFunc[j].style.fontSize = "5vmin";
+      }
+      classesInFunc[j].innerHTML = "Select Class";
     }
   }
 }
@@ -92,17 +133,17 @@ function showOptions(classNo) {
   cleanGrades();
   if (classNo) {
     classSelected = classNo;
-    if (myClasses[((gradeSelected - 9) * 8) + (classSelected - 1)]) {
+    if (myClasses[((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)]) {
       inputModal.style.display = "block";
-      headerInputP.innerHTML = classes[getIdByClassName(myClasses[((gradeSelected - 9) * 8) + (classSelected - 1)])];
-      if (myGrades[2 * (((gradeSelected - 9) * 8) + (classSelected - 1))] != undefined) {
-        gradeDropDownA.innerHTML = "Selected Q1 Grade: <b>" + myGrades[2 * (((gradeSelected - 9) * 8) + (classSelected - 1))] + "</b>";
+      headerInputP.innerHTML = classes[getIdByClassName(myClasses[((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)])];
+      if (myGrades[2 * (((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1))] != undefined) {
+        gradeDropDownA.innerHTML = "Selected Q1 Grade: <b>" + myGrades[2 * (((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1))] + "</b>";
       }
       else {
         gradeDropDownA.innerHTML = "Select a Q1 grade";
       }
-      if (myGrades[2 * (((gradeSelected - 9) * 8) + (classSelected - 1)) + 1] != undefined) {
-        gradeDropDownB.innerHTML = "Selected Q2 Grade: <b>" + myGrades[2 * (((gradeSelected - 9) * 8) + (classSelected - 1)) + 1] + "</b>";
+      if (myGrades[2 * (((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)) + 1] != undefined) {
+        gradeDropDownB.innerHTML = "Selected Q2 Grade: <b>" + myGrades[2 * (((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)) + 1] + "</b>";
       }
       else {
         gradeDropDownB.innerHTML = "Select a Q2 grade";
@@ -134,17 +175,17 @@ function createMailLink(thisemail,thissubject,thisBody) {
   return mailLink;
 }
 function myCredits() {
-  englishCredits = [0,40];
-  socialScienceCredits = [0,30];
-  mathCredits = [0,20];
-  physicalScienceCredits = [0,10];
-  biologicalScienceCredits = [0,10];
-  fineArtCredits = [0,10];
-  exerciseCredits = [0,25];
-  electiveCredits = [0,85];
-  foreignCredits = [0,0];
+  englishCredits[0] = 0;
+  socialScienceCredits[0] = 0;
+  mathCredits[0] = 0;
+  physicalScienceCredits[0] = 0;
+  biologicalScienceCredits[0] = 0;
+  fineArtCredits[0] = 0;
+  exerciseCredits[0] = 0;
+  electiveCredits[0] = 0;
+  foreignCredits[0] = 0;
   if (localStorage.school == "Westview") {
-    for (var i = 0; i < 32; i++) {
+    for (var i = 0; i < numberOfClasses; i++) {
       if (myClasses[i] != undefined) {
         // If the class exists
         if (credits[getIdByClassName(myClasses[i])].length <= 2 && Number(credits[getIdByClassName(myClasses[i])]) == 20) {
@@ -236,7 +277,7 @@ function myCredits() {
     }
   }
   else if (localStorage.school == "Del Norte") {
-    for (var i = 0; i < 32; i++) {
+    for (var i = 0; i < numberOfClasses; i++) {
       if (myClasses[i] != undefined) {
         if (getCategory(getIdByClassName(myClasses[i])) == "ENGLISH") {
           englishCredits[0] += 5;
@@ -279,7 +320,7 @@ function myCredits() {
   console.log("Done credit calculation.");
 }
 function hideEverything() {
-  toggleObjects([header,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage,gpaPageContain,verifyHead,counselorContainer,optionsContain,popUpDiv],"hide");
+  toggleObjects([header,triClasses,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage,gpaPageContain,verifyHead,counselorContainer,optionsContain,popUpDiv],"hide");
   for (var u = 0; u < buttons.length; u++) {
     toggleObjects([buttons[u]],"hide");
   }
@@ -360,14 +401,14 @@ var unCredE  = [0,2];
 var unCredF = [0,1];
 var unCredG = [0,1];
 function myUniversityCredits() {
-  unCredA = [0,2];
-  unCredB = [0,4];
-  unCredC = [0,3];
-  unCredD  = [0,2];
-  unCredE  = [0,2];
-  unCredF = [0,1];
-  unCredG = [0,1];
-  for (var i = 0; i < 32; i++) {
+  unCredA[0] = 0;
+  unCredB[0] = 0;
+  unCredC[0] = 0;
+  unCredD[0] = 0;
+  unCredE[0] = 0;
+  unCredF[0] = 0;
+  unCredG[0] = 0;
+  for (var i = 0; i < numberOfClasses; i++) {
     if (myClasses[i] != undefined) {
       // If the class exists
       if (universityCredits[getIdByClassName(myClasses[i])].length == 1 || universityCredits[getIdByClassName(myClasses[i])].length == 6) {
@@ -459,7 +500,7 @@ function optionsPage() {
 }
 function encodeClasses() {
   var myCode = "";
-  for (var i = 0; i < 32; i++) {
+  for (var i = 0; i < numberOfClasses; i++) {
     if (!getIdByClassName(myClasses[i])) {
       myCode += "000";
     }
@@ -476,7 +517,7 @@ function encodeClasses() {
       myCode += "0*1";
     }
   }
-  for (var i = 0; i < 64; i++) {
+  for (var i = 0; i < numberOfClasses*2; i++) {
     if (myGrades[i]) {
       myCode += myGrades[i];
     }
@@ -490,7 +531,7 @@ function decodeClasses(code) {
   decodedClasses = [];
   decodedGrades = [];
   if (code.length == 160) {
-    for (var i = 0; i < 32; i++) {
+    for (var i = 0; i < numberOfClasses; i++) {
       if (code.charAt(i*3) == "0" && code.charAt(i*3+1) == "*" && code.charAt(i*3+2) == "1") {
         decodedClasses.push(undefined);
       }
@@ -720,7 +761,7 @@ function verifyPage() {
   verifyClasses();
 }
 function cleanGrades() {
-  for (var i = 0; i < 64; i++) {
+  for (var i = 0; i < numberOfClasses*2; i++) {
     if (myClasses[Math.floor(i/2)] && (myGrades[i] != "A" && myGrades[i] != "B" && myGrades[i] != "C" && myGrades[i] != "D" && myGrades[i] != "F")) {
       myGrades[i] = undefined;
     }
@@ -728,12 +769,14 @@ function cleanGrades() {
 }
 function verifyClasses() {
   var duplicateClasses = checkDups(myClasses);
+  var offRollBool = false
   for (var i = 0; i < duplicateClasses.length; i++) {
     if (duplicateClasses[i]) {
       createVerifyBox("Duplicate Class: " + duplicateClasses[i]);
     }
-    else {
+    else if (!offRollBool) {
       createVerifyBox("You are taking more than one Off Roll, this is not recommended");
+      offRollBool = true;
     }
   }
   if (!(checkCategory("English",0,7))) {
@@ -968,7 +1011,7 @@ function gpaPage() {
 function myGPA() {
   var gpaTracker = [0,0,0]; // One for GPA, other for amount of grades, and one for unweighted
   var isAp;
-  for (var i = 0; i < 64; i++) {
+  for (var i = 0; i < numberOfClasses*2; i++) {
       if (myClasses[Math.floor(i/2)]) {
         isAp = (checkWord("AP ",myClasses[Math.floor(i/2)],0) || descriptions[getIdByClassName(myClasses[Math.floor(i/2)])].indexOf("A=5, B=4, C=3") > -1);
       }
@@ -1252,7 +1295,7 @@ confirmOk.onclick = function () {
 modalOk.onclick = function() {
   modal.style.display = "none";
   document.body.style.overflowY = "scroll";
-  myClasses[((gradeSelected - 9) * 8) + (classSelected - 1)] = classes[savePlacement];
+  myClasses[((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)] = classes[savePlacement];
   saveClasses();
   showEightClasses();
   fadeInFadeOut(true,1000,"Class Added");
@@ -1260,9 +1303,9 @@ modalOk.onclick = function() {
 removeClass.onclick = function() {
   inputModal.style.display = "none";
   document.body.style.overflowY = "scroll";
-  myClasses[((gradeSelected - 9) * 8) + (classSelected - 1)] = undefined;
-  myGrades[2 * (((gradeSelected - 9) * 8) + (classSelected - 1))] = undefined;
-  myGrades[2 * (((gradeSelected - 9) * 8) + (classSelected - 1)) + 1] = undefined;
+  myClasses[((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)] = undefined;
+  myGrades[2 * (((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1))] = undefined;
+  myGrades[2 * (((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)) + 1] = undefined;
   saveClasses();
   showEightClasses();
   fadeInFadeOut(true,1000,"Class Removed");
@@ -1297,7 +1340,7 @@ function clearClasses() {
 }
 function addGrade(gradeInput,quarter) {
   quarter--;
-  myGrades[2 * (((gradeSelected - 9) * 8) + (classSelected - 1)) + quarter] = gradeInput;
+  myGrades[2 * (((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)) + quarter] = gradeInput;
   cleanGrades();
   saveGrades();
   if (gradeInput && quarter == 0) {
@@ -1578,7 +1621,6 @@ function organizePDF() {
           storedLetters += catalogText.charAt(i);
           i++;
       }
-      //console.log(i);
     } // Close While loop
     // Final Data
     descriptions[descriptions.length] = storedLetters;
@@ -1601,9 +1643,11 @@ function loadSchool() {
   var pdfName = "";
   if (localStorage.school == "Westview") {
     pdfName = "https://docs.wixstatic.com/ugd/5db6f5_7f8fbcb5bd064026b84356a51b42f5f3.pdf";
+    numberOfClasses = 32;
   }
   else if (localStorage.school == "Del Norte") {
     pdfName = "http://docs.wixstatic.com/ugd/5db6f5_558a721747e245edb511714213350339.pdf";
+    numberOfClasses = 60;
   }
   gettext(pdfName).then(function (text) {
   catalogText = text;

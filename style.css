@@ -56,6 +56,27 @@ body {
   color: gold;
   border-radius: 2.5vh;
 }
+.triOne, .triTwo, .triThree {
+  width: 25vw;
+  height: 13vh;
+  margin-left: 5.5vw;
+  outline-style: none;
+  font-family: "fantasy";
+  background-color: gold;
+  border-radius: 2.5vh;
+  margin-top:-2vh;
+  margin-bottom:3.5vh;
+}
+.triRow {
+  display:flex;
+}
+.triTwo {
+  background-color: black;
+  color:gold;
+}
+.triOne {
+  margin-left:5.5vw;
+}
 #nine {
     background-color:#FFEA40;
     background-image:url("orange.jpg");
@@ -129,7 +150,7 @@ body {
   font-size:3vmin;
 }
 #backButton {
-  position:absolute;
+  position:fixed;
   top:5%;
   left:5%;
   width:10vmin;
@@ -401,6 +422,9 @@ body {
   }
   #studentInput, #counselorInput {
     margin-left:13vw;
+  }
+  .triOne {
+    margin-left:4vw;
   }
   .credIcon {
     width:5vmin;
