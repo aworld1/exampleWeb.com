@@ -1157,6 +1157,7 @@ function schoolPage() {
   for (var i = 0; i < schools.length;i++) {
     createSchoolButton(schools[i]);
   }
+  createVerifyBox("Is your school not listed here? No problem! Contact your principal or an administrator and tell them about PlanPal!");
 }
 function createSchoolButton(schoolName) {
   buttons[buttons.length] = document.createElement("BUTTON");
@@ -1182,9 +1183,14 @@ function createSchoolButton(schoolName) {
   buttons[buttons.length - 1].onclick = function () { confirmTask('changeSchool("' + schoolName + '")'); };
 }
 function changeSchool(schoolName) {
-  localStorage.school = schoolName;
-  clearClasses();
-  location.reload();
+  if (localStorage.school != schoolName) {
+    localStorage.school = schoolName;
+    clearClasses();
+    location.reload();
+  }
+  else {
+    fadeInFadeOut(false,1000,"Already Chosen");
+  }
 }
 function cleanOthers() {
   if (localStorage.school == "Westview") {
