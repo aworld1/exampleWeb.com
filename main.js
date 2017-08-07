@@ -1154,7 +1154,7 @@ function schoolPage() {
     buttons[u].style.visibility = "none"
   }
   buttons = [];
-  createVerifyBox("Please choose the school that you are currently enrolled in.<br/><br/><font color='red'>Warning!</font> All classes in your current plan will be cleared if a new school is chosen.<br/><br/>Scroll Down ↓↓↓");
+  createVerifyBox("Please choose the school that you are currently enrolled in.<br/><br/><font color='red'>Warning!</font> All classes in your current plan will be cleared if a new school is chosen.<br/><br/><font color='black'>Current School: " + localStorage.school + "</font><br/><br/>Scroll Down ↓↓↓");
   var schools = ["Westview","Del Norte"];
   for (var i = 0; i < schools.length;i++) {
     createSchoolButton(schools[i]);
