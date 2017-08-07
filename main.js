@@ -135,12 +135,19 @@ function showOptions(classNo) {
     classSelected = classNo;
     if (myClasses[((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)]) {
       inputModal.style.display = "block";
+      toggleObjects([gradeDropDownB],"hide");
       headerInputP.innerHTML = classes[getIdByClassName(myClasses[((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)])];
       if (myGrades[2 * (((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1))] != undefined) {
         gradeDropDownA.innerHTML = "Selected Q1 Grade: <b>" + myGrades[2 * (((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1))] + "</b>";
+        if (numberOfClasses == 60) {
+          gradeDropDownA.innerHTML = "Selected Grade: <b>" + myGrades[2 * (((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1))] + "</b>";
+        }
       }
       else {
         gradeDropDownA.innerHTML = "Select a Q1 grade";
+        if (numberOfClasses == 60) {
+          gradeDropDownA.innerHTML = "Select a Grade";
+        }
       }
       if (myGrades[2 * (((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)) + 1] != undefined) {
         gradeDropDownB.innerHTML = "Selected Q2 Grade: <b>" + myGrades[2 * (((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)) + 1] + "</b>";
@@ -524,13 +531,16 @@ function encodeClasses() {
     else {
       myCode += "0";
     }
+    if (numberOfClasses == 60) {
+      i++;
+    }
   }
   return myCode;
 }
 function decodeClasses(code) {
   decodedClasses = [];
   decodedGrades = [];
-  if (code.length == numberOfClasses*5) {
+  if ((code.length == numberOfClasses*5 && numberOfClasses == 32) || (code.length == numberOfClasses*4 && numberOfClasses == 60)) {
     for (var i = 0; i < numberOfClasses; i++) {
       if (code.charAt(i*3) == "0" && code.charAt(i*3+1) == "*" && code.charAt(i*3+2) == "1") {
         decodedClasses.push(undefined);
@@ -548,12 +558,26 @@ function decodeClasses(code) {
         decodedClasses.push(classes[Number(code.charAt(i*3) + code.charAt(i*3+1) + code.charAt(i*3+2))]);
       }
     }
-    for (var i = numberOfClasses*3; i < numberOfClasses*5; i++) {
-      if (code.charAt(i) == "0") {
-        decodedGrades.push(undefined);
+    if (numberOfClasses == 32) {
+      for (var i = numberOfClasses*3; i < numberOfClasses*5; i++) {
+        if (code.charAt(i) == "0") {
+          decodedGrades.push(undefined);
+        }
+        else {
+          decodedGrades.push(code.charAt(i));
+        }
       }
-      else {
-        decodedGrades.push(code.charAt(i));
+    }
+    else if (numberOfClasses == 60) {
+      for (var i = numberOfClasses*3; i < numberOfClasses*4; i++) {
+        if (code.charAt(i) == "0") {
+          decodedGrades.push(undefined);
+          decodedGrades.push(undefined);
+        }
+        else {
+          decodedGrades.push(code.charAt(i));
+          decodedGrades.push(undefined);
+        }
       }
     }
     return [decodedClasses,decodedGrades];
@@ -763,6 +787,11 @@ function verifyPage() {
 function cleanGrades() {
   for (var i = 0; i < numberOfClasses*2; i++) {
     if (myClasses[Math.floor(i/2)] && (myGrades[i] != "A" && myGrades[i] != "B" && myGrades[i] != "C" && myGrades[i] != "D" && myGrades[i] != "F")) {
+      myGrades[i] = undefined;
+    }
+  }
+  if (numberOfClasses == 60) {
+    for (var i = 1; i < numberOfClasses*2; i+=2) {
       myGrades[i] = undefined;
     }
   }
@@ -1345,12 +1374,18 @@ function addGrade(gradeInput,quarter) {
   saveGrades();
   if (gradeInput && quarter == 0) {
     gradeDropDownA.innerHTML = "Selected Q1 Grade: <b>" + gradeInput + "</b>";
+    if (numberOfClasses == 60) {
+      gradeDropDownA.innerHTML = "Selected Grade: <b>" + gradeInput + "</b>";
+    }
   }
   else if (gradeInput && quarter == 1) {
     gradeDropDownB.innerHTML = "Selected Q2 Grade: <b>" + gradeInput + "</b>";
   }
   else if (quarter == 0) {
     gradeDropDownA.innerHTML = "Select a Q1 grade";
+    if (numberOfClasses == 60) {
+      gradeDropDownA.innerHTML = "Select a Grade"
+    }
   }
   else {
     gradeDropDownB.innerHTML = "Select a Q2 grade";
