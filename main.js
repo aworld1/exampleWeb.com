@@ -530,7 +530,7 @@ function encodeClasses() {
 function decodeClasses(code) {
   decodedClasses = [];
   decodedGrades = [];
-  if (code.length == 160) {
+  if (code.length == numberOfClasses*5) {
     for (var i = 0; i < numberOfClasses; i++) {
       if (code.charAt(i*3) == "0" && code.charAt(i*3+1) == "*" && code.charAt(i*3+2) == "1") {
         decodedClasses.push(undefined);
@@ -548,7 +548,7 @@ function decodeClasses(code) {
         decodedClasses.push(classes[Number(code.charAt(i*3) + code.charAt(i*3+1) + code.charAt(i*3+2))]);
       }
     }
-    for (var i = 96; i < 160; i++) {
+    for (var i = numberOfClasses*3; i < numberOfClasses*5; i++) {
       if (code.charAt(i) == "0") {
         decodedGrades.push(undefined);
       }
@@ -1634,7 +1634,7 @@ function organizePDF() {
   } // Close If Statement
 } // Close Function
 var homePageText;
-localStorage.school = "Westview";
+localStorage.school = "Del Norte";
 var loadedApp = false;
 document.body.style.overflowX = "hidden";
 function loadSchool() {
