@@ -135,7 +135,9 @@ function showOptions(classNo) {
     classSelected = classNo;
     if (myClasses[((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)]) {
       inputModal.style.display = "block";
-      toggleObjects([gradeDropDownB],"hide");
+      if (numberOfClasses == 60) {
+        toggleObjects([gradeDropDownB],"hide");
+      }
       headerInputP.innerHTML = classes[getIdByClassName(myClasses[((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)])];
       if (myGrades[2 * (((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1))] != undefined) {
         gradeDropDownA.innerHTML = "Selected Q1 Grade: <b>" + myGrades[2 * (((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1))] + "</b>";
