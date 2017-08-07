@@ -1145,6 +1145,47 @@ function searchClasses() {
         }
     }
 }
+function schoolPage() {
+  hideEverything();
+  for (var u = 0; u < buttons.length; u++) {
+    buttons[u].style.display = "none";
+    buttons[u].style.visibility = "none"
+  }
+  buttons = [];
+  createVerifyBox("Please choose the school that you are currently enrolled in.<br/><br/><font color='red'>Warning!</font> All classes in your current plan will be cleared if a new school is chosen.<br/><br/>Scroll Down ↓↓↓");
+  var schools = ["Westview","Del Norte"];
+  for (var i = 0; i < schools.length;i++) {
+    createSchoolButton(schools[i]);
+  }
+}
+function createSchoolButton(schoolName) {
+  buttons[buttons.length] = document.createElement("BUTTON");
+  document.body.appendChild(buttons[buttons.length - 1]);
+  buttons[buttons.length - 1].innerHTML = schoolName;
+  buttons[buttons.length - 1].style.width = "90%";
+  buttons[buttons.length - 1].style.height = "10vh";
+  buttons[buttons.length - 1].style.marginLeft = "5%";
+  buttons[buttons.length - 1].style.marginRight = "5%";
+  buttons[buttons.length - 1].style.marginTop = "5vh";
+  buttons[buttons.length - 1].style.borderRadius = "2vh";
+  if (buttons.length % 2 == 0) {
+    buttons[buttons.length - 1].style.backgroundColor = "gold";
+    buttons[buttons.length - 1].className = "animated bounceInLeft";
+  }
+  else {
+    buttons[buttons.length - 1].style.backgroundColor = "black";
+    buttons[buttons.length - 1].style.color = "gold";
+    buttons[buttons.length - 1].className = "animated bounceInRight";
+  }
+  buttons[buttons.length - 1].style.fontFamily = "monospace";
+  buttons[buttons.length - 1].style.fontSize = "3.5vmin";
+  buttons[buttons.length - 1].onclick = function () { confirmTask('changeSchool("' + schoolName + '")'); };
+}
+function changeSchool(schoolName) {
+  localStorage.school = schoolName;
+  clearClasses();
+  location.reload();
+}
 function cleanOthers() {
   if (localStorage.school == "Westview") {
     for (var i = 0; i < classes.length;i++) {
@@ -1669,7 +1710,9 @@ function organizePDF() {
   } // Close If Statement
 } // Close Function
 var homePageText;
-localStorage.school = "Del Norte";
+if (!localStorage.school) {
+  localStorage.school = "Westview";
+}
 var loadedApp = false;
 document.body.style.overflowX = "hidden";
 function loadSchool() {
