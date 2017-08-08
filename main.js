@@ -883,10 +883,17 @@ function checkCategory(categoryName,numberStart,numberEnd) {
 }
 function isClass(pdf, placement) {
   var returnVal = true;
-  for (var j = 0; j < 15; j++) {
+  var amountOfCheck;
+  if (localStorage.school == "Poway") {
+    amountOfCheck = 12;
+  }
+  else {
+    amountOfCheck = 15;
+  }
+  for (var j = 0; j < amountOfCheck; j++) {
     // Check for upper case
       if (!(pdf.charAt(j + placement) == pdf.charAt(j + placement).toUpperCase() || (pdf.charAt(j + placement - 1) == "I" && pdf.charAt(j + placement + 1) == "-"))) {
-        if (!(checkWord("ORCHESTRA",catalogText,placement))) {
+        if (!(checkWord("ORCHESTRA",catalogText,placement) || checkWord("AVID 1-8",catalogText,placement) || checkWord("DRAMA ",catalogText,placement) || checkWord("SOCIOLOGY ",catalogText,placement) || checkWord("CIVICS ",catalogText,placement) || checkWord("ECONOMICS ",catalogText,placement))) {
           returnVal = false;
         }
       }
@@ -973,8 +980,15 @@ function cleanDescription() {
           reachedPeriod = true;
         }
       }
-    }
-  }
+      else if (localStorage.school == "Poway") {
+        descriptions[i] = descriptions[i].trim();
+        if (descriptions[i] == "") {
+          descriptions[i] = "None";
+        }
+        reachedPeriod = true;
+      }
+    } // While reachedPeriod
+  } // For loop
 }
 function getCategory(placement) {
   var indexOfCategory = -1;
@@ -1155,7 +1169,7 @@ function schoolPage() {
   }
   buttons = [];
   createVerifyBox("Please choose the school that you are currently enrolled in.<br/><br/><font color='red'>Warning!</font> All classes in your current plan will be cleared if a new school is chosen.<br/><br/><font color='black'>Current School: " + localStorage.school + "</font><br/><br/>Scroll Down ↓↓↓");
-  var schools = ["Westview","Del Norte"];
+  var schools = ["Westview","Del Norte","Poway"];
   for (var i = 0; i < schools.length;i++) {
     createSchoolButton(schools[i]);
   }
@@ -1299,6 +1313,34 @@ function cleanOthers() {
     for (var i = 0; i < categories.length; i++) {
       if (checkWord("EALTH",categories[i],0)) {
         categories[i] = "H" + categories[i];
+      }
+    }
+  }
+  else if (localStorage.school == "Poway") {
+    for (var i = 0; i < classes.length; i++) {
+      if (checkWord("O.C.I.S. PE program.",classes[i],0)) {
+        classes[i] = classes[i].substring(27);
+      }
+      else if (checkWord("OUN",classes[i],0)) {
+        classes[i] = classes[i].substring(3);
+      }
+      else if (checkWord("AB.",classes[i],0)) {
+        classes[i] = classes[i].substring(3);
+      }
+      else if (checkWord("BC.",classes[i],0)) {
+        classes[i] = classes[i].substring(3);
+      }
+      else if (checkWord("D COMPUTER",classes[i],0)) {
+        classes[i] = "3" + classes[i];
+      }
+      classes[i] = classes[i].trim();
+      universityCredits[i] = universityCredits[i].trim();
+      grades[i] = grades[i].trim();
+      preReqs[i] = preReqs[i].trim();
+      categories[i] = categories[i].trim();
+      if (classes[i].indexOf("  ") > -1) {
+        classes[i] = classes[i].substring(classes[i].indexOf("  "));
+        classes[i] = classes[i].trim();
       }
     }
   }
@@ -1618,6 +1660,117 @@ function organizePDF() {
     descriptions[descriptions.length] = storedLetters;
     console.log("Done organizing.");
   }
+  else if (localStorage.school == "Poway") {
+    // Skip Header
+    var countOfAgri = false;
+    while (!headerDone) {
+      // First category is English, wait until encounter
+      if (checkWord("AGRICULTURE",catalogText,i)) {
+        if (countOfAgri) {
+          headerDone = true;
+        }
+        else {
+          countOfAgri = true;
+          i++;
+        }
+      }
+      else {
+        i++;
+      }
+    }
+    while (!checkWord("INDEX  ",catalogText,i)) {
+      // Check to see if the type changed
+      // If it did, dump out all of the text into the prev type
+
+      // Checking for type switch
+
+      if ((checkWord("Meets the UC/CSU",catalogText,i) || checkWord("Meets UC/CSU",catalogText,i) || checkWord("Pending board approval to meet the UC/CSU",catalogText,i) || checkWord("This course will be offered pending PUSD Board approval",catalogText,i) || checkWord("Pending approval to meet the UC/CSU",catalogText,i) || checkWord("This course will be offered pending",catalogText,i) || checkWord("Meets  UC/CSU ",catalogText,i)) && currentType == "class") {
+        if (currentType == "class") {
+          classes[classes.length] = storedLetters;
+          currentType = "universityCredit";
+        }
+        else {
+          alert("Something went wrong...1");
+        }
+        storedLetters = "";
+      }
+      else if (checkWord("Grade Level: ",catalogText,i) && (currentType == "class" || currentType == "universityCredit")) {
+        if (currentType == "class") {
+          classes[classes.length] = storedLetters;
+          universityCredits[universityCredits.length] = "None";
+          currentType = "grade";
+          i += 13;
+        }
+        else if (currentType == "universityCredit") {
+          universityCredits[universityCredits.length] = storedLetters;
+          currentType = "grade";
+          i += 13;
+        }
+        else {
+          alert("Something went wrong...2");
+        }
+        storedLetters = "";
+      }
+      else if ((checkWord("Prerequisite: ",catalogText,i) || checkWord("Prerequisites: ",catalogText,i)) && currentType == "grade") {
+        if (currentType == "grade") {
+          grades[grades.length] = storedLetters;
+          currentType = "preReq";
+          i += 14;
+        }
+        else {
+          alert("Something went wrong...4");
+        }
+        storedLetters = "";
+      }
+      else if ((checkWord("PHS: ",catalogText,i) || checkWord("PHS ",catalogText,i)) && currentType == "preReq") {
+        if (currentType == "preReq") {
+          preReqs[preReqs.length] = storedLetters;
+          currentType = "category";
+          i += 5;
+        }
+        else {
+          alert("Something went wrong...4");
+        }
+        storedLetters = "";
+      }
+      else if (checkWord(" ",catalogText,i) && !(checkWord(" Art",catalogText,i) || checkWord(" and Elective",catalogText,i) || checkWord(" Elective",catalogText,i) || checkWord(" Education",catalogText,i) || checkWord(" Science",catalogText,i) || checkWord(" History",catalogText,i) || checkWord(" Language",catalogText,i)) && currentType == "category") {
+        if (currentType == "category") {
+          categories[categories.length] = storedLetters;
+          currentType = "description";
+        }
+        else {
+          alert("Something went wrong...8");
+        }
+        storedLetters = "";
+      }
+      else if (isClass(catalogText,i) && currentType == "description") {
+        if (currentType == "description") {
+          descriptions[descriptions.length] = storedLetters;
+          currentType = "class";
+        }
+        else {
+          alert("Something went wrong...9");
+        }
+        storedLetters = "";
+      }
+
+      // End checking
+
+      else {
+          storedLetters += catalogText.charAt(i);
+          i++;
+      }
+    } // Close While loop
+    // Final Data
+    descriptions[descriptions.length] = storedLetters;
+    for (var x = 0; x < classes.length; x++) {
+      credits.push(5);
+      /*linkedCourses.push("Del Norte does not provide Linked Course information");
+      universityCredits.push("Del Norte does not provide UC/CSU Credit information");
+      interests.push("Del Norte does not provide Class Interest information");*/
+    }
+    console.log("Done organizing.");
+  } // Close If Statement
   else if (localStorage.school == "Del Norte") {
     // Skip Header
     while (!headerDone) {
@@ -1718,9 +1871,9 @@ function organizePDF() {
   } // Close If Statement
 } // Close Function
 var homePageText;
-if (!localStorage.school) {
-  localStorage.school = "Westview";
-}
+//if (!localStorage.school) {
+  localStorage.school = "Poway";
+//}
 var loadedApp = false;
 document.body.style.overflowX = "hidden";
 function loadSchool() {
@@ -1733,6 +1886,10 @@ function loadSchool() {
   }
   else if (localStorage.school == "Del Norte") {
     pdfName = "http://docs.wixstatic.com/ugd/5db6f5_558a721747e245edb511714213350339.pdf";
+    numberOfClasses = 60;
+  }
+  else if (localStorage.school == "Poway") {
+    pdfName = "https://docs.wixstatic.com/ugd/5db6f5_05deee3b88934aedb8e8b979bd3edc2e.pdf";
     numberOfClasses = 60;
   }
   gettext(pdfName).then(function (text) {
