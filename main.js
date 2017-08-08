@@ -349,7 +349,6 @@ function myCredits() {
         }
         else {
           electiveCredits[0] += 5;
-          console.log(getCategory(getIdByClassName(myClasses[i])));
         }
       }
     }
@@ -452,7 +451,7 @@ function myUniversityCredits() {
   unCredF[0] = 0;
   unCredG[0] = 0;
   for (var i = 0; i < numberOfClasses; i++) {
-    if (myClasses[i] != undefined) {
+    if (myClasses[i] != undefined && localStorage.school == "Westview") {
       // If the class exists
       if (universityCredits[getIdByClassName(myClasses[i])].length == 1 || universityCredits[getIdByClassName(myClasses[i])].length == 6) {
         if (universityCredits[getIdByClassName(myClasses[i])].charAt(0) == "A") {
@@ -500,8 +499,56 @@ function myUniversityCredits() {
           unCredG[0]++;
         }
       }
-    }
-  }
+    } // Westview ends
+    else if (myClasses[i] != undefined && localStorage.school == "Poway") {
+      if (universityCredits[getIdByClassName(myClasses[i])].indexOf('“') > -1) {
+        if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].indexOf('“') + 1) == "A") {
+          unCredA[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].indexOf('“') + 1) == "B") {
+          unCredB[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].indexOf('“') + 1) == "C") {
+          unCredC[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].indexOf('“') + 1) == "D") {
+          unCredD[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].indexOf('“') + 1) == "E") {
+          unCredE[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].indexOf('“') + 1) == "F") {
+          unCredF[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].indexOf('“') + 1) == "G") {
+          unCredG[0]++;
+        }
+      }
+      if (universityCredits[i].replace(/[^“]/g, "").length > 1) {
+        if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].lastIndexOf('“') + 1) == "A") {
+          unCredA[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].lastIndexOf('“') + 1) == "B") {
+          unCredB[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].lastIndexOf('“') + 1) == "C") {
+          unCredC[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].lastIndexOf('“') + 1) == "D") {
+          unCredD[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].lastIndexOf('“') + 1) == "E") {
+          unCredE[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].lastIndexOf('“') + 1) == "F") {
+          unCredF[0]++;
+        }
+        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].lastIndexOf('“') + 1) == "G") {
+          unCredG[0]++;
+        }
+      }
+    } // Poway ends
+  } // For loop
 }
 function counselorPage() {
   hideEverything();
