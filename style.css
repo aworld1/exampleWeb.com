@@ -379,9 +379,12 @@ body {
   padding-right:4vmin;
 }
 #optionFade {
-  margin: 0 auto;
   margin-top:5vh;
-  margin-left:38vw;
+  display: table;
+  margin: 0 auto;
+}
+#containOption {
+  width:100%;
 }
 .encompassCreditEntry {
   border-radius:2.5vmin;
@@ -424,7 +427,7 @@ body {
     margin-left:13vw;
   }
   .triOne {
-    margin-left:4vw;
+    margin-left:5vw;
   }
   .credIcon {
     width:5vmin;
