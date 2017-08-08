@@ -900,7 +900,7 @@ function verifyClasses() {
   if (!(checkCategory("PhysicalEducation",0,7))) {
     createVerifyBox("You must take a Physical Education class in 9th Grade");
   }
-  if (!(checkClass(myClasses,"ENS 1-2",0,7) || checkClass(myClasses,"ENS 1-2 ONLINE",0,7))) {
+  if (!(checkClass(myClasses,"ENS 1-2",0,7) || checkClass(myClasses,"ENS 1-2 ONLINE",0,7)) && localStorage.school != "Poway") {
     createVerifyBox("You must take ENS 1-2 in 9th Grade");
   }
   if (!(checkCategory("English",8,15))) {
