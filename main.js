@@ -893,7 +893,7 @@ function isClass(pdf, placement) {
   for (var j = 0; j < amountOfCheck; j++) {
     // Check for upper case
       if (!(pdf.charAt(j + placement) == pdf.charAt(j + placement).toUpperCase() || (pdf.charAt(j + placement - 1) == "I" && pdf.charAt(j + placement + 1) == "-"))) {
-        if (!(checkWord("ORCHESTRA",catalogText,placement) || checkWord("AVID 1-8",catalogText,placement) || checkWord("DRAMA ",catalogText,placement) || checkWord("SOCIOLOGY ",catalogText,placement) || checkWord("CIVICS ",catalogText,placement) || checkWord("ECONOMICS ",catalogText,placement))) {
+        if (!(checkWord("ORCHESTRA",catalogText,placement) || checkWord("AVID 1-8",catalogText,placement) || checkWord("TALL FLAGS ",catalogText,placement) || checkWord("DRAMA ",catalogText,placement) || checkWord("SOCIOLOGY ",catalogText,placement) || checkWord("CIVICS ",catalogText,placement) || checkWord("ECONOMICS ",catalogText,placement))) {
           returnVal = false;
         }
       }
@@ -991,13 +991,18 @@ function cleanDescription() {
   } // For loop
 }
 function getCategory(placement) {
-  var indexOfCategory = -1;
-  for (var x = 0; x < categoryPlacement.length; x++) {
-    if (placement >= categoryPlacement[x]) {
-      indexOfCategory++;
-    }
+  if (localStorage.school == "Poway") {
+    return categories[placement];
   }
-  return categories[indexOfCategory];
+  else {
+    var indexOfCategory = -1;
+    for (var x = 0; x < categoryPlacement.length; x++) {
+      if (placement >= categoryPlacement[x]) {
+        indexOfCategory++;
+      }
+    }
+    return categories[indexOfCategory];
+  }
 }
 var classP = document.getElementById("classP");
 var categoryP = document.getElementById("categoryP");
@@ -1332,6 +1337,9 @@ function cleanOthers() {
       }
       else if (checkWord("D COMPUTER",classes[i],0)) {
         classes[i] = "3" + classes[i];
+      }
+      if (categories[i] == "") {
+        categories[i] = "Elective";
       }
       classes[i] = classes[i].trim();
       universityCredits[i] = universityCredits[i].trim();
@@ -1765,9 +1773,9 @@ function organizePDF() {
     descriptions[descriptions.length] = storedLetters;
     for (var x = 0; x < classes.length; x++) {
       credits.push(5);
-      /*linkedCourses.push("Del Norte does not provide Linked Course information");
-      universityCredits.push("Del Norte does not provide UC/CSU Credit information");
-      interests.push("Del Norte does not provide Class Interest information");*/
+      codes.push("Poway HS does not provide Class Code information");
+      interests.push("Poway HS does not provide Class Interest information");
+      linkedCourses.push("Poway HS does not provide Linked Course information");
     }
     console.log("Done organizing.");
   } // Close If Statement
@@ -1871,9 +1879,9 @@ function organizePDF() {
   } // Close If Statement
 } // Close Function
 var homePageText;
-//if (!localStorage.school) {
-  localStorage.school = "Poway";
-//}
+if (!localStorage.school) {
+  localStorage.school = "Westview";
+}
 var loadedApp = false;
 document.body.style.overflowX = "hidden";
 function loadSchool() {
