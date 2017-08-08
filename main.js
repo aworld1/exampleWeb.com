@@ -320,6 +320,40 @@ function myCredits() {
       }
     }
   }
+  else if (localStorage.school == "Poway") {
+    for (var i = 0; i < numberOfClasses; i++) {
+      if (myClasses[i] != undefined) {
+        if (getCategory(getIdByClassName(myClasses[i])) == "English") {
+          englishCredits[0] += 5;
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "US History" || getCategory(getIdByClassName(myClasses[i])) == "World History" || getCategory(getIdByClassName(myClasses[i])) == "Civics" || getCategory(getIdByClassName(myClasses[i])) == "Civics/Econ" || getCategory(getIdByClassName(myClasses[i])) == "Economics") {
+          socialScienceCredits[0] += 5;
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "Math") {
+          mathCredits[0] += 5;
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "Physical Science") {
+          physicalScienceCredits[0] += 5;
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "Life Science") {
+          biologicalScienceCredits[0] += 5;
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])).indexOf("Fine Art") > -1) {
+          fineArtCredits[0] += 5;
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "Health" || getCategory(getIdByClassName(myClasses[i])) == "Physical Education") {
+          exerciseCredits[0] += 5;
+        }
+        else if (getCategory(getIdByClassName(myClasses[i])) == "Foreign Language") {
+          foreignCredits[0] += 5;
+        }
+        else {
+          electiveCredits[0] += 5;
+          console.log(getCategory(getIdByClassName(myClasses[i])));
+        }
+      }
+    }
+  }
   creditArray = [englishCredits,socialScienceCredits,exerciseCredits,mathCredits,fineArtCredits,physicalScienceCredits,biologicalScienceCredits,foreignCredits];
   for (var i = 0; i < creditArray.length; i++) {
     if (creditArray[i][0] > creditArray[i][1]) {
@@ -1339,6 +1373,15 @@ function cleanOthers() {
         classes[i] = "3" + classes[i];
       }
       if (categories[i] == "") {
+        categories[i] = "Elective";
+      }
+      else if (categories[i] == "ife Science") {
+        categories[i] = "Life Science";
+      }
+      else if (categories[i] == "ine Art") {
+        categories[i] = "Fine Art";
+      }
+      else if (categories[i] == "lective") {
         categories[i] = "Elective";
       }
       classes[i] = classes[i].trim();
