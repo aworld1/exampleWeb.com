@@ -240,27 +240,57 @@ body {
   background-size:10vmin 10vmin;
   animation-delay: 1s;
 }
-#credHead, #uncredHead, #optionHead {
-  margin-top:5%;
-  text-align: center;
-  font-size:15vmin;
-  color:#001FE9;
-  animation-duration: 5s;
-  overflow: hidden;
+.headerClass {
+  width:100%;
+  font-size:12vmin;
+  height:30vh;
+  color:white;
+  text-align:center;
+  line-height:30vh;
+  vertical-align: middle;
+  margin-bottom:10vh;
 }
-#gpaHead {
-  margin-top:5%;
-  text-align: center;
-  font-size:15vmin;
-  color:#001FE9;
-  animation-duration: 3s;
-  overflow: hidden;
+#credHead {
+  background: #001DDC; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #001DDC , #73FFFE); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #001DDC, #73FFFE); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #001DDC, #73FFFE); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #001DDC , #73FFFE); /* Standard syntax */
+}
+#uncredHead {
+  background: #F29200; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #F29200 , #FFDEAC); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #F29200, #FFDEAC); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #F29200, #FFDEAC); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #F29200 , #FFDEAC); /* Standard syntax */
 }
 #verifyHead {
-  margin-top:5%;
-  text-align: center;
-  font-size:10vmin;
-  color:#001FE9;
+  background: #059400; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #059400 , #93FF8F); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #059400, #93FF8F); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #059400, #93FF8F); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #059400 , #93FF8F); /* Standard syntax */
+}
+#gpaHead {
+  background: #036100; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #036100 , #D9FFDD); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #036100, #D9FFDD); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #036100, #D9FFDD); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #036100 , #D9FFDD); /* Standard syntax */
+}
+#optionHead {
+  background: #424242; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #424242 , #FFFFFF); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #424242, #FFFFFF); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #424242, #FFFFFF); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #424242 , #FFFFFF); /* Standard syntax */
+}
+#schoolHead {
+  background: #670062; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #670062 , #2344D1); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #670062, #2344D1); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #670062, #2344D1); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #670062 , #2344D1); /* Standard syntax */
 }
 .gpaCirc {
   border-radius: 50%;

@@ -362,7 +362,7 @@ function myCredits() {
   console.log("Done credit calculation.");
 }
 function hideEverything() {
-  toggleObjects([header,triClasses,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage,gpaPageContain,verifyHead,counselorContainer,optionsContain,popUpDiv],"hide");
+  toggleObjects([schoolHead,header,triClasses,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage,gpaPageContain,verifyHead,counselorContainer,optionsContain,popUpDiv],"hide");
   for (var u = 0; u < buttons.length; u++) {
     toggleObjects([buttons[u]],"hide");
   }
@@ -1247,24 +1247,27 @@ function searchClasses() {
         }
     }
 }
+var schoolHead = document.getElementById("schoolHead");
 function schoolPage() {
   hideEverything();
+  toggleObjects([schoolHead],"show");
   for (var u = 0; u < buttons.length; u++) {
     buttons[u].style.display = "none";
     buttons[u].style.visibility = "none"
   }
   buttons = [];
-  createVerifyBox("Please choose the school that you are currently enrolled in.<br/><br/><font color='red'>Warning!</font> All classes in your current plan will be cleared if a new school is chosen.<br/><br/><font color='black'>Current School: " + localStorage.school + "</font><br/><br/>Scroll Down ↓↓↓");
   var schools = ["Westview","Del Norte","Poway"];
   for (var i = 0; i < schools.length;i++) {
     createSchoolButton(schools[i]);
   }
-  createVerifyBox("Is your school not listed here? No problem! Contact your principal or an administrator and tell them about PlanPal!");
 }
 function createSchoolButton(schoolName) {
   buttons[buttons.length] = document.createElement("BUTTON");
   document.body.appendChild(buttons[buttons.length - 1]);
   buttons[buttons.length - 1].innerHTML = schoolName;
+  if (schoolName == localStorage.school) {
+    buttons[buttons.length - 1].innerHTML = "Current School: " + schoolName;
+  }
   buttons[buttons.length - 1].style.width = "90%";
   buttons[buttons.length - 1].style.height = "10vh";
   buttons[buttons.length - 1].style.marginLeft = "5%";
@@ -1974,6 +1977,9 @@ function organizePDF() {
 var homePageText;
 if (!localStorage.school) {
   localStorage.school = "Westview";
+}
+if (!localStorage.optionFade) {
+  localStorage.optionFade = "Normal";
 }
 if ('addEventListener' in document) {
 	document.addEventListener('DOMContentLoaded', function() {
