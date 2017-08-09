@@ -1419,6 +1419,9 @@ function cleanOthers() {
       else if (checkWord("D COMPUTER",classes[i],0)) {
         classes[i] = "3" + classes[i];
       }
+      else if (checkWord("AGRICULTURE",classes[i],0) && i==0) {
+        classes[i] = classes[i].substring(11);
+      }
       if (categories[i] == "") {
         categories[i] = "Elective";
       }
