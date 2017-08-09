@@ -1975,6 +1975,11 @@ var homePageText;
 if (!localStorage.school) {
   localStorage.school = "Westview";
 }
+if ('addEventListener' in document) {
+	document.addEventListener('DOMContentLoaded', function() {
+		FastClick.attach(document.body);
+	}, false);
+}
 var loadedApp = false;
 document.body.style.overflowX = "hidden";
 function loadSchool() {
