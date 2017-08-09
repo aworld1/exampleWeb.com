@@ -292,6 +292,13 @@ body {
   background: -moz-linear-gradient(right, #670062, #2344D1); /* For Firefox 3.6 to 15 */
   background: linear-gradient(to right, #670062 , #2344D1); /* Standard syntax */
 }
+#counselorHead {
+  background: #FF5DF7; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #FF5DF7 , #72006C); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #FF5DF7, #72006C); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #FF5DF7, #72006C); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #FF5DF7 , #72006C); /* Standard syntax */
+}
 .gpaCirc {
   border-radius: 50%;
   width:10vw;
@@ -338,9 +345,6 @@ body {
 #studentInput {
   margin-bottom:10vh;
 }
-#counselorDescA {
-  margin-top:20vh;
-}
 #studentButton, #counselorButton {
   width:10vh;
   height:10vh;
@@ -359,6 +363,7 @@ body {
   background-color:green;
   color:white;
   font-size:4vmin;
+  margin-bottom:5vh;
 }
 .counselorDesc {
   margin-left:18vw;
