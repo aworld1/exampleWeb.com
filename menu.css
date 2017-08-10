@@ -21,7 +21,7 @@ body
 
   height:73px;
   float:left;
-  background:url(westviewLogo.png);
+  background:url(menuBanner.png) no-repeat center;
   background-repeat:no-repeat;
   width:250px;
   margin:0px;
@@ -211,7 +211,7 @@ overflow:visible;
 
 
 .settings:hover, settings:focus {
-  background:url(westviewLogo.png);
+  background:url(menuBanner.png) no-repeat center;
   -webkit-transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
 -moz-transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
 -o-transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
@@ -219,7 +219,7 @@ transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
 }
 
 .settings:active, settings:focus {
-  background:url(westviewLogo.png);
+  background:url(menuBanner.png) no-repeat center;
   -webkit-transition: all 0.1s ease-in-out, width 0, height 0, top 0, left 0;
 -moz-transition: all 0.1s ease-in-out, width 0, height 0, top 0, left 0;
 -o-transition: all 0.1s ease-in-out, width 0, height 0, top 0, left 0;

@@ -11,7 +11,7 @@ body {
     user-select: none;
 }
 #header {
-    width:50%;
+    width:45%;
     height:20vh;
     margin:auto;
 }
@@ -453,7 +453,7 @@ body {
 }
 @media (orientation:portrait) {
   #header {
-    width:80%;
+    width:85%;
   }
   .boldCredit, .creditInfoText {
     font-size:3.5vmin;

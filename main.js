@@ -1256,7 +1256,7 @@ function schoolPage() {
     buttons[u].style.visibility = "none"
   }
   buttons = [];
-  var schools = ["Westview","Del Norte","Poway"];
+  var schools = ["Del Norte","Poway","Westview"];
   for (var i = 0; i < schools.length;i++) {
     createSchoolButton(schools[i]);
   }
