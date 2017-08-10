@@ -1144,7 +1144,7 @@ function myGPA() {
   var isAp;
   for (var i = 0; i < numberOfClasses*2; i++) {
       if (myClasses[Math.floor(i/2)]) {
-        isAp = (checkWord("AP ",myClasses[Math.floor(i/2)],0) || descriptions[getIdByClassName(myClasses[Math.floor(i/2)])].indexOf("A=5, B=4, C=3") > -1);
+        isAp = (checkWord("AP ",myClasses[Math.floor(i/2)],0) || checkWord("ADVANCED PLACEMENT ",myClasses[Math.floor(i/2)],0) || descriptions[getIdByClassName(myClasses[Math.floor(i/2)])].indexOf("A=5, B=4, C=3") > -1);
       }
       if (myGrades[i] == "A" && isAp) {
         gpaTracker[0] += 5;
