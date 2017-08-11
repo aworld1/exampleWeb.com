@@ -372,6 +372,9 @@ achievementInput.onkeyup = function () {
   else if (achievementInput.value == "iMETPLANpal!") {
     addAchieve(2,0);
   }
+  else if (achievementInput.value == "NewACHieveBYmE") {
+    addAchieve(2,2);
+  }
 }
 function hideEverything() {
   toggleObjects([achievementContainer,schoolHead,header,triClasses,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage,gpaPageContain,verifyHead,counselorContainer,optionsContain,popUpDiv],"hide");
@@ -691,20 +694,15 @@ function homePage() {
   createHomeBox("warning", "Remember", "Remember to keep both GPAs up, weighted and unweighted");
   //loadHomeBoxes();
 }
-function checkDups(myArr) {
-	var dupValues = [];
-  var arr = myArr;
-  arr.concat().sort();
-	for (var i = 0; i < arr.length - 1; i++) {
-  	if (arr[i] == arr[i + 1]) {
-    	dupValues.push(arr[i]);
-      var duplicate = arr[i]
-      while (duplicate == arr[i+1] && i < arr.length - 1) {
-      	i++;
+function checkDups(arr) {
+  var sorted_arr = arr.concat().slice().sort();
+  var results = [];
+  for (var i = 0; i < arr.length - 1; i++) {
+      if (sorted_arr[i + 1] == sorted_arr[i]) {
+          results.push(sorted_arr[i]);
       }
-    }
   }
-  return dupValues;
+  return results;
 }
 function parseClasses() {
   if (localStorage.myClasses != undefined && localStorage.myClasses != "") {
@@ -901,7 +899,12 @@ function verifyClasses() {
   var offRollBool = false
   for (var i = 0; i < duplicateClasses.length; i++) {
     if (duplicateClasses[i]) {
-      createVerifyBox("Duplicate Class: " + duplicateClasses[i]);
+      if (i == 0) {
+        createVerifyBox("Duplicate Class: " + duplicateClasses[i]);
+      }
+      else if (homeBoxes[homeBoxes.length - 1].innerHTML != "Duplicate Class: " + duplicateClasses[i]) {
+        createVerifyBox("Duplicate Class: " + duplicateClasses[i]);
+      }
     }
     else if (!offRollBool) {
       createVerifyBox("You are taking more than one Off Roll, this is not recommended");
@@ -1619,6 +1622,10 @@ function clearClasses() {
   localStorage.myClasses;
   localStorage.removeItem("myGrades");
   localStorage.myGrades;
+}
+function clearAchievements() {
+  myAchievements = [[],[],[]];
+  saveAchievements();
 }
 function addGrade(gradeInput,quarter) {
   quarter--;
