@@ -163,7 +163,9 @@ function showOptions(classNo) {
   hideEverything();
   toggleObjects([search,searchImage,backButton],"show");
   searchClasses();
+  addingClass = true;
 }
+var addingClass = false;
 var englishCredits = [0,40];
 var socialScienceCredits = [0,30];
 var mathCredits = [0,20];
@@ -570,6 +572,12 @@ function counselorPage() {
   counselorContainer.style.display = "block";
   counselorContainer.style.visibility = "visible";
 }
+function searchPage() {
+  hideEverything();
+  toggleObjects([search,searchImage,backButton],"show");
+  searchClasses();
+  addingClass = false;
+}
 var counselorEmail = document.getElementById("studentInput");
 var studentCode = document.getElementById("counselorInput");
 function validateEmail(email) {
@@ -848,11 +856,16 @@ return pdf.then(function(pdf) { // get all pages text
 });
 }
 backButton.onclick = function() {
-  if (classSelected) {
-    showEightClasses();
+  if (addingClass) {
+    if (classSelected) {
+      showEightClasses();
+    }
+    else if (gradeSelected) {
+      showGrades();
+    }
   }
-  else if (gradeSelected) {
-    showGrades();
+  else {
+    homePage();
   }
 }
 function isLetter(str) {
@@ -1143,6 +1156,10 @@ function classInfo(placement) {
   descriptionP.innerHTML = descriptions[placement];
   modal.style.display = "block";
   document.body.style.overflowY = "hidden";
+  toggleObjects([document.getElementById("addClassFooter")],"show");
+  if (!addingClass) {
+    toggleObjects([document.getElementById("addClassFooter")],"hide");
+  }
 }
 var unwCircle = document.getElementById("unweightedGPACirc");
 var wCircle = document.getElementById("weightedGPACirc");

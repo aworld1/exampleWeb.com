@@ -150,12 +150,12 @@
   </a>
   </li>
 
-  <!--<li class="darkerli">
-  <a href="#">
-  <i class="fa fa-microphone fa-lg"></i>
-  <span class="nav-text">Film & Music</span>
+  <li class="darkerli">
+  <a onclick="searchPage()" href="#">
+  <i class="fa fa-search fa-lg"></i>
+  <span class="nav-text">Search Classes</span>
   </a>
-  </li>-->
+  </li>
 
   <li class="darkerli">
   <a href="#" onclick="verifyPage()">
@@ -208,8 +208,8 @@
   <li>
 
   <a href="#">
-  <i class="fa fa-question-circle fa-lg"></i>
-  <span class="nav-text">Help</span>
+  <i class="fa fa-exclamation-circle fa-lg"></i>
+  <span class="nav-text">Report a Problem</span>
   </a>
   </li>
 
@@ -217,7 +217,7 @@
   <ul class="logout">
   <li>
   <a href="#" onclick="counselorPage()">
-  <i class="fa fa-users fa-lg"></i>
+  <i class="fa fa-paper-plane-o fa-lg"></i>
   <span class="nav-text">Send To Counselor</span>
   </a>
   </li>
@@ -256,7 +256,7 @@
             <br/>
           </p>
         </div>
-        <div class="modal-footer">
+        <div id="addClassFooter" class="modal-footer">
           <h3 text-align="left">Would you like to add this class?<button id="acceptClass" float="right">ADD</button></h3>
         </div>
       </div>
