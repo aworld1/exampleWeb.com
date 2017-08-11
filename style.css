@@ -302,6 +302,13 @@ body {
   background: -moz-linear-gradient(right, #FF5DF7, #72006C); /* For Firefox 3.6 to 15 */
   background: linear-gradient(to right, #FF5DF7 , #72006C); /* Standard syntax */
 }
+#achievementHead {
+  background: #FF5DF7; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #FF5DF7 , #72006C); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #FF5DF7, #72006C); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #FF5DF7, #72006C); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #FF5DF7 , #72006C); /* Standard syntax */
+}
 .gpaCirc {
   border-radius: 50%;
   width:10vw;
@@ -450,6 +457,62 @@ body {
   text-align: left;
   font-size:5vmin;
   color:brown;
+}
+.achievement {
+  width:28vw;
+  height:20vmin;
+  border:solid;
+  border-radius:3vmin;
+  border-width: 1vmin;
+  margin-left:10vw;
+  margin-right:10vw;
+  border-color:gray;
+  background-color:white;
+  text-align:center;
+  margin-bottom:8vh;
+}
+.circleOfAchieve {
+  vertical-align:middle;
+  background:url(menuBanner.png) no-repeat center;
+  background-size:8vmin;
+  border:solid;
+  border-color:gray;
+  border-radius:5vmin;
+  margin-top:1vmin;
+  width:10vmin;
+  height:10vmin;
+  line-height: 20vmin;
+  display: inline-block;
+}
+.textOfAchieve {
+  color:gray;
+  display: inline-block;
+  font-size:2vmin;
+}
+.bronzeMedal {
+  background:url(bronzeMedal.png) no-repeat center;
+  background-size:8vmin;
+}
+.silverMedal {
+  background:url(silverMedal.png) no-repeat center;
+  background-size:8vmin;
+}
+.goldMedal {
+  background:url(goldMedal.png) no-repeat center;
+  background-size:8vmin;
+}
+.lineOfAchieve {
+  display:inline-flex;
+}
+#achievementInput {
+  margin-left:10vw;
+  width:80vw;
+  height:10vh;
+  font-size:8vmin;
+  outline: none;
+  margin-bottom:10vh;
+  border-radius:5vh;
+  padding-left: 2vw;
 }
 @media (orientation:portrait) {
   #header {

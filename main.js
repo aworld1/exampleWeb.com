@@ -361,8 +361,17 @@ function myCredits() {
   }
   console.log("Done credit calculation.");
 }
+var achievementInput = document.getElementById("achievementInput");
+achievementInput.onkeyup = function () {
+  if (achievementInput.value == "iHelpeD") {
+    addAchieve(2,1);
+  }
+  else if (achievementInput.value == "iMETPLANpal!") {
+    addAchieve(2,0);
+  }
+}
 function hideEverything() {
-  toggleObjects([schoolHead,header,triClasses,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage,gpaPageContain,verifyHead,counselorContainer,optionsContain,popUpDiv],"hide");
+  toggleObjects([achievementContainer,schoolHead,header,triClasses,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage,gpaPageContain,verifyHead,counselorContainer,optionsContain,popUpDiv],"hide");
   for (var u = 0; u < buttons.length; u++) {
     toggleObjects([buttons[u]],"hide");
   }
@@ -702,6 +711,11 @@ function parseClasses() {
     myGrades = JSON.parse(localStorage.myGrades);
   }
 }
+function parseAchievements() {
+  if (localStorage.myAchievements != undefined && localStorage.myAchievements != "") {
+    myAchievements = JSON.parse(localStorage.myAchievements);
+  }
+}
 function loadHomeBoxes() {
   // Load boxes off of a site
   var homeLoaded = false;
@@ -929,6 +943,7 @@ function verifyClasses() {
   }
   if (homeBoxes.length == 0) {
     createVerifyBox("Your schedule is perfect!");
+    addAchieve(1,1);
   }
 }
 function createVerifyBox(name) {
@@ -1125,6 +1140,33 @@ function classInfo(placement) {
 }
 var unwCircle = document.getElementById("unweightedGPACirc");
 var wCircle = document.getElementById("weightedGPACirc");
+var achievementContainer = document.getElementById("achievementContainer");
+function achievementPage() {
+  hideEverything();
+  toggleObjects([achievementContainer],"show");
+  for (var i = 0; i < myAchievements.length; i++) {
+    for (var j = 0; j < myAchievements[i].length; j++) {
+      if (myAchievements[i][j] && i == 0) {
+        document.getElementById("bronzeMedal" + (j+1)).style.backgroundColor = "#47E52D";
+      }
+      else if (i == 0) {
+        document.getElementById("bronzeMedal" + (j+1)).style.backgroundColor = "white";
+      }
+      if (myAchievements[i][j] && i == 1) {
+        document.getElementById("silverMedal" + (j+1)).style.backgroundColor = "#47E52D";
+      }
+      else if (i == 1) {
+        document.getElementById("silverMedal" + (j+1)).style.backgroundColor = "white";
+      }
+      if (myAchievements[i][j] && i == 2) {
+        document.getElementById("goldMedal" + (j+1)).style.backgroundColor = "#47E52D";
+      }
+      else if (i == 2) {
+        document.getElementById("goldMedal" + (j+1)).style.backgroundColor = "white";
+      }
+    }
+  }
+}
 function gpaPage() {
   hideEverything();
   cleanGrades();
@@ -1204,6 +1246,12 @@ function myGPA() {
   else {
     gpaTracker[0] == "N/A";
     gpaTracker[2] == "N/A";
+  }
+  if (gpaTracker[0] == 5) {
+    addAchieve(0,3);
+  }
+  else if (gpaTracker[2] <= 0.1) {
+    addAchieve(0,2);
   }
   return [gpaTracker[0],gpaTracker[2]];
 }
@@ -1540,6 +1588,9 @@ function saveClasses() {
 function saveGrades() {
   localStorage.myGrades = JSON.stringify(myGrades);
 }
+function saveAchievements() {
+  localStorage.myAchievements = JSON.stringify(myAchievements);
+}
 function optionFadeUpdate(update) {
   localStorage.optionFade = update;
   document.getElementById("optionFadeHead").innerHTML = "Result Pop-Up Fade Speed (" + update + ")";
@@ -1551,6 +1602,10 @@ function getIdByClassName(string) {
     }
   }
   return -1;
+}
+function addAchieve(a,b) {
+  myAchievements[a][b] = true;
+  saveAchievements();
 }
 function clearClasses() {
   myClasses = [];
@@ -1975,6 +2030,7 @@ function organizePDF() {
   } // Close If Statement
 } // Close Function
 var homePageText;
+var myAchievements = [[],[],[]];
 if (!localStorage.school) {
   localStorage.school = "Westview";
 }
@@ -2018,6 +2074,7 @@ function loadSchool() {
     });
     console.log("Done cleaning.");
     parseClasses();
+    parseAchievements();
   }, function (reason) {
     console.error(reason);
   });
