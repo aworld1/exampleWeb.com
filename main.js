@@ -359,6 +359,9 @@ function myCredits() {
       electiveCredits[0] += Number(creditArray[i][0]) - Number(creditArray[i][1]);
     }
   }
+  if (electiveCredits[0] > 120) {
+    addAchieve(1,3);
+  }
   console.log("Done credit calculation.");
 }
 var achievementInput = document.getElementById("achievementInput");
