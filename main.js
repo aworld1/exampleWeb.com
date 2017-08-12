@@ -368,14 +368,20 @@ function myCredits() {
 }
 var achievementInput = document.getElementById("achievementInput");
 achievementInput.onkeyup = function () {
-  if (achievementInput.value == "iHelpeD") {
-    addAchieve(2,1);
-  }
-  else if (achievementInput.value == "iMETPLANpal!") {
+  if (achievementInput.value == "iMETPLANpal!") {
     addAchieve(2,0);
+  }
+  else if (achievementInput.value == "iHelpeD") {
+    addAchieve(2,1);
   }
   else if (achievementInput.value == "NewACHieveBYmE") {
     addAchieve(2,2);
+  }
+  else if (achievementInput.value == "iRePorteDPROBlemBuG") {
+    addAchieve(2,3);
+  }
+  else if (achievementInput.value == "RECOmmENDEDpLANpALTOaScHooL") {
+    addAchieve(2,4);
   }
 }
 function hideEverything() {
