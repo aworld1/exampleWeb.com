@@ -1588,6 +1588,9 @@ confirmOk.onclick = function () {
     if (confirmTaskToDo == "parseClasses()") {
       fadeInFadeOut(true,1000,'Reverted Classes');
     }
+    else if (confirmTaskToDo == "saveClasses()") {
+      fadeInFadeOut(true,1000,'Classes Saved');
+    }
   }
   else {
     fadeInFadeOut(false,1000,'CONFIRM not typed');

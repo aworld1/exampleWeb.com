@@ -345,7 +345,6 @@ body {
 }
 #studentInput, #counselorInput {
   margin-left:18vw;
-  width:50vw;
   height:10vh;
   border-radius:2.5vh;
   font-size:5vmin;
@@ -354,8 +353,12 @@ body {
 }
 #studentInput {
   margin-bottom:10vh;
+  width:50vw;
 }
-#studentButton, #counselorButton {
+#counselorInput {
+  width:40vw;
+}
+#studentButton, #counselorButton, #saveCounselor {
   width:10vh;
   height:10vh;
   margin-left:5vw;
@@ -364,6 +367,12 @@ body {
   outline: none;
   font-size:5vmin;
   color:white;
+}
+#counselorButton,#saveCounselor {
+  margin-left:calc(7.5vmax - 5vmin);
+}
+#saveCounselor {
+  font-size:3vmin;
 }
 #revertButton {
   margin-left:35vw;
@@ -517,6 +526,10 @@ body {
 @media (orientation:portrait) {
   #header {
     width:85%;
+  }
+  #counselorInput {
+    width:calc(65vw - 25vh);
+    font-size:3vmin
   }
   .boldCredit, .creditInfoText {
     font-size:3.5vmin;
