@@ -880,15 +880,19 @@ function isLetter(str) {
 function isCode(pdf, placement) {
   var returnVal = true;
   // Check if the char is a number
-  for (var j = 0; j < 6; j++) {
+  var codeLength = 6;
+  if (localStorage.school == "Mount Carmel") {
+    codeLength = 4;
+  }
+  for (var j = 0; j < codeLength; j++) {
     if (isNaN(pdf.charAt(j + placement)) || pdf.charAt(j + placement) == " ") {
       returnVal = false;
     }
   }
   // Check for both hyphen and dash
-  if (!(pdf.charAt(placement + 6) == "-" || pdf.charAt(placement + 7) == "-" || pdf.charAt(placement + 6) == "–" || pdf.charAt(placement + 7) == "–")) {
+  if (!(pdf.charAt(placement + codeLength) == "-" || pdf.charAt(placement + codeLength + 1) == "-" || pdf.charAt(placement + codeLength) == "–" || pdf.charAt(placement + codeLength + 1) == "–")) {
     // Check for & symbol or a space (for single codes)
-    if (!(pdf.charAt(placement + 6) == "&" || pdf.charAt(placement + 7) == "&" || pdf.charAt(placement + 6) == " " || pdf.charAt(placement + 7) == " ")) {
+    if (!(pdf.charAt(placement + codeLength) == "&" || pdf.charAt(placement + codeLength + 1) == "&" || pdf.charAt(placement + codeLength) == " " || pdf.charAt(placement + codeLength + 1) == " ")) {
       returnVal = false;
     }
   }
@@ -1005,7 +1009,7 @@ function checkCategory(categoryName,numberStart,numberEnd) {
 function isClass(pdf, placement) {
   var returnVal = true;
   var amountOfCheck;
-  if (localStorage.school == "Poway") {
+  if (localStorage.school == "Poway" || localStorage.school == "Mount Carmel") {
     amountOfCheck = 12;
   }
   else {
@@ -1196,6 +1200,10 @@ function achievementPage() {
     }
   }
 }
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.split(search).join(replacement);
+};
 function gpaPage() {
   hideEverything();
   cleanGrades();
@@ -1333,7 +1341,7 @@ function schoolPage() {
     buttons[u].style.visibility = "none"
   }
   buttons = [];
-  var schools = ["Del Norte","Poway","Westview"];
+  var schools = ["Del Norte","Mount Carmel","Poway","Westview"];
   for (var i = 0; i < schools.length;i++) {
     createSchoolButton(schools[i]);
   }
@@ -2050,14 +2058,146 @@ function organizePDF() {
           storedLetters += catalogText.charAt(i);
           i++;
       }
-    } // Close While loop
+    }
+  } // Close While loop
+    else if (localStorage.school == "Mount Carmel") {
+      // Skip Header
+      i = catalogText.indexOf("UC/CSU “A”                        History/Social Science  Course Title  Course Number  ");
+      catalogText = catalogText.replaceAll("UC/CSU “A”                        History/Social Science  Course Title  Course Number  ","");
+      catalogText = catalogText.replaceAll("UC/CSU “B”                                               English  Course Title  Course Number ","");
+      catalogText = catalogText.replaceAll("UC/CSU “C”                                       Mathematics  Course Title  Course Number  ","");
+      catalogText = catalogText.replaceAll("UC/CSU “D”                                                Science   Course Title  Course Number  ","");
+      catalogText = catalogText.replaceAll("UC/CSU “E”            Language other than English                           Course Title  Course Number  ","");
+      catalogText = catalogText.replaceAll("UC/CSU “F”                      Fine Arts - Performing  Course Title  Course Number ","");
+      catalogText = catalogText.replaceAll("UC/CSU “F”                               Fine Arts - Visual  Course Title  Course Number  ","");
+      catalogText = catalogText.replaceAll("“G” College Elective                    Elective Courses  Course Title  Course Number  ","");
+      catalogText = catalogText.replaceAll("Career Technical Education and Other Electives  Course Title  Course Number  ","");
+      catalogText = catalogText.replaceAll("Health and  Physical Education   Course Title  Course Number  ","");
+      catalogText = catalogText.replaceAll("Special Programs Requiring Permission  Course Title  Course Number  ","");
+      while (i < catalogText.length) {
+        // Check to see if the type changed
+        // If it did, dump out all of the text into the prev type
+
+        // Checking for type switch
+
+        if (isCode(catalogText,i) && currentType == "class") {
+          if (currentType == "class") {
+            classes[classes.length] = storedLetters;
+            currentType = "code";
+          }
+          else {
+            alert("Something went wrong...1");
+          }
+          storedLetters = "";
+        }
+        else if (checkWord("Linked Course",catalogText,i) && (currentType == "code" || currentType == "preReq")) {
+          if (currentType == "code") {
+            codes[codes.length] = storedLetters;
+            currentType = "linkedCourse";
+            i += 13;
+          }
+          else if (currentType == "preReq") {
+            preReqs[preReqs.length] = storedLetters;
+            currentType = "linkedCourse";
+            i += 13;
+          }
+          else {
+            alert("Something went wrong...2");
+          }
+          storedLetters = "";
+        }
+        else if (checkWord("Recommended Course",catalogText,i) && (currentType == "concurrentCourse" || currentType == "linkedCourse" || currentType == "typeCourse" || currentType == "code")) {
+          if (currentType == "concurrentCourse") {
+            preReqs[preReqs.length] = storedLetters;
+            currentType = "recommendedCourse";
+            i += 18;
+          }
+          else if (currentType == "linkedCourse") {
+            preReqs[preReqs.length] = storedLetters;
+            currentType = "recommendedCourse";
+            i += 18;
+          }
+          else if (currentType == "typeCourse") {
+            preReqs[preReqs.length] = storedLetters;
+            currentType = "recommendedCourse";
+            i += 18;
+          }
+          else if (currentType == "code") {
+            codes[codes.length] = storedLetters;
+            currentType = "recommendedCourse";
+            i += 18;
+          }
+          else {
+            alert("Something went wrong...4");
+          }
+          storedLetters = "";
+        }
+        else if (checkWord("Recommended Course",catalogText,i) && (currentType == "concurrentCourse" || currentType == "linkedCourse" || currentType == "typeCourse" || currentType == "code")) {
+          if (currentType == "concurrentCourse") {
+            preReqs[preReqs.length] = storedLetters;
+            currentType = "recommendedCourse";
+            i += 18;
+          }
+          else if (currentType == "linkedCourse") {
+            preReqs[preReqs.length] = storedLetters;
+            currentType = "recommendedCourse";
+            i += 18;
+          }
+          else if (currentType == "typeCourse") {
+            preReqs[preReqs.length] = storedLetters;
+            currentType = "recommendedCourse";
+            i += 18;
+          }
+          else if (currentType == "code") {
+            codes[codes.length] = storedLetters;
+            currentType = "recommendedCourse";
+            i += 18;
+          }
+          else {
+            alert("Something went wrong...4");
+          }
+          storedLetters = "";
+        }
+        else if (checkWord("  ",catalogText,i - 2) && (currentType == "grade" || currentType == "preReq")) {
+          if (currentType == "grade") {
+            grades[grades.length] = storedLetters;
+            currentType = "description";
+          }
+          else if (currentType == "preReq") {
+            preReqs[preReqs.length] = storedLetters;
+            grades[grades.length] = "Not Specified";
+            i++;
+          }
+          else {
+            alert("Something went wrong...8");
+          }
+          storedLetters = "";
+        }
+        else if (isClass(catalogText,i) && currentType == "description") {
+          if (currentType == "description") {
+            descriptions[descriptions.length] = storedLetters;
+            currentType = "class";
+          }
+          else {
+            alert("Something went wrong...9");
+          }
+          storedLetters = "";
+        }
+
+        // End checking
+
+        else {
+            storedLetters += catalogText.charAt(i);
+            i++;
+        }
+      } // Close While loop
     // Final Data
     descriptions[descriptions.length] = storedLetters;
     for (var x = 0; x < classes.length; x++) {
       credits.push(5);
-      linkedCourses.push("Del Norte does not provide Linked Course information");
-      universityCredits.push("Del Norte does not provide UC/CSU Credit information");
-      interests.push("Del Norte does not provide Class Interest information");
+      //linkedCourses.push("Del Norte does not provide Linked Course information");
+      //universityCredits.push("Del Norte does not provide UC/CSU Credit information");
+      //interests.push("Del Norte does not provide Class Interest information");
     }
     console.log("Done organizing.");
   } // Close If Statement
@@ -2093,11 +2233,15 @@ function loadSchool() {
     pdfName = "https://docs.wixstatic.com/ugd/5db6f5_05deee3b88934aedb8e8b979bd3edc2e.pdf";
     numberOfClasses = 60;
   }
+  else if (localStorage.school == "Mount Carmel") {
+    pdfName = "https://docs.wixstatic.com/ugd/5db6f5_d7042236bf594cbba2b3f527474351b0.pdf";
+    numberOfClasses = 60;
+  }
   gettext(pdfName).then(function (text) {
   catalogText = text;
   organizePDF();
-  cleanDescription();
-  cleanOthers();
+  /*cleanDescription();
+  cleanOthers();*/
     gettext("https://docs.wixstatic.com/ugd/5db6f5_114a15c7d47b4cebb2df37e7e1b9c190.pdf").then(function (text) {
       homePageText = text;
       loadedApp = true;
