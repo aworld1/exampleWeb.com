@@ -60,7 +60,7 @@
 
 
   <li>
-  <a onclick="addAchieve(1,2)" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=assafica@gmail.com&su=Support+Planner&body=Hi+PlanPal,+&ui=2&tf=1&shva=1">
+  <a onclick="addAchieve(1,2)" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=planpalceo@gmail.com&su=Support+Planner&body=Hi+PlanPal,+&ui=2&tf=1&shva=1">
   <i class="fa fa-envelope-o fa-lg"></i>
   <span class="nav-text">Contact</span>
   </a>
@@ -207,7 +207,7 @@
 
   <li>
 
-  <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=assafica@gmail.com&su=Report+Problem&body=Hi+PlanPal,+&ui=2&tf=1&shva=1">
+  <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=planpalceo@gmail.com&su=Report+Problem&body=Hi+PlanPal,+&ui=2&tf=1&shva=1">
   <i class="fa fa-exclamation-circle fa-lg"></i>
   <span class="nav-text">Report a Problem</span>
   </a>
@@ -218,7 +218,7 @@
   <li>
   <a href="#" onclick="counselorPage()">
   <i class="fa fa-paper-plane-o fa-lg"></i>
-  <span class="nav-text">Send To Counselor</span>
+  <span class="nav-text">Send Plan</span>
   </a>
   </li>
   </ul>
@@ -327,11 +327,11 @@
       </div>
     </div>
     <div id="counselorContainer" class="animated fadeIn">
-      <div id="counselorHead" class="headerClass">Counselor Page</div>
-      <p id="counselorDescA" class="counselorDesc">I am a student and I would like to email my counselor my plan</p>
-      <input id="studentInput" type="search" placeholder="Counselor Email"></input><button id="studentButton" onclick="sendToCounselor()">OK</button><br/>
-      <p id="counselorDescB" class="counselorDesc">I am a counselor and I would like to check my student's plan</p>
-      <input id="counselorInput" type="search" placeholder="Student Code"></input><button id="counselorButton" onclick="refreshToCode()">OK</button><button id="saveCounselor" onclick="confirmTask('saveClasses()')">SAVE</button><br/>
+      <div id="counselorHead" class="headerClass">Send Plan</div>
+      <p id="counselorDescA" class="counselorDesc">Enter in the email you would like to send your plan to</p>
+      <input id="studentInput" type="search" placeholder="Email"></input><button id="studentButton" onclick="sendToCounselor()">OK</button><br/>
+      <p id="counselorDescB" class="counselorDesc">Enter in the code you received from a PlanPal email</p>
+      <input id="counselorInput" type="search" placeholder="Plan Code"></input><button id="counselorButton" onclick="refreshToCode()">OK</button><button id="saveCounselor" onclick="confirmTask('saveClasses()')">SAVE</button><br/>
       <p class="counselorDesc" id="#revertDesc">Would you like to revert your classes back to before you inserted the code?</p>
       <button id="revertButton" onclick="confirmTask('parseClasses()');">Revert Classes</button>
     </div>
@@ -497,6 +497,8 @@ Check out my plan by going onto the PlanPal app and putting in the following cod
     </div>
     <button id="backButton"></button>
     <button id="searchImage"></button>
+    <preference name="webviewbounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
     <button class="gradeSelect animated fadeIn" id="nine" onclick="showEightClasses(9)">9th Grade</button>
     <button class="gradeSelect animated fadeIn" id="ten" onclick="showEightClasses(10)">10th Grade</button>
     <button class="gradeSelect animated fadeIn" id="eleven" onclick="showEightClasses(11)">11th Grade</button>
