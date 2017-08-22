@@ -706,12 +706,6 @@ var homeBoxes = [];
 function homePage() {
   hideEverything();
   toggleObjects([header],"show");
-  createHomeBox("info", "AP Classes", "AP classes boost your weighted GPA, but not your unweighted one. It's recommended not to take AP classes if you aren't ready for them.");
-  createHomeBox("check", "Add Classes", "Go to the menu and start building your plan!");
-  createHomeBox("info", "Credits", "While regular credits are required for graduating high school, university credits are only needed if applying to a UC/CSU college.");
-  createHomeBox("feature", "Creator", "The creator of this planner is Aworld. The following program has a provisonal patent filed.");
-  createHomeBox("check", "Home Page Moderation", "Want a spot on this home page? Send us an email on the contact page and we will consider putting your note as a notification!");
-  createHomeBox("warning", "Remember", "Remember to keep both GPAs up, weighted and unweighted");
   loadHomeBoxes();
 }
 function checkDups(arr) {
@@ -746,21 +740,21 @@ function loadHomeBoxes() {
   var headerDescLetters = "";
   var descLetters = "";
   while (!homeLoaded || t >= homePageText.length) {
-    if (checkWord("*&",homePageText,t)) {
+    if (checkWord("#",homePageText,t) && currentHomeType == "type") {
       currentHomeType = "headerDesc";
-      t += 2;
+      t += 1;
     }
-    else if (checkWord("**&",homePageText,t)) {
+    else if (checkWord("#",homePageText,t) && currentHomeType == "headerDesc") {
       currentHomeType = "desc";
-      t += 3;
+      t += 1;
     }
-    else if (checkWord("***&",homePageText,t)) {
+    else if (checkWord("#",homePageText,t) && currentHomeType == "desc") {
       createHomeBox(typeLetters,headerDescLetters,descLetters);
       typeLetters = "";
       headerDescLetters = "";
       descLetters = "";
       currentHomeType = "type";
-      t += 4;
+      t += 1;
     }
     else if (checkWord("*END*",homePageText,t)) {
       typeLetters = "";
