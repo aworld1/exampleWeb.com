@@ -383,9 +383,10 @@ achievementInput.onkeyup = function () {
   else if (achievementInput.value == "RECOmmENDEDpLANpALTOaScHooL") {
     addAchieve(2,4);
   }
+  achievementPage();
 }
 function hideEverything() {
-  toggleObjects([achievementContainer,schoolHead,header,triClasses,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage,gpaPageContain,verifyHead,counselorContainer,optionsContain,popUpDiv],"hide");
+  toggleObjects([helpContain,achievementContainer,schoolHead,header,triClasses,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage,gpaPageContain,verifyHead,counselorContainer,optionsContain,popUpDiv],"hide");
   for (var u = 0; u < buttons.length; u++) {
     toggleObjects([buttons[u]],"hide");
   }
@@ -573,6 +574,11 @@ function myUniversityCredits() {
     } // Poway ends
   } // For loop
 }
+var helpContain = document.getElementById("helpContainer");
+function helpPage() {
+  hideEverything();
+  toggleObjects([helpContain],"show");
+}
 function counselorPage() {
   hideEverything();
   counselorContainer.style.display = "block";
@@ -706,7 +712,7 @@ function homePage() {
   createHomeBox("feature", "Creator", "The creator of this planner is Aworld. The following program has a provisonal patent filed.");
   createHomeBox("check", "Home Page Moderation", "Want a spot on this home page? Send us an email on the contact page and we will consider putting your note as a notification!");
   createHomeBox("warning", "Remember", "Remember to keep both GPAs up, weighted and unweighted");
-  //loadHomeBoxes();
+  loadHomeBoxes();
 }
 function checkDups(arr) {
   var sorted_arr = arr.concat().slice().sort();
@@ -739,25 +745,24 @@ function loadHomeBoxes() {
   var typeLetters = "";
   var headerDescLetters = "";
   var descLetters = "";
-  while (!homeLoaded) {
-    if (checkWord("* ",homePageText,t)) {
+  while (!homeLoaded || t >= homePageText.length) {
+    if (checkWord("*&",homePageText,t)) {
       currentHomeType = "headerDesc";
-      t += 1;
-    }
-    else if (checkWord("** ",homePageText,t)) {
-      currentHomeType = "desc";
       t += 2;
     }
-    else if (checkWord("*** ",homePageText,t)) {
+    else if (checkWord("**&",homePageText,t)) {
+      currentHomeType = "desc";
+      t += 3;
+    }
+    else if (checkWord("***&",homePageText,t)) {
       createHomeBox(typeLetters,headerDescLetters,descLetters);
       typeLetters = "";
       headerDescLetters = "";
       descLetters = "";
       currentHomeType = "type";
-      t += 3;
+      t += 4;
     }
-    else if (checkWord("*****",homePageText,t)) {
-      createHomeBox(typeLetters,headerDescLetters,descLetters);
+    else if (checkWord("*END*",homePageText,t)) {
       typeLetters = "";
       headerDescLetters = "";
       descLetters = "";
@@ -2067,6 +2072,17 @@ function organizePDF() {
 } // Close Function
 var homePageText;
 var myAchievements = [[],[],[]];
+function readHomeFiles() {
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", "http://planpalapp.com/homeNotifications.txt", true);
+    rawFile.onreadystatechange = function () {
+      if (rawFile.readyState === 4) {
+        var allText = rawFile.responseText;
+        homePageText = allText;
+      }
+    }
+    rawFile.send();
+}
 if (!localStorage.school) {
   localStorage.school = "Westview";
 }
@@ -2084,6 +2100,7 @@ function loadSchool() {
   hideEverything();
   toggleObjects([loadIcon],"show");
   var pdfName = "";
+  readHomeFiles();
   if (localStorage.school == "Westview") {
     pdfName = "https://docs.wixstatic.com/ugd/5db6f5_7f8fbcb5bd064026b84356a51b42f5f3.pdf";
     numberOfClasses = 32;
@@ -2097,20 +2114,15 @@ function loadSchool() {
     numberOfClasses = 60;
   }
   gettext(pdfName).then(function (text) {
-  catalogText = text;
-  organizePDF();
-  cleanDescription();
-  cleanOthers();
-    gettext("https://docs.wixstatic.com/ugd/5db6f5_114a15c7d47b4cebb2df37e7e1b9c190.pdf").then(function (text) {
-      homePageText = text;
-      loadedApp = true;
-      homePage();
-    }, function (reason) {
-      console.error(reason);
-    });
+    catalogText = text;
+    organizePDF();
+    cleanDescription();
+    cleanOthers();
     console.log("Done cleaning.");
     parseClasses();
     parseAchievements();
+    loadedApp = true;
+    homePage();
   }, function (reason) {
     console.error(reason);
   });

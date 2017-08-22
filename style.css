@@ -309,6 +309,13 @@ body {
   background: -moz-linear-gradient(right, #FF5DF7, #72006C); /* For Firefox 3.6 to 15 */
   background: linear-gradient(to right, #FF5DF7 , #72006C); /* Standard syntax */
 }
+#helpHead {
+  background: #001894; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #001894 , #20E6FF); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #001894, #20E6FF); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #001894, #20E6FF); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #001894 , #20E6FF); /* Standard syntax */
+}
 .gpaCirc {
   border-radius: 50%;
   width:10vw;
