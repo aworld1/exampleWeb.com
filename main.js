@@ -707,6 +707,9 @@ function homePage() {
   hideEverything();
   toggleObjects([header],"show");
   loadHomeBoxes();
+  if (homeBoxes.length == 0) {
+    createHomeBox("warning","No Internet Connection","There was no internet connection and therefore no notifications were loaded. Try refreshing the home page.");
+  }
 }
 function checkDups(arr) {
   var sorted_arr = arr.concat().slice().sort();
