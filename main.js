@@ -477,97 +477,97 @@ function myUniversityCredits() {
   for (var i = 0; i < numberOfClasses; i++) {
     if (myClasses[i] != undefined && localStorage.school == "Westview") {
       // If the class exists
-      if (universityCredits[getIdByClassName(myClasses[i])].length == 1 || universityCredits[getIdByClassName(myClasses[i])].length == 6) {
-        if (universityCredits[getIdByClassName(myClasses[i])].charAt(0) == "A") {
+      if (classes[getIdByClassName(myClasses[i])].universityCredit.length == 1 || classes[getIdByClassName(myClasses[i])].universityCredit.length == 6) {
+        if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(0) == "A") {
           unCredA[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(0) == "B") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(0) == "B") {
           unCredB[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(0) == "C") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(0) == "C") {
           unCredC[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(0) == "D") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(0) == "D") {
           unCredD[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(0) == "E") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(0) == "E") {
           unCredE[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(0) == "F") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(0) == "F") {
           unCredF[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(0) == "G") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(0) == "G") {
           unCredG[0]++;
         }
       }
-      if (universityCredits[getIdByClassName(myClasses[i])].length == 6) {
-        if (universityCredits[getIdByClassName(myClasses[i])].charAt(5) == "A") {
+      if (classes[getIdByClassName(myClasses[i])].universityCredit.length == 6) {
+        if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(5) == "A") {
           unCredA[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(5) == "B") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(5) == "B") {
           unCredB[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(5) == "C") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(5) == "C") {
           unCredC[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(5) == "D") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(5) == "D") {
           unCredD[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(5) == "E") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(5) == "E") {
           unCredE[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(5) == "F") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(5) == "F") {
           unCredF[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(5) == "G") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(5) == "G") {
           unCredG[0]++;
         }
       }
     } // Westview ends
     else if (myClasses[i] != undefined && localStorage.school == "Poway") {
-      if (universityCredits[getIdByClassName(myClasses[i])].indexOf('“') > -1) {
-        if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].indexOf('“') + 1) == "A") {
+      if (classes[getIdByClassName(myClasses[i])].universityCredit.indexOf('“') > -1) {
+        if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(classes[getIdByClassName(myClasses[i])].universityCredit.indexOf('“') + 1) == "A") {
           unCredA[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].indexOf('“') + 1) == "B") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(classes[getIdByClassName(myClasses[i])].universityCredit.indexOf('“') + 1) == "B") {
           unCredB[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].indexOf('“') + 1) == "C") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(classes[getIdByClassName(myClasses[i])].universityCredit.indexOf('“') + 1) == "C") {
           unCredC[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].indexOf('“') + 1) == "D") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(classes[getIdByClassName(myClasses[i])].universityCredit.indexOf('“') + 1) == "D") {
           unCredD[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].indexOf('“') + 1) == "E") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(classes[getIdByClassName(myClasses[i])].universityCredit.indexOf('“') + 1) == "E") {
           unCredE[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].indexOf('“') + 1) == "F") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(classes[getIdByClassName(myClasses[i])].universityCredit.indexOf('“') + 1) == "F") {
           unCredF[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].indexOf('“') + 1) == "G") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(classes[getIdByClassName(myClasses[i])].universityCredit.indexOf('“') + 1) == "G") {
           unCredG[0]++;
         }
       }
-      if (universityCredits[i].replace(/[^“]/g, "").length > 1) {
-        if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].lastIndexOf('“') + 1) == "A") {
+      if (classes[i].universityCredit.replace(/[^“]/g, "").length > 1) {
+        if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(classes[getIdByClassName(myClasses[i])].universityCredit.lastIndexOf('“') + 1) == "A") {
           unCredA[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].lastIndexOf('“') + 1) == "B") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(classes[getIdByClassName(myClasses[i])].universityCredit.lastIndexOf('“') + 1) == "B") {
           unCredB[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].lastIndexOf('“') + 1) == "C") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(classes[getIdByClassName(myClasses[i])].universityCredit.lastIndexOf('“') + 1) == "C") {
           unCredC[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].lastIndexOf('“') + 1) == "D") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(classes[getIdByClassName(myClasses[i])].universityCredit.lastIndexOf('“') + 1) == "D") {
           unCredD[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].lastIndexOf('“') + 1) == "E") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(classes[getIdByClassName(myClasses[i])].universityCredit.lastIndexOf('“') + 1) == "E") {
           unCredE[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].lastIndexOf('“') + 1) == "F") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(classes[getIdByClassName(myClasses[i])].universityCredit.lastIndexOf('“') + 1) == "F") {
           unCredF[0]++;
         }
-        else if (universityCredits[getIdByClassName(myClasses[i])].charAt(universityCredits[getIdByClassName(myClasses[i])].lastIndexOf('“') + 1) == "G") {
+        else if (classes[getIdByClassName(myClasses[i])].universityCredit.charAt(classes[getIdByClassName(myClasses[i])].universityCredit.lastIndexOf('“') + 1) == "G") {
           unCredG[0]++;
         }
       }
@@ -1054,34 +1054,27 @@ function cleanDescription() {
   var storedCategory = [];
   var currentChar;
   var spaceCount;
-  for (var i = 0; i < descriptions.length; i++) {
+  for (var i = 0; i < classes.length; i++) {
     reachedPeriod = false;
-    storedCategory = [];
+    storedCategory = "";
     spaceCount = 0;
     while (!reachedPeriod) {
-      currentChar = descriptions[i].charAt(descriptions[i].length - 1);
+      currentChar = classes[i].description.charAt(classes[i].description.length - 1);
       if (localStorage.school == "Westview") {
         if (currentChar == "." || spaceCount > 10) {
           reachedPeriod = true;
           if (storedCategory != ""){
-            storedCategory.reverse();
-            var categoryLength = categories.length;
-            categories[categoryLength] = "";
-            for (var k = 0; k < storedCategory.length; k++) {
-              categories[categoryLength] += storedCategory[k];
-            }
+            storedCategory = storedCategory.split("").reverse().join("");
             // Check if it is an actual category
-            if (!(categories[categoryLength].length > 2 && categories[categoryLength].length < 30 && categories[categoryLength].charAt(0) == categories[categoryLength].charAt(0).toUpperCase() && categories[categoryLength].charAt(1) == categories[categoryLength].charAt(1).toLowerCase())) {
-              categories.splice(categoryLength,1);
-            }
-            else {
-                categoryPlacement[categoryPlacement.length] = i + 1;
+            if (storedCategory.length > 2 && storedCategory.length < 30 && storedCategory.charAt(0) == storedCategory.charAt(0).toUpperCase() && storedCategory.charAt(1) == storedCategory.charAt(1).toLowerCase()) {
+              category = storedCategory;
             }
           }
+          classes[i].category = category;
         }
         else {
           if (isLetter(currentChar)) {
-            storedCategory[storedCategory.length] = currentChar;
+            storedCategory += currentChar;
           }
           if (currentChar == " ") {
             spaceCount++;
@@ -1089,24 +1082,24 @@ function cleanDescription() {
           else {
             spaceCount = 0;
           }
-          descriptions[i] = descriptions[i].slice(0,-1);
+          classes[i].description = classes[i].description.slice(0,-1);
         }
       }
       else if (localStorage.school == "Del Norte") {
-        if (descriptions[i].charAt(descriptions[i].length - 1) != "." && descriptions[i] != "") {
-          descriptions[i] = descriptions[i].slice(0,-1);
+        if (classes[i].description.charAt(classes[i].description.length - 1) != "." && classes[i].description != "") {
+          classes[i].description = classes[i].description.slice(0,-1);
         }
         else {
-          if (descriptions[i] == "") {
-            descriptions[i] = "None";
+          if (classes[i].description == "") {
+            classes[i].description = "None";
           }
           reachedPeriod = true;
         }
       }
       else if (localStorage.school == "Poway") {
-        descriptions[i] = descriptions[i].trim();
-        if (descriptions[i] == "") {
-          descriptions[i] = "None";
+        classes[i].description = classes[i].description.trim();
+        if (classes[i].description == "") {
+          classes[i].description = "None";
         }
         reachedPeriod = true;
       }
@@ -1114,18 +1107,7 @@ function cleanDescription() {
   } // For loop
 }
 function getCategory(placement) {
-  if (localStorage.school == "Poway") {
-    return categories[placement];
-  }
-  else {
-    var indexOfCategory = -1;
-    for (var x = 0; x < categoryPlacement.length; x++) {
-      if (placement >= categoryPlacement[x]) {
-        indexOfCategory++;
-      }
-    }
-    return categories[indexOfCategory];
-  }
+  return classes[placement].category;
 }
 var classP = document.getElementById("classP");
 var categoryP = document.getElementById("categoryP");
@@ -1141,17 +1123,17 @@ var descriptionP = document.getElementById("descriptionP");
 var headerInputP = document.getElementById("headerInputP");
 var savePlacement;
 function classInfo(placement) {
-  categoryP.innerHTML = getCategory(placement);
-  classP.innerHTML = classes[placement];
-  codeP.innerHTML = codes[placement];
-  gradesP.innerHTML = grades[placement];
-  creditsP.innerHTML = credits[placement];
-  universityCreditsP.innerHTML = universityCredits[placement];
-  preReqsP.innerHTML = preReqs[placement];
-  interestP.innerHTML = interests[placement];
-  linkedCoursesP.innerHTML = linkedCourses[placement];
+  categoryP.innerHTML = classes[placement].category;
+  classP.innerHTML = classes[placement].name;
+  codeP.innerHTML = classes[placement].code;
+  gradesP.innerHTML = classes[placement].grade;
+  creditsP.innerHTML = classes[placement].credit;
+  universityCreditsP.innerHTML = classes[placement].universityCredit;
+  preReqsP.innerHTML = classes[placement].preReq;
+  interestP.innerHTML = classes[placement].interest;
+  linkedCoursesP.innerHTML = classes[placement].linkedCourse;
   savePlacement = placement;
-  if (classes[placement].charAt(0) == "L" && classes[placement].charAt(1) == "/") {
+  if (classes[placement].name.charAt(0) == "L" && classes[placement].name.charAt(1) == "/") {
     discontinuedP.innerHTML = "<b>Warning! This class is discontinued/only available for special education students and may not be available. Please advise a counselor before taking this class.</b>";
     discontinuedP.innerHTML += "<br/><br/>Any class with <b>'L/'</b> in front of its name is discontinued.</b>";
     discontinuedP.style.color = "red";
@@ -1161,7 +1143,7 @@ function classInfo(placement) {
     discontinuedP.style.color = "black";
   }
 
-  descriptionP.innerHTML = descriptions[placement];
+  descriptionP.innerHTML = classes[placement].description;
   modal.style.display = "block";
   document.body.style.overflowY = "hidden";
   toggleObjects([document.getElementById("addClassFooter")],"show");
@@ -1217,7 +1199,7 @@ function myGPA() {
   var isAp;
   for (var i = 0; i < numberOfClasses*2; i++) {
       if (myClasses[Math.floor(i/2)]) {
-        isAp = (checkWord("AP ",myClasses[Math.floor(i/2)],0) || checkWord("ADVANCED PLACEMENT ",myClasses[Math.floor(i/2)],0) || descriptions[getIdByClassName(myClasses[Math.floor(i/2)])].indexOf("A=5, B=4, C=3") > -1);
+        isAp = (checkWord("AP ",myClasses[Math.floor(i/2)],0) || checkWord("ADVANCED PLACEMENT ",myClasses[Math.floor(i/2)],0) || classes[getIdByClassName(myClasses[Math.floor(i/2)])].description.indexOf("A=5, B=4, C=3") > -1);
       }
       if (myGrades[i] == "A" && isAp) {
         gpaTracker[0] += 5;
@@ -1302,10 +1284,10 @@ function searchClasses() {
 
     // Loop through all list items, and hide those who don't match the search query
     for (var i = 0; i < classes.length; i++) {
-        if (classes[i].toUpperCase().indexOf(filter) > -1 || codes[i].toUpperCase().indexOf(filter) > -1 || getCategory(i).toUpperCase().indexOf(filter) > -1) {
+        if (classes[i].name.toUpperCase().indexOf(filter) > -1 || classes[i].code.toUpperCase().indexOf(filter) > -1 || classes[i].category.toUpperCase().indexOf(filter) > -1) {
             buttons[buttons.length] = document.createElement("BUTTON");
             document.body.appendChild(buttons[buttons.length - 1]);
-            buttons[buttons.length - 1].innerHTML = classes[i];
+            buttons[buttons.length - 1].innerHTML = classes[i].name;
             buttons[buttons.length - 1].style.width = "90%";
             buttons[buttons.length - 1].style.height = "10vh";
             buttons[buttons.length - 1].style.marginLeft = "5%";
@@ -1381,44 +1363,35 @@ function cleanOthers() {
     for (var i = 0; i < classes.length;i++) {
       var moveOn = false;
       while (!moveOn) {
-        if (classes[i].charAt(classes[i].length - 1) == " ") {
-          classes[i] = classes[i].slice(0,-1);
+        if (classes[i].name.charAt(classes[i].name.length - 1) == " ") {
+          classes[i].name = classes[i].name.slice(0,-1);
         }
         else {
           moveOn = true;
         }
       }
-      if (classes[i].substring(0,7) == "ELL 3-4") {
-        classes[i] = classes[i].substring(0,7);
+      if (classes[i].name.substring(0,7) == "ELL 3-4") {
+        classes[i].name = classes[i].name.substring(0,7);
       }
       moveOn = false;
-      grades[i] = grades[i].slice(1);
+      classes[i].grade = classes[i].grade.slice(1);
       while (!moveOn) {
-        if (grades[i].charAt(grades[i].length - 1) == " ") {
-          grades[i] = grades[i].slice(0,-1);
+        if (classes[i].grade.charAt(classes[i].grade.length - 1) == " ") {
+          classes[i].grade = classes[i].grade.slice(0,-1);
         }
         else {
           moveOn = true;
         }
       }
-      credits[i] = credits[i].slice(1);
-      credits[i] = credits[i].slice(0,-1);
-      codes[i] = codes[i].slice(0,-1);
-      universityCredits[i] = universityCredits[i].slice(0,-1);
-      preReqs[i] = preReqs[i].slice(0,-1);
+      classes[i].credit = classes[i].credit.slice(1);
+      classes[i].credit = classes[i].credit.slice(0,-1);
+      classes[i].code = classes[i].code.slice(0,-1);
+      classes[i].universityCredit = classes[i].universityCredit.slice(0,-1);
+      classes[i].preReq = classes[i].preReq.slice(0,-1);
       moveOn = false;
       while (!moveOn) {
-        if (preReqs[i].charAt(preReqs[i].length - 1) == " ") {
-          preReqs[i] = preReqs[i].slice(0,-1);
-        }
-        else {
-          moveOn = true;
-        }
-      }
-      moveOn = false;
-      while (!moveOn) {
-        if (interests[i].charAt(interests[i].length - 1) == " ") {
-          interests[i] = interests[i].slice(0,-1);
+        if (classes[i].preReq.charAt(classes[i].preReq.length - 1) == " ") {
+          classes[i].preReq = classes[i].preReq.slice(0,-1);
         }
         else {
           moveOn = true;
@@ -1426,8 +1399,17 @@ function cleanOthers() {
       }
       moveOn = false;
       while (!moveOn) {
-        if (linkedCourses[i].charAt(linkedCourses[i].length - 1) == " ") {
-          linkedCourses[i] = linkedCourses[i].slice(0,-1);
+        if (classes[i].interest.charAt(classes[i].interest.length - 1) == " ") {
+          classes[i].interest = classes[i].interest.slice(0,-1);
+        }
+        else {
+          moveOn = true;
+        }
+      }
+      moveOn = false;
+      while (!moveOn) {
+        if (classes[i].linkedCourse.charAt(classes[i].linkedCourse.length - 1) == " ") {
+          classes[i].linkedCourse = classes[i].linkedCourse.slice(0,-1);
         }
         else {
           moveOn = true;
@@ -1437,93 +1419,93 @@ function cleanOthers() {
   }
   else if (localStorage.school == "Del Norte") {
     for (var x = 0; x < classes.length; x++) {
-      if (classes[x].indexOf("COURSE TITLE COURSE NUMBER") > -1) {
-        categories[categories.length] = classes[x].slice(0,classes[x].indexOf("COURSE TITLE COURSE NUMBER") - 2);
-        categoryPlacement.push(x);
-        if (checkWord("PE / ATHLETICS",categories[categories.length - 1],0)) {
-          categories[categories.length - 1] = "PE / ATHLETICS";
+      if (classes[x].name.indexOf("COURSE TITLE COURSE NUMBER") > -1) {
+        category = classes[x].name.slice(0,classes[x].name.indexOf("COURSE TITLE COURSE NUMBER") - 2);
+        if (checkWord("PE / ATHLETICS",category,0)) {
+          category = "PE / ATHLETICS";
         }
-        if (checkWord("PHYSICAL EDUCATION St",categories[categories.length - 1],0)) {
-          categories[categories.length - 1] = "PHYSICAL EDUCATION";
+        if (checkWord("PHYSICAL EDUCATION St",category,0)) {
+          category = "PHYSICAL EDUCATION";
         }
-        classes[x] = classes[x].slice(classes[x].indexOf("COURSE TITLE COURSE NUMBER") + 26,classes[x].length);
+        classes[x].name = classes[x].name.slice(classes[x].name.indexOf("COURSE TITLE COURSE NUMBER") + 26,classes[x].name.length);
       }
+      classes[x].category = category;
     }
     for (var i = 0; i < classes.length;i++) {
-      classes[i] = classes[i].trim();
-      if (checkWord("CAHSEE.",classes[i],0)) {
-        classes[i] = classes[i].substr(7);
-        classes[i] = classes[i].trim();
-        if (checkWord("51",classes[i],0)) {
-          classes[i] = classes[i].substr(2);
-          classes[i] = classes[i].trim();
+      classes[i].name = classes[i].name.trim();
+      if (checkWord("CAHSEE.",classes[i].name,0)) {
+        classes[i].name = classes[i].name.substr(7);
+        classes[i].name = classes[i].name.trim();
+        if (checkWord("51",classes[i].name,0)) {
+          classes[i].name = classes[i].name.substr(2);
+          classes[i].name = classes[i].name.trim();
         }
       }
-      if (checkWord("D COMPUTER ANIMATION",classes[i],0)) {
-        classes[i] = "3" + classes[i];
+      if (checkWord("D COMPUTER ANIMATION",classes[i].name,0)) {
+        classes[i].name = "3" + classes[i].name;
       }
-      else if (checkWord("VID ",classes[i],0)) {
-        classes[i] = "A" + classes[i];
+      else if (checkWord("VID ",classes[i].name,0)) {
+        classes[i].name = "A" + classes[i].name;
       }
-      else if (checkWord("NTRO ",classes[i],0)) {
-        classes[i] = "I" + classes[i];
+      else if (checkWord("NTRO ",classes[i].name,0)) {
+        classes[i].name = "I" + classes[i].name;
       }
-      else if (checkWord("ORK ",classes[i],0)) {
-        classes[i] = "W" + classes[i];
+      else if (checkWord("ORK ",classes[i].name,0)) {
+        classes[i].name = "W" + classes[i].name;
       }
-      else if (checkWord("IBRARY ",classes[i],0)) {
-        classes[i] = "L" + classes[i];
+      else if (checkWord("IBRARY ",classes[i].name,0)) {
+        classes[i].name = "L" + classes[i].name;
       }
-      else if (checkWord("FFICE ",classes[i],0)) {
-        classes[i] = "O" + classes[i];
+      else if (checkWord("FFICE ",classes[i].name,0)) {
+        classes[i].name = "O" + classes[i].name;
       }
     }
-    for (var i = 0; i < categories.length; i++) {
-      if (checkWord("EALTH",categories[i],0)) {
-        categories[i] = "H" + categories[i];
+    for (var i = 0; i < classes.length; i++) {
+      if (checkWord("EALTH",classes[i].category,0)) {
+        classes[i].category = "H" + classes[i].category;
       }
     }
   }
   else if (localStorage.school == "Poway") {
     for (var i = 0; i < classes.length; i++) {
-      if (checkWord("O.C.I.S. PE program.",classes[i],0)) {
-        classes[i] = classes[i].substring(27);
+      if (checkWord("O.C.I.S. PE program.",classes[i].name,0)) {
+        classes[i].name = classes[i].name.substring(27);
       }
-      else if (checkWord("OUN",classes[i],0)) {
-        classes[i] = classes[i].substring(3);
+      else if (checkWord("OUN",classes[i].name,0)) {
+        classes[i].name = classes[i].name.substring(3);
       }
-      else if (checkWord("AB.",classes[i],0)) {
-        classes[i] = classes[i].substring(3);
+      else if (checkWord("AB.",classes[i].name,0)) {
+        classes[i].name = classes[i].name.substring(3);
       }
-      else if (checkWord("BC.",classes[i],0)) {
-        classes[i] = classes[i].substring(3);
+      else if (checkWord("BC.",classes[i].name,0)) {
+        classes[i].name = classes[i].name.substring(3);
       }
-      else if (checkWord("D COMPUTER",classes[i],0)) {
-        classes[i] = "3" + classes[i];
+      else if (checkWord("D COMPUTER",classes[i].name,0)) {
+        classes[i].name = "3" + classes[i].name;
       }
-      else if (checkWord("AGRICULTURE",classes[i],0) && i==0) {
-        classes[i] = classes[i].substring(11);
+      else if (checkWord("AGRICULTURE",classes[i].name,0) && i==0) {
+        classes[i].name = classes[i].name.substring(11);
       }
-      if (categories[i] == "") {
-        categories[i] = "Elective";
+      if (classes[i].category == "") {
+        classes[i].category = "Elective";
       }
-      else if (categories[i] == "ife Science") {
-        categories[i] = "Life Science";
+      else if (classes[i].category == "ife Science") {
+        classes[i].category = "Life Science";
       }
-      else if (categories[i] == "ine Art") {
-        categories[i] = "Fine Art";
+      else if (classes[i].category == "ine Art") {
+        classes[i].category = "Fine Art";
       }
-      else if (categories[i] == "lective") {
-        categories[i] = "Elective";
+      else if (classes[i].category == "lective") {
+        classes[i].category = "Elective";
       }
-      classes[i] = classes[i].trim();
-      universityCredits[i] = universityCredits[i].trim();
-      grades[i] = grades[i].trim();
-      preReqs[i] = preReqs[i].trim();
-      categories[i] = categories[i].trim();
-      if (classes[i].indexOf("  ") > -1) {
-        classes[i] = classes[i].substring(classes[i].indexOf("  "));
-        classes[i] = classes[i].trim();
+      classes[i].name = classes[i].name.trim();
+      classes[i].universityCredit = classes[i].universityCredit.trim();
+      classes[i].grade = classes[i].grade.trim();
+      classes[i].preReq = classes[i].preReq.trim();
+      classes[i].category = classes[i].category.trim();
+      if (classes[i].name.indexOf("  ") > -1) {
+        classes[i].name = classes[i].name.substring(classes[i].name.indexOf("  "));
+        classes[i].name = classes[i].name.trim();
       }
     }
   }
@@ -1631,7 +1613,7 @@ function optionFadeUpdate(update) {
 }
 function getIdByClassName(string) {
   for (var j = 0; j < 192; j++) {
-    if (classes[j] == string) {
+    if (classes[j].name == string) {
       return j;
     }
   }
@@ -1683,28 +1665,32 @@ var gradeDropDownA = document.getElementsByClassName("dropbtn")[0];
 var gradeDropDownB = document.getElementsByClassName("dropbtn")[1];
 var myClasses = [];
 var myGrades = [];
+var classes = [];
 localStorage.myClasses;
 localStorage.myGrades;
 if (!localStorage.optionFade) {
   localStorage.optionFade = "Normal";
 }
 var buttons = [];
-var categories = [];
-var categoryPlacement = [];
-var classes = [];
-var codes = [];
-var grades = [];
-var credits = [];
-var universityCredits = [];
-var preReqs = [];
-var interests = [];
-var linkedCourses = [];
-var descriptions = [];
+function newClass(category,name,code,grade,credit,universityCredit,preReq,interest,linkedCourse,description) {
+  this.category = category;
+  this.name = name;
+  this.code = code;
+  this.grade = grade;
+  this.credit = credit;
+  this.universityCredit = universityCredit;
+  this.preReq = preReq;
+  this.interest = interest;
+  this.linkedCourse = linkedCourse;
+  this.description = description;
+}
+var category;
 function organizePDF() {
   var headerDone = false;
   var i = 0;
   var currentType = "class";
   var storedLetters = "";
+  var name,code,grade,credit,universityCredit,preReq,interest,linkedCourse,description;
   if (localStorage.school == "Westview") {
     // Skip header
     while (!headerDone) {
@@ -1717,8 +1703,7 @@ function organizePDF() {
         i++;
       }
     }
-    categories[categories.length] = "English";
-    categoryPlacement[categoryPlacement.length] = 0;
+    category = "English";
     // Start Organizing
     while (i < catalogText.length) {
       // Check to see if the type changed
@@ -1728,7 +1713,7 @@ function organizePDF() {
 
       if (isCode(catalogText,i) && currentType == "class") {
         if (currentType == "class") {
-          classes[classes.length] = storedLetters;
+          name = storedLetters;
           currentType = "code";
         }
         else {
@@ -1738,7 +1723,7 @@ function organizePDF() {
       }
       else if (checkWord("Grades:",catalogText,i) && currentType == "code") {
         if (currentType == "code") {
-          codes[codes.length] = storedLetters;
+          code = storedLetters;
           currentType = "grade";
           i += 7;
         }
@@ -1749,7 +1734,7 @@ function organizePDF() {
       }
       else if (checkWord("Credits: ",catalogText,i) && currentType == "grade") {
         if (currentType == "grade") {
-          grades[grades.length] = storedLetters;
+          grade = storedLetters;
           currentType = "credit";
           i += 8;
         }
@@ -1760,7 +1745,7 @@ function organizePDF() {
       }
       else if (checkWord("UC/CSU:",catalogText,i) && currentType == "credit") {
         if (currentType == "credit") {
-          credits[credits.length] = storedLetters;
+          credit = storedLetters;
           currentType = "universityCredit";
           i += 8;
         }
@@ -1771,7 +1756,7 @@ function organizePDF() {
       }
       else if (checkWord("Recommended Prerequisites:",catalogText,i) && currentType == "universityCredit") {
         if (currentType == "universityCredit") {
-          universityCredits[universityCredits.length] = storedLetters;
+          universityCredit = storedLetters;
           currentType = "preReq";
           i += 27;
         }
@@ -1782,13 +1767,13 @@ function organizePDF() {
       }
       else if (checkWord("Interest:",catalogText,i) && (currentType == "preReq" || currentType == "universityCredit")) {
         if (currentType == "preReq") {
-          preReqs[preReqs.length] = storedLetters;
+          preReq = storedLetters;
           currentType = "interest";
           i += 10;
         }
         else if (currentType == "universityCredit") {
-          universityCredits[universityCredits.length] = storedLetters;
-          preReqs[preReqs.length] = "None";
+          universityCredit = storedLetters;
+          preReq = "None";
           currentType = "interest";
           i += 10;
         }
@@ -1799,13 +1784,13 @@ function organizePDF() {
       }
       else if (checkWord("Linked Course:",catalogText,i) && (currentType == "interest" || currentType == "preReq")) {
         if (currentType == "interest") {
-          interests[interests.length] = storedLetters;
+          interest = storedLetters;
           currentType = "linkedCourse";
           i += 15;
         }
         else if (currentType == "preReq") {
-          preReqs[preReqs.length] = storedLetters;
-          interests[interests.length] = "None";
+          preReq = storedLetters;
+          interest = "None";
           currentType = "linkedCourse";
           i += 15;
         }
@@ -1816,18 +1801,18 @@ function organizePDF() {
       }
       else if (checkWord("  ",catalogText,i - 2) && catalogText.charAt(i - 3) != ";" && catalogText.charAt(i) == catalogText.charAt(i).toUpperCase() && (currentType == "linkedCourse" || currentType == "interest" || currentType == "preReq")) {
         if (currentType == "linkedCourse") {
-          linkedCourses[linkedCourses.length] = storedLetters;
+          linkedCourse = storedLetters;
           currentType = "description";
         }
         else if (currentType == "interest") {
-          interests[interests.length] = storedLetters;
-          linkedCourses[linkedCourses.length] = "None";
+          interest = storedLetters;
+          linkedCourse = "None";
           currentType = "description";
         }
         else if (currentType == "preReq") {
-          preReqs[preReqs.length] = storedLetters;
-          linkedCourses[linkedCourses.length] = "None";
-          interests[interests.length] = "None";
+          preReq = storedLetters;
+          linkedCourse = "None";
+          interest = "None";
           currentType = "description";
         }
         else {
@@ -1837,8 +1822,9 @@ function organizePDF() {
       }
       else if (isClass(catalogText,i) && currentType == "description") {
         if (currentType == "description") {
-          descriptions[descriptions.length] = storedLetters;
+          description = storedLetters;
           currentType = "class";
+          classes.push(new newClass(category,name,code,grade,credit,universityCredit,preReq,interest,linkedCourse,description));
         }
         else {
           alert("Something went wrong...9");
@@ -1847,14 +1833,13 @@ function organizePDF() {
       }
 
       // End checking
-
       else {
           storedLetters += catalogText.charAt(i);
           i++;
       }
     } // Close While loop
     // Final data
-    descriptions[descriptions.length] = storedLetters;
+    description = storedLetters;
     console.log("Done organizing.");
   }
   else if (localStorage.school == "Poway") {
@@ -1883,7 +1868,7 @@ function organizePDF() {
 
       if ((checkWord("Meets the UC/CSU",catalogText,i) || checkWord("Meets UC/CSU",catalogText,i) || checkWord("Pending board approval to meet the UC/CSU",catalogText,i) || checkWord("This course will be offered pending PUSD Board approval",catalogText,i) || checkWord("Pending approval to meet the UC/CSU",catalogText,i) || checkWord("This course will be offered pending",catalogText,i) || checkWord("Meets  UC/CSU ",catalogText,i)) && currentType == "class") {
         if (currentType == "class") {
-          classes[classes.length] = storedLetters;
+          name = storedLetters;
           currentType = "universityCredit";
         }
         else {
@@ -1893,13 +1878,13 @@ function organizePDF() {
       }
       else if (checkWord("Grade Level: ",catalogText,i) && (currentType == "class" || currentType == "universityCredit")) {
         if (currentType == "class") {
-          classes[classes.length] = storedLetters;
-          universityCredits[universityCredits.length] = "None";
+          name = storedLetters;
+          universityCredit = "None";
           currentType = "grade";
           i += 13;
         }
         else if (currentType == "universityCredit") {
-          universityCredits[universityCredits.length] = storedLetters;
+          universityCredit = storedLetters;
           currentType = "grade";
           i += 13;
         }
@@ -1910,7 +1895,7 @@ function organizePDF() {
       }
       else if ((checkWord("Prerequisite: ",catalogText,i) || checkWord("Prerequisites: ",catalogText,i)) && currentType == "grade") {
         if (currentType == "grade") {
-          grades[grades.length] = storedLetters;
+          grade = storedLetters;
           currentType = "preReq";
           i += 14;
         }
@@ -1921,7 +1906,7 @@ function organizePDF() {
       }
       else if ((checkWord("PHS: ",catalogText,i) || checkWord("PHS ",catalogText,i)) && currentType == "preReq") {
         if (currentType == "preReq") {
-          preReqs[preReqs.length] = storedLetters;
+          preReq = storedLetters;
           currentType = "category";
           i += 5;
         }
@@ -1932,7 +1917,7 @@ function organizePDF() {
       }
       else if (checkWord(" ",catalogText,i) && !(checkWord(" Art",catalogText,i) || checkWord(" and Elective",catalogText,i) || checkWord(" Elective",catalogText,i) || checkWord(" Education",catalogText,i) || checkWord(" Science",catalogText,i) || checkWord(" History",catalogText,i) || checkWord(" Language",catalogText,i)) && currentType == "category") {
         if (currentType == "category") {
-          categories[categories.length] = storedLetters;
+          category = storedLetters;
           currentType = "description";
         }
         else {
@@ -1942,8 +1927,9 @@ function organizePDF() {
       }
       else if (isClass(catalogText,i) && currentType == "description") {
         if (currentType == "description") {
-          descriptions[descriptions.length] = storedLetters;
+          description = storedLetters;
           currentType = "class";
+          classes.push(new newClass(category,name,code,grade,credit,universityCredit,preReq,interest,linkedCourse,description));
         }
         else {
           alert("Something went wrong...9");
@@ -1959,12 +1945,12 @@ function organizePDF() {
       }
     } // Close While loop
     // Final Data
-    descriptions[descriptions.length] = storedLetters;
+    description = storedLetters;
     for (var x = 0; x < classes.length; x++) {
-      credits.push(5);
-      codes.push("Poway HS does not provide Class Code information");
-      interests.push("Poway HS does not provide Class Interest information");
-      linkedCourses.push("Poway HS does not provide Linked Course information");
+      classes[x].credit = 5;
+      classes[x].code = "Poway HS does not provide Class Code information";
+      classes[x].interest = "Poway HS does not provide Class Interest information";
+      classes[x].linkedCourse = "Poway HS does not provide Linked Course information";
     }
     console.log("Done organizing.");
   } // Close If Statement
@@ -1987,7 +1973,7 @@ function organizePDF() {
 
       if (isCode(catalogText,i) && currentType == "class") {
         if (currentType == "class") {
-          classes[classes.length] = storedLetters;
+          name = storedLetters;
           currentType = "code";
         }
         else {
@@ -1997,7 +1983,7 @@ function organizePDF() {
       }
       else if (checkWord("Recommended Completion of: ",catalogText,i) && currentType == "code") {
         if (currentType == "code") {
-          codes[codes.length] = storedLetters;
+          code = storedLetters;
           currentType = "preReq";
           i += 27;
         }
@@ -2008,7 +1994,7 @@ function organizePDF() {
       }
       else if (checkWord("Grade ",catalogText,i) && currentType == "preReq") {
         if (currentType == "preReq") {
-          preReqs[preReqs.length] = storedLetters;
+          preReq = storedLetters;
           currentType = "grade";
           i += 6;
         }
@@ -2019,12 +2005,12 @@ function organizePDF() {
       }
       else if (checkWord("  ",catalogText,i - 2) && !checkWord("  Physics strongly recommended",catalogText,i - 2) && catalogText.charAt(i) == catalogText.charAt(i).toUpperCase() && (currentType == "grade" || currentType == "preReq")) {
         if (currentType == "grade") {
-          grades[grades.length] = storedLetters;
+          grade = storedLetters;
           currentType = "description";
         }
         else if (currentType == "preReq") {
-          preReqs[preReqs.length] = storedLetters;
-          grades[grades.length] = "Not Specified";
+          preReq = storedLetters;
+          grade = "Not Specified";
           i++;
         }
         else {
@@ -2034,18 +2020,19 @@ function organizePDF() {
       }
       else if (isClass(catalogText,i) && !checkWord("AVID 5-6  AVID 7-8 follows the weekly str",catalogText,i) && !checkWord("AVID 5-6  AVID 7-8 follows the weekly str",catalogText,i - 1) && !checkWord("AVID 5-6  AVID 7-8 follows the weekly str",catalogText,i - 2) && !checkWord("AVID 5-6  AVID 7-8 follows the weekly str",catalogText,i - 3) && !checkWord("AVID 5-6  AVID 7-8 follows the weekly str",catalogText,i - 4) && (currentType == "description" || currentType == "preReq")) {
         if (currentType == "description") {
-          descriptions[descriptions.length] = storedLetters;
+          description = storedLetters;
           currentType = "class";
         }
         else if (currentType == "preReq") {
-          preReqs[preReqs.length] = storedLetters;
-          descriptions[descriptions.length] = "None";
-          grades[grades.length] = "Not Specified";
+          preReq = storedLetters;
+          description = "None";
+          grade = "Not Specified";
           currentType = "class";
         }
         else {
           alert("Something went wrong...9");
         }
+        classes.push(new newClass(category,name,code,grade,credit,universityCredit,preReq,interest,linkedCourse,description));
         storedLetters = "";
       }
 
@@ -2057,12 +2044,12 @@ function organizePDF() {
       }
     } // Close While loop
     // Final Data
-    descriptions[descriptions.length] = storedLetters;
+    description = storedLetters;
     for (var x = 0; x < classes.length; x++) {
-      credits.push(5);
-      linkedCourses.push("Del Norte does not provide Linked Course information");
-      universityCredits.push("Del Norte does not provide UC/CSU Credit information");
-      interests.push("Del Norte does not provide Class Interest information");
+      classes[x].credit = 5;
+      classes[x].linkedCourse = "Del Norte does not provide Linked Course information";
+      classes[x].universityCredit = "Del Norte does not provide UC/CSU Credit information";
+      classes[x].interest = "Del Norte does not provide Class Interest information";
     }
     console.log("Done organizing.");
   } // Close If Statement
@@ -2102,12 +2089,15 @@ function loadSchool() {
     case "Westview":
       pdfName = "https://docs.wixstatic.com/ugd/5db6f5_7f8fbcb5bd064026b84356a51b42f5f3.pdf";
       numberOfClasses = 32;
+      break;
     case "Del Norte":
       pdfName = "http://docs.wixstatic.com/ugd/5db6f5_558a721747e245edb511714213350339.pdf";
       numberOfClasses = 60;
+      break;
     case "Poway":
       pdfName = "https://docs.wixstatic.com/ugd/5db6f5_05deee3b88934aedb8e8b979bd3edc2e.pdf";
       numberOfClasses = 60;
+      break;
   }
   gettext(pdfName).then(function (text) {
     catalogText = text;
