@@ -138,7 +138,7 @@ function showOptions(classNo) {
       if (numberOfClasses == 60) {
         toggleObjects([gradeDropDownB],"hide");
       }
-      headerInputP.innerHTML = classes[getIdByClassName(myClasses[((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)])];
+      headerInputP.innerHTML = classes[getIdByClassName(myClasses[((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)])].name;
       if (myGrades[2 * (((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1))] != undefined) {
         gradeDropDownA.innerHTML = "Selected Q1 Grade: <b>" + myGrades[2 * (((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1))] + "</b>";
         if (numberOfClasses == 60) {
@@ -1583,7 +1583,7 @@ confirmOk.onclick = function () {
 modalOk.onclick = function() {
   modal.style.display = "none";
   document.body.style.overflowY = "scroll";
-  myClasses[((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)] = classes[savePlacement];
+  myClasses[((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)] = classes[savePlacement].name;
   saveClasses();
   showEightClasses();
   fadeInFadeOut(true,1000,"Class Added");
