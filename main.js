@@ -2098,17 +2098,16 @@ function loadSchool() {
   toggleObjects([loadIcon],"show");
   var pdfName = "";
   readHomeFiles();
-  if (localStorage.school == "Westview") {
-    pdfName = "https://docs.wixstatic.com/ugd/5db6f5_7f8fbcb5bd064026b84356a51b42f5f3.pdf";
-    numberOfClasses = 32;
-  }
-  else if (localStorage.school == "Del Norte") {
-    pdfName = "http://docs.wixstatic.com/ugd/5db6f5_558a721747e245edb511714213350339.pdf";
-    numberOfClasses = 60;
-  }
-  else if (localStorage.school == "Poway") {
-    pdfName = "https://docs.wixstatic.com/ugd/5db6f5_05deee3b88934aedb8e8b979bd3edc2e.pdf";
-    numberOfClasses = 60;
+  switch (localStorage.school) {
+    case "Westview":
+      pdfName = "https://docs.wixstatic.com/ugd/5db6f5_7f8fbcb5bd064026b84356a51b42f5f3.pdf";
+      numberOfClasses = 32;
+    case "Del Norte":
+      pdfName = "http://docs.wixstatic.com/ugd/5db6f5_558a721747e245edb511714213350339.pdf";
+      numberOfClasses = 60;
+    case "Poway":
+      pdfName = "https://docs.wixstatic.com/ugd/5db6f5_05deee3b88934aedb8e8b979bd3edc2e.pdf";
+      numberOfClasses = 60;
   }
   gettext(pdfName).then(function (text) {
     catalogText = text;
