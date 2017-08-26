@@ -935,7 +935,7 @@ function verifyClasses() {
   if (!(checkCategory("English",0,numberOfClasses/4-1))) {
     createVerifyBox("You must take an English class in 9th Grade");
   }
-  if (!(checkCategory("Mathematics",0,numberOfClasses/4-1) || checkCategory("Math",numberOfClasses/2,numberOfClasses/4*3-1))) {
+  if (!(checkCategory("Mathematics",0,numberOfClasses/4-1) || checkCategory("Math",0,numberOfClasses/4-1))) {
     createVerifyBox("You must take a Math class in 9th Grade");
   }
   if (!(checkCategory("PHYSICAL EDUCATION EXERCISE NUTRITION SCIENCE - ENS (P.E./HEALTH)",0,numberOfClasses/4-1) || checkCategory("PhysicalEducation",0,numberOfClasses/4-1))) {
@@ -947,22 +947,22 @@ function verifyClasses() {
   if (!(checkCategory("English",numberOfClasses/4,numberOfClasses/2-1))) {
     createVerifyBox("You must take an English class in 10th Grade");
   }
-  if (!(checkCategory("Mathematics",numberOfClasses/4,numberOfClasses/2-1))) {
+  if (!(checkCategory("Mathematics",numberOfClasses/4,numberOfClasses/2-1) || checkCategory("Math",numberOfClasses/4,numberOfClasses/2-1))) {
     createVerifyBox("You must take a Math class in 10th Grade");
   }
-  if (!(checkCategory("SocialSciences",numberOfClasses/4,numberOfClasses/2-1) || checkCategory("Social Science",numberOfClasses/2,numberOfClasses/4*3-1))) {
+  if (!(checkCategory("SocialSciences",numberOfClasses/4,numberOfClasses/2-1) || checkCategory("Social Science",numberOfClasses/4,numberOfClasses/2-1) || checkCategory("World History",numberOfClasses/4,numberOfClasses/2-1))) {
     createVerifyBox("You must take a Social Science class in 10th Grade");
   }
   if (!(checkCategory("English",numberOfClasses/2,numberOfClasses/4*3-1))) {
     createVerifyBox("You must take an English class in 11th Grade");
   }
-  if (!(checkCategory("SocialSciences",numberOfClasses/2,numberOfClasses/4*3-1) || checkCategory("Social Science",numberOfClasses/2,numberOfClasses/4*3-1))) {
+  if (!(checkCategory("SocialSciences",numberOfClasses/2,numberOfClasses/4*3-1) || checkCategory("Social Science",numberOfClasses/2,numberOfClasses/4*3-1) || checkCategory("US History",numberOfClasses/2,numberOfClasses/4*3-1))) {
     createVerifyBox("You must take a Social Science class in 11th Grade");
   }
   if (!(checkCategory("English",numberOfClasses/4*3,numberOfClasses-1))) {
     createVerifyBox("You must take an English class in 12th Grade");
   }
-  if (!(checkCategory("SocialSciences",numberOfClasses/4*3,numberOfClasses-1) || checkCategory("Social Science",numberOfClasses/2,numberOfClasses/4*3-1))) {
+  if (!(checkCategory("SocialSciences",numberOfClasses/4*3,numberOfClasses-1) || checkCategory("Social Science",numberOfClasses/4*3,numberOfClasses-1) || checkCategory("Civics",numberOfClasses/4*3,numberOfClasses-1) || checkCategory("Economics",numberOfClasses/4*3,numberOfClasses-1))) {
     createVerifyBox("You must take a Social Science class in 12th Grade");
   }
   if (!creditsComplete()) {
