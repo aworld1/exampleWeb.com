@@ -932,37 +932,37 @@ function verifyClasses() {
       offRollBool = true;
     }
   }
-  if (!(checkCategory("English",0,7))) {
+  if (!(checkCategory("English",0,numberOfClasses/4-1))) {
     createVerifyBox("You must take an English class in 9th Grade");
   }
-  if (!(checkCategory("Mathematics",0,7))) {
+  if (!(checkCategory("Mathematics",0,numberOfClasses/4-1))) {
     createVerifyBox("You must take a Math class in 9th Grade");
   }
-  if (!(checkCategory("PhysicalEducation",0,7))) {
+  if (!(checkCategory("PhysicalEducation",0,numberOfClasses/4-1))) {
     createVerifyBox("You must take a Physical Education class in 9th Grade");
   }
-  if (!(checkClass(myClasses,"ENS 1-2",0,7) || checkClass(myClasses,"ENS 1-2 ONLINE",0,7)) && localStorage.school != "Poway") {
+  if (!(checkClass(myClasses,"ENS 1-2",0,numberOfClasses/4-1) || checkClass(myClasses,"ENS 1-2 ONLINE",0,numberOfClasses/4-1)) && localStorage.school != "Poway") {
     createVerifyBox("You must take ENS 1-2 in 9th Grade");
   }
-  if (!(checkCategory("English",8,15))) {
+  if (!(checkCategory("English",numberOfClasses/4,numberOfClasses/2-1))) {
     createVerifyBox("You must take an English class in 10th Grade");
   }
-  if (!(checkCategory("Mathematics",8,15))) {
+  if (!(checkCategory("Mathematics",numberOfClasses/4,numberOfClasses/2-1))) {
     createVerifyBox("You must take a Math class in 10th Grade");
   }
-  if (!(checkCategory("SocialSciences",8,15))) {
+  if (!(checkCategory("SocialSciences",numberOfClasses/4,numberOfClasses/2-1))) {
     createVerifyBox("You must take a Social Science class in 10th Grade");
   }
-  if (!(checkCategory("English",16,23))) {
+  if (!(checkCategory("English",numberOfClasses/2,numberOfClasses/4*3-1))) {
     createVerifyBox("You must take an English class in 11th Grade");
   }
-  if (!(checkCategory("SocialSciences",16,23))) {
+  if (!(checkCategory("SocialSciences",numberOfClasses/2,numberOfClasses/4*3-1))) {
     createVerifyBox("You must take a Social Science class in 11th Grade");
   }
-  if (!(checkCategory("English",24,31))) {
+  if (!(checkCategory("English",numberOfClasses/4*3,numberOfClasses-1))) {
     createVerifyBox("You must take an English class in 12th Grade");
   }
-  if (!(checkCategory("SocialSciences",24,31))) {
+  if (!(checkCategory("SocialSciences",numberOfClasses/4*3,numberOfClasses-1))) {
     createVerifyBox("You must take a Math class in 12th Grade");
   }
   if (!creditsComplete()) {
@@ -998,8 +998,10 @@ function checkClass(classArr, classname, numberStart, numberEnd) {
 }
 function checkCategory(categoryName,numberStart,numberEnd) {
   for (var x = numberStart; x <= numberEnd; x++) {
-    if (getCategory(getIdByClassName(myClasses[x])) == categoryName) {
-      return true;
+    if (getIdByClassName(myClasses[x]) != -1) {
+      if (getCategory(getIdByClassName(myClasses[x])).toUpperCase() == categoryName.toUpperCase()) {
+        return true;
+      }
     }
   }
   return false;
@@ -1612,7 +1614,7 @@ function optionFadeUpdate(update) {
   document.getElementById("optionFadeHead").innerHTML = "Result Pop-Up Fade Speed (" + update + ")";
 }
 function getIdByClassName(string) {
-  for (var j = 0; j < 192; j++) {
+  for (var j = 0; j < classes.length; j++) {
     if (classes[j].name == string) {
       return j;
     }
