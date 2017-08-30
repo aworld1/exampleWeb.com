@@ -1697,7 +1697,7 @@ function organizePDF() {
     // Skip header
     while (!headerDone) {
       // First category is English, wait until encounter
-      if (checkWord("English  ",catalogText,i)) {
+      if (checkWord("English\n",catalogText,i)) {
         headerDone = true;
         i += 9;
       }
@@ -1960,7 +1960,7 @@ function organizePDF() {
     // Skip Header
     while (!headerDone) {
       // First category is English, wait until encounter
-      if (checkWord("ENGLISH  ",catalogText,i)) {
+      if (checkWord("ENGLISH ",catalogText,i)) {
         headerDone = true;
       }
       else {
@@ -2069,6 +2069,43 @@ function readHomeFiles() {
     }
     rawFile.send();
 }
+function finishStartUp() {
+  organizePDF();
+  cleanDescription();
+  cleanOthers();
+  console.log("Done cleaning.");
+  parseClasses();
+  parseAchievements();
+  loadedApp = true;
+  homePage();
+}
+function readSchoolFile() {
+    var filename;
+    switch (localStorage.school) {
+      case "Westview":
+        filename = "http://planpalapp.com/westview.txt";
+        numberOfClasses = 32;
+        break;
+      case "Del Norte":
+        filename = "http://planpalapp.com/delNorte.txt";
+        numberOfClasses = 60;
+        break;
+      case "Poway":
+        filename = "http://planpalapp.com/poway.txt";
+        numberOfClasses = 60;
+        break;
+    }
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", filename, true);
+    rawFile.onreadystatechange = function () {
+      if (rawFile.readyState === 4) {
+        var allText = rawFile.responseText;
+        catalogText = allText;
+        finishStartUp();
+      }
+    }
+    rawFile.send();
+}
 if (!localStorage.school) {
   localStorage.school = "Westview";
 }
@@ -2085,34 +2122,7 @@ document.body.style.overflowX = "hidden";
 function loadSchool() {
   hideEverything();
   toggleObjects([loadIcon],"show");
-  var pdfName = "";
   readHomeFiles();
-  switch (localStorage.school) {
-    case "Westview":
-      pdfName = "https://docs.wixstatic.com/ugd/5db6f5_7f8fbcb5bd064026b84356a51b42f5f3.pdf";
-      numberOfClasses = 32;
-      break;
-    case "Del Norte":
-      pdfName = "http://docs.wixstatic.com/ugd/5db6f5_558a721747e245edb511714213350339.pdf";
-      numberOfClasses = 60;
-      break;
-    case "Poway":
-      pdfName = "https://docs.wixstatic.com/ugd/5db6f5_05deee3b88934aedb8e8b979bd3edc2e.pdf";
-      numberOfClasses = 60;
-      break;
-  }
-  gettext(pdfName).then(function (text) {
-    catalogText = text;
-    organizePDF();
-    cleanDescription();
-    cleanOthers();
-    console.log("Done cleaning.");
-    parseClasses();
-    parseAchievements();
-    loadedApp = true;
-    homePage();
-  }, function (reason) {
-    console.error(reason);
-  });
+  readSchoolFile();
 }
 loadSchool();
