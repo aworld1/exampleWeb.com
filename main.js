@@ -1697,7 +1697,7 @@ function organizePDF() {
     // Skip header
     while (!headerDone) {
       // First category is English, wait until encounter
-      if (checkWord("English\n",catalogText,i)) {
+      if (checkWord("English  ",catalogText,i)) {
         headerDone = true;
         i += 9;
       }
@@ -1960,7 +1960,7 @@ function organizePDF() {
     // Skip Header
     while (!headerDone) {
       // First category is English, wait until encounter
-      if (checkWord("ENGLISH ",catalogText,i)) {
+      if (checkWord("ENGLISH  ",catalogText,i)) {
         headerDone = true;
       }
       else {
