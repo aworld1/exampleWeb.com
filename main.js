@@ -116,6 +116,9 @@ function checkClasses(classesInFunc) {
         }
         else if (numberOfClasses == 60) {
           classesInFunc[j].style.fontSize = "2.5vmin";
+          if (classesInFunc[j].innerHTML.length > 35) {
+            classesInFunc[j].style.fontSize = "1.75vmin";
+          }
         }
       }
     }
@@ -664,16 +667,19 @@ function decodeClasses(code) {
         decodedClasses.push(undefined);
       }
       else if (code.charAt(i*3) == "0" && code.charAt(i*3+1) == "0" && code.charAt(i*3+2) == "0") {
-        decodedClasses.push(classes[0]);
+        decodedClasses.push(classes[0].name);
       }
       else if (code.charAt(i*3) == "0" && code.charAt(i*3+1) == "0") {
-        decodedClasses.push(classes[Number(code.charAt(i*3+2))]);
+        decodedClasses.push(classes[Number(code.charAt(i*3+2))].name);
       }
       else if (code.charAt(i*3) == "0") {
-        decodedClasses.push(classes[Number(code.charAt(i*3+1) + code.charAt(i*3+2))]);
+        decodedClasses.push(classes[Number(code.charAt(i*3+1) + code.charAt(i*3+2))].name);
+      }
+      else if (classes[Number(code.charAt(i*3) + code.charAt(i*3+1) + code.charAt(i*3+2))]) {
+        decodedClasses.push(classes[Number(code.charAt(i*3) + code.charAt(i*3+1) + code.charAt(i*3+2))].name);
       }
       else {
-        decodedClasses.push(classes[Number(code.charAt(i*3) + code.charAt(i*3+1) + code.charAt(i*3+2))]);
+        decodeSuccessBool = false;
       }
     }
     if (numberOfClasses == 32) {
