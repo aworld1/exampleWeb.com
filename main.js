@@ -202,87 +202,87 @@ function myCredits() {
     for (var i = 0; i < numberOfClasses; i++) {
       if (myClasses[i] != undefined) {
         // If the class exists
-        if (credits[getIdByClassName(myClasses[i])].length <= 2 && Number(credits[getIdByClassName(myClasses[i])]) == 20) {
+        if (classes[getIdByClassName(myClasses[i])].credit.length <= 2 && Number(classes[getIdByClassName(myClasses[i])].credit) == 20) {
           // If it's a 20 credit class
           if (getCategory(getIdByClassName(myClasses[i])) == "English" || getCategory(getIdByClassName(myClasses[i])) == "EnglishLanguageDevelopment") {
-            englishCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+            englishCredits[0] += Number(classes[getIdByClassName(myClasses[i])].credit) / 2;
           }
           else if (getCategory(getIdByClassName(myClasses[i])) == "SocialSciences") {
-            socialScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+            socialScienceCredits[0] += Number(classes[getIdByClassName(myClasses[i])].credit) / 2;
           }
           else if (getCategory(getIdByClassName(myClasses[i])) == "Mathematics") {
-            mathCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+            mathCredits[0] += Number(classes[getIdByClassName(myClasses[i])].credit) / 2;
           }
           else if (getCategory(getIdByClassName(myClasses[i])) == "PhysicalSciences") {
-            physicalScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+            physicalScienceCredits[0] += Number(classes[getIdByClassName(myClasses[i])].credit) / 2;
           }
           else if (getCategory(getIdByClassName(myClasses[i])) == "BiologicalSciences") {
-            biologicalScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+            biologicalScienceCredits[0] += Number(classes[getIdByClassName(myClasses[i])].credit) / 2;
           }
           else if (getCategory(getIdByClassName(myClasses[i])) == "FineArts") {
-            fineArtCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+            fineArtCredits[0] += Number(classes[getIdByClassName(myClasses[i])].credit) / 2;
           }
           else if (getCategory(getIdByClassName(myClasses[i])) == "PhysicalEducation") {
-            exerciseCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+            exerciseCredits[0] += Number(classes[getIdByClassName(myClasses[i])].credit) / 2;
           }
           else if (getCategory(getIdByClassName(myClasses[i])) == "WorldLanguage") {
-            foreignCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+            foreignCredits[0] += Number(classes[getIdByClassName(myClasses[i])].credit) / 2;
           }
           else {
-            electiveCredits[0] += Number(credits[getIdByClassName(myClasses[i])]) / 2;
+            electiveCredits[0] += Number(classes[getIdByClassName(myClasses[i])].credit) / 2;
           }
         }
-        if (credits[getIdByClassName(myClasses[i])].length <= 2) {
+        if (classes[getIdByClassName(myClasses[i])].credit.length <= 2) {
           // If it's a normal class
           if (getCategory(getIdByClassName(myClasses[i])) == "English" || getCategory(getIdByClassName(myClasses[i])) == "EnglishLanguageDevelopment") {
-            englishCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+            englishCredits[0] += Number(classes[getIdByClassName(myClasses[i])].credit);
           }
           else if (getCategory(getIdByClassName(myClasses[i])) == "SocialSciences") {
-            socialScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+            socialScienceCredits[0] += Number(classes[getIdByClassName(myClasses[i])].credit);
           }
           else if (getCategory(getIdByClassName(myClasses[i])) == "Mathematics") {
-            mathCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+            mathCredits[0] += Number(classes[getIdByClassName(myClasses[i])].credit);
           }
           else if (getCategory(getIdByClassName(myClasses[i])) == "PhysicalSciences") {
-            physicalScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+            physicalScienceCredits[0] += Number(classes[getIdByClassName(myClasses[i])].credit);
           }
           else if (getCategory(getIdByClassName(myClasses[i])) == "BiologicalSciences") {
-            biologicalScienceCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+            biologicalScienceCredits[0] += Number(classes[getIdByClassName(myClasses[i])].credit);
           }
           else if (getCategory(getIdByClassName(myClasses[i])) == "FineArts") {
-            fineArtCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+            fineArtCredits[0] += Number(classes[getIdByClassName(myClasses[i])].credit);
           }
           else if (getCategory(getIdByClassName(myClasses[i])) == "PhysicalEducation") {
-            exerciseCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+            exerciseCredits[0] += Number(classes[getIdByClassName(myClasses[i])].credit);
           }
           else if (getCategory(getIdByClassName(myClasses[i])) == "WorldLanguage") {
-            foreignCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+            foreignCredits[0] += Number(classes[getIdByClassName(myClasses[i])].credit);
           }
           else {
-            electiveCredits[0] += Number(credits[getIdByClassName(myClasses[i])]);
+            electiveCredits[0] += Number(classes[getIdByClassName(myClasses[i])].credit);
           }
         }
         else {
           // If it has words in it
-          if (checkWord("Varies",credits[getIdByClassName(myClasses[i])],0)) {
+          if (checkWord("Varies",classes[getIdByClassName(myClasses[i])].credit,0)) {
             electiveCredits[0] += 10;
           }
-          else if (checkWord("10 Math/10 Elective",credits[getIdByClassName(myClasses[i])],0)) {
+          else if (checkWord("10 Math/10 Elective",classes[getIdByClassName(myClasses[i])].credit,0)) {
             electiveCredits[0] += 5;
             mathCredits[0] += 5;
           }
-          else if (checkWord("5 Health/5 PE",credits[getIdByClassName(myClasses[i])],0)) {
+          else if (checkWord("5 Health/5 PE",classes[getIdByClassName(myClasses[i])].credit,0)) {
             exerciseCredits[0] += 10;
           }
-          else if (checkWord("10 PE/10 Elect.",credits[getIdByClassName(myClasses[i])],0)) {
+          else if (checkWord("10 PE/10 Elect.",classes[getIdByClassName(myClasses[i])].credit,0)) {
             electiveCredits[0] += 5;
             exerciseCredits[0] += 5;
           }
-          else if (checkWord("5 PE/15 Fine Art",credits[getIdByClassName(myClasses[i])],0)) {
+          else if (checkWord("5 PE/15 Fine Art",classes[getIdByClassName(myClasses[i])].credit,0)) {
             exerciseCredits[0] += 2.5;
             fineArtCredits[0] += 7.5;
           }
-          else if (checkWord("5 PE/15 Electives",credits[getIdByClassName(myClasses[i])],0)) {
+          else if (checkWord("5 PE/15 Electives",classes[getIdByClassName(myClasses[i])].credit,0)) {
             electiveCredits[0] += 2.5;
             exerciseCredits[0] += 7.5;
           }
