@@ -1,3 +1,4 @@
+(function() {
 var nine = document.getElementById("nine");
 var ten = document.getElementById("ten");
 var eleven = document.getElementById("eleven");
@@ -2132,3 +2133,4 @@ function loadSchool() {
   readSchoolFile();
 }
 loadSchool();
+})();
