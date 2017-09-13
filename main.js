@@ -1079,7 +1079,9 @@ function cleanDescription() {
               category = storedCategory;
             }
           }
-          classes[i].category = category;
+          if (i < classes.length - 1) {
+            classes[i+1].category = category;
+          }
         }
         else {
           if (isLetter(currentChar)) {
@@ -1848,6 +1850,7 @@ function organizePDF() {
       }
     } // Close While loop
     // Final data
+    classes.push(new newClass(category,name,code,grade,credit,universityCredit,preReq,interest,linkedCourse,description));
     description = storedLetters;
     console.log("Done organizing.");
   }
