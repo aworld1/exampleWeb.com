@@ -1,0 +1,16 @@
+info#
+AP Classes#
+AP classes boost your weighted GPA, but not your unweighted one. It's recommended not to take AP classes if you aren't ready for them.#
+check#
+Add Classes#
+Go to the menu and start building your plan!#
+info#
+Credits#
+While regular credits are required for graduating high school, university credits are only needed if applying to a UC/CSU college.#
+feature#
+Creator#
+The creator of PlanPal is Assaf Cohen-Arazi. The following program is patent pending.<br/>Copyright PlanPal 2017 All Rights Reserved.#
+warning#
+Remember#
+Remember to keep both GPAs up, weighted and unweighted#
+*END*
