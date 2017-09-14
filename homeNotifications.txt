@@ -1,6 +1,6 @@
 warning#
 Westview Logo Vandalized#
-<a href="http://www.sandiegouniontribune.com/news/public-safety/sd-me-graffiti-school-20170913-story.html">Unfortunate news reports that the 'W' in Westview High School has been vandalized. Click on this notification to find out more.</a>#
+Unfortunate news reports that the 'W' in Westview High School has been vandalized. Click <a href="http://www.sandiegouniontribune.com/news/public-safety/sd-me-graffiti-school-20170913-story.html">here</a> to find out more.#
 info#
 AP Classes#
 AP classes boost your weighted GPA, but not your unweighted one. It's recommended not to take AP classes if you aren't ready for them.#
