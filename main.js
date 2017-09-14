@@ -805,7 +805,7 @@ function createHomeBox(typeBox, headerDesc, description) {
   }
   else if (typeBox == "warning") {
     homeBoxes[homeBoxes.length - 1].style.background = "#FF2D2D url('warning.png') no-repeat 3vmin";
-    homeBoxes[homeBoxes.length - 1].style.borderColor="#970000";
+    homeBoxes[homeBoxes.length - 1].style.borderColor="#670000";
   }
   else if (typeBox == "check") {
     homeBoxes[homeBoxes.length - 1].style.background = "#50FF41 url('check.png') no-repeat 3vmin";
@@ -830,7 +830,7 @@ function createHomeBox(typeBox, headerDesc, description) {
   }
   else if (typeBox == "warning") {
     homeBoxes[homeBoxes.length - 1].style.background = "#FF2D2D";
-    homeBoxes[homeBoxes.length - 1].style.borderColor="#970000";
+    homeBoxes[homeBoxes.length - 1].style.borderColor="#670000";
   }
   else if (typeBox == "check") {
     homeBoxes[homeBoxes.length - 1].style.background = "#50FF41";
