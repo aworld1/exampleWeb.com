@@ -1,9 +1,12 @@
+warning#
+Westview Logo Vandalized#
+<a href="http://www.sandiegouniontribune.com/news/public-safety/sd-me-graffiti-school-20170913-story.html">Unfortunate news reports that the 'W' in Westview High School has been vandalized. Click on this notification to find out more.</a>#
 info#
 AP Classes#
 AP classes boost your weighted GPA, but not your unweighted one. It's recommended not to take AP classes if you aren't ready for them.#
 check#
 Add Classes#
-Go to the menu and start building your plan!#
+<a onclick="showGrades()">Go to the menu or click here to start building your plan!</a>#
 info#
 Credits#
 While regular credits are required for graduating high school, university credits are only needed if applying to a UC/CSU college.#
