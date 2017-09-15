@@ -400,7 +400,7 @@ function hideEverything() {
   buttons = [];
   homeBoxes = [];
   modal.style.display = "none";
-  document.body.style.overflowY = "scroll";
+  document.body.style.overflowY = "hidden";
 }
 function toggleObjects(array,control) {
   if (control == "show") {
@@ -1274,7 +1274,7 @@ function myGPA() {
   if (gpaTracker[0] == 5) {
     addAchieve(0,3);
   }
-  else if (gpaTracker[2] <= 0.1) {
+  else if (gpaTracker[2] <= 0.1 && gpaTracker[2] > 0) {
     addAchieve(0,2);
   }
   return [gpaTracker[0],gpaTracker[2]];
