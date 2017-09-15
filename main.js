@@ -400,7 +400,7 @@ function hideEverything() {
   buttons = [];
   homeBoxes = [];
   modal.style.display = "none";
-  document.body.style.overflowY = "hidden";
+  document.body.style.overflowY = "scroll";
 }
 function toggleObjects(array,control) {
   if (control == "show") {
@@ -1332,6 +1332,7 @@ function schoolPage() {
   for (var i = 0; i < schools.length;i++) {
     createSchoolButton(schools[i]);
   }
+  document.body.style.overflowX = "hidden";
 }
 function createSchoolButton(schoolName) {
   buttons[buttons.length] = document.createElement("BUTTON");
