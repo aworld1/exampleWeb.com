@@ -65,17 +65,12 @@ body {
   margin-left: 5.5vw;
   outline-style: none;
   font-family: "fantasy";
-  background-color: gold;
   border-radius: 2.5vh;
   margin-top:-2vh;
   margin-bottom:3.5vh;
 }
 .triRow {
   display:flex;
-}
-.triTwo {
-  background-color: black;
-  color:gold;
 }
 .triOne {
   margin-left:5.5vw;

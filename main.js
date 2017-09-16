@@ -32,6 +32,7 @@ var modalOk = document.getElementById("acceptClass");
 function showGrades() {
   gradeSelected = undefined;
   classSelected = undefined;
+  addingClass = true;
   hideEverything();
   toggleObjects([nine,ten,eleven,twelve,header],"show");
 }
@@ -82,6 +83,13 @@ var triClassL = document.getElementById("triClassL");
 var triClassM = document.getElementById("triClassM");
 var triClassN = document.getElementById("triClassN");
 var triClassO = document.getElementById("triClassO");
+var triClassArr = [triClassA,triClassB,triClassC,triClassD,triClassE,triClassF,triClassG,triClassH,triClassI,triClassJ,triClassK,triClassL,triClassM,triClassN,triClassO];
+function changeColorOfButtons(arr,colorOne,colorTwo) {
+  for (var i = 0; i < arr.length; i++) {
+    arr[i].style.backgroundColor = colorOne;
+    arr[i].style.color = colorTwo;
+  }
+}
 function showEightClasses(grade) {
   classSelected = undefined;
   if (grade) {
@@ -91,11 +99,17 @@ function showEightClasses(grade) {
   if (numberOfClasses == 32) {
     toggleObjects([classA,classB,classC,classD,classE,classF,classG,classH,header,backButton],"show");
     checkClasses([classA,classB,classC,classD,classE,classF,classG,classH]);
+    changeColorOfButtons([classA,classB,classC,classD],twoSchoolColors[1],twoSchoolColors[0]);
+    changeColorOfButtons([classE,classF,classG,classH],twoSchoolColors[0],twoSchoolColors[1]);
   }
   else if (numberOfClasses == 60) {
     toggleObjects([triClasses,header,backButton],"show");
+    checkClasses(triClassArr);
     for (var x = 0; x < 15; x++) {
-      checkClasses([triClassA,triClassB,triClassC,triClassD,triClassE,triClassF,triClassG,triClassH,triClassI,triClassJ,triClassK,triClassL,triClassM,triClassN,triClassO]);
+      changeColorOfButtons([triClassArr[x]],twoSchoolColors[0],twoSchoolColors[1]);
+    }
+    for (var x = 0; x < 15; x++) {
+      changeColorOfButtons([triClassArr[(x*3)+1]],twoSchoolColors[1],twoSchoolColors[0]);
     }
   }
 }
@@ -713,8 +727,10 @@ var homeBoxes = [];
 function homePage() {
   hideEverything();
   toggleObjects([header],"show");
-  loadHomeBoxes();
-  if (homeBoxes.length == 0) {
+  if (homePageText) {
+    loadHomeBoxes();
+  }
+  else {
     createHomeBox("warning","No Internet Connection","There was no internet connection and therefore no notifications were loaded. Try refreshing the home page.");
   }
 }
@@ -1306,11 +1322,12 @@ function searchClasses() {
             buttons[buttons.length - 1].style.marginTop = "5vh";
             buttons[buttons.length - 1].style.borderRadius = "2vh";
             if (buttons.length % 2 == 0) {
-              buttons[buttons.length - 1].style.backgroundColor = "gold";
+              buttons[buttons.length - 1].style.backgroundColor = twoSchoolColors[1];
+              buttons[buttons.length - 1].style.color = twoSchoolColors[0];
             }
             else {
-              buttons[buttons.length - 1].style.backgroundColor = "black";
-              buttons[buttons.length - 1].style.color = "gold";
+              buttons[buttons.length - 1].style.backgroundColor = twoSchoolColors[0];
+              buttons[buttons.length - 1].style.color = twoSchoolColors[1];
             }
             buttons[buttons.length - 1].style.fontFamily = "monospace";
             buttons[buttons.length - 1].style.fontSize = "3.5vmin";
@@ -1348,12 +1365,13 @@ function createSchoolButton(schoolName) {
   buttons[buttons.length - 1].style.marginTop = "5vh";
   buttons[buttons.length - 1].style.borderRadius = "2vh";
   if (buttons.length % 2 == 0) {
-    buttons[buttons.length - 1].style.backgroundColor = "gold";
+    buttons[buttons.length - 1].style.backgroundColor = twoSchoolColors[1];
+    buttons[buttons.length - 1].style.color = twoSchoolColors[0];
     buttons[buttons.length - 1].className = "animated bounceInLeft";
   }
   else {
-    buttons[buttons.length - 1].style.backgroundColor = "black";
-    buttons[buttons.length - 1].style.color = "gold";
+    buttons[buttons.length - 1].style.backgroundColor = twoSchoolColors[0];
+    buttons[buttons.length - 1].style.color = twoSchoolColors[1];
     buttons[buttons.length - 1].className = "animated bounceInRight";
   }
   buttons[buttons.length - 1].style.fontFamily = "monospace";
@@ -2088,7 +2106,13 @@ function finishStartUp() {
   parseClasses();
   parseAchievements();
   loadedApp = true;
-  homePage();
+  if (localStorage.startedUpBefore) {
+    homePage();
+  }
+  else {
+    schoolPage();
+    localStorage.startedUpBefore = true;
+  }
 }
 function readSchoolFile() {
     var filename;
@@ -2096,14 +2120,17 @@ function readSchoolFile() {
       case "Westview":
         filename = "http://planpalapp.com/westview.txt";
         numberOfClasses = 32;
+        twoSchoolColors = ["black","gold"];
         break;
       case "Del Norte":
         filename = "http://planpalapp.com/delNorte.txt";
         numberOfClasses = 60;
+        twoSchoolColors = ["#1DF6FF","#0E7D00"];
         break;
       case "Poway":
         filename = "http://planpalapp.com/poway.txt";
         numberOfClasses = 60;
+        twoSchoolColors = ["grey","lime"];
         break;
     }
     var rawFile = new XMLHttpRequest();
@@ -2128,6 +2155,7 @@ if ('addEventListener' in document) {
 		FastClick.attach(document.body);
 	}, false);
 }
+var twoSchoolColors = [];
 var loadedApp = false;
 document.body.style.overflowX = "hidden";
 function loadSchool() {
