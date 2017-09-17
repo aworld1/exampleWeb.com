@@ -104,11 +104,13 @@ function showEightClasses(grade) {
   }
   else if (numberOfClasses == 60) {
     toggleObjects([triClasses,header,backButton],"show");
-    checkClasses(triClassArr);
+    for (var x = 0; x < 15; x++) {
+      checkClasses(triClassArr);
+    }
     for (var x = 0; x < 15; x++) {
       changeColorOfButtons([triClassArr[x]],twoSchoolColors[0],twoSchoolColors[1]);
     }
-    for (var x = 0; x < 15; x++) {
+    for (var x = 0; x < 5; x++) {
       changeColorOfButtons([triClassArr[(x*3)+1]],twoSchoolColors[1],twoSchoolColors[0]);
     }
   }
