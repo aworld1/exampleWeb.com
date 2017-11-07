@@ -100,12 +100,12 @@ function showEightClasses(grade) {
     toggleObjects([classA,classB,classC,classD,classE,classF,classG,classH,header,backButton],"show");
     var classObjs = [classA,classB,classC,classD,classE,classF,classG,classH];
     checkClasses(classObjs);
-    for (var x = (gradeSelected - 9) * 8; x < (gradeSelected - 9) * 8 + 8; x++) {
-      if (myClasses[x]) {
-        changeColorOfButtons([classObjs[x]],twoSchoolColors[0],"white");
+    for (var x = (grade - 9) * 8; x < (grade - 9) * 8 + 8; x++) {
+      if (myClasses[x] != undefined) {
+        changeColorOfButtons([classObjs[x % 8]],twoSchoolColors[0],"white");
       }
       else {
-        changeColorOfButtons([classObjs[x]],twoSchoolColors[1],"white");
+        changeColorOfButtons([classObjs[x % 8]],twoSchoolColors[1],"white");
       }
     }
   }
@@ -115,11 +115,11 @@ function showEightClasses(grade) {
       checkClasses(triClassArr);
     }
     for (var x = (gradeSelected - 9) * 8; x < (gradeSelected - 9) * 8 + 15; x++) {
-      if (myClasses[x]) {
-        changeColorOfButtons([triClassArr[x]],twoSchoolColors[0],"white");
+      if (myClasses[x] != undefined) {
+        changeColorOfButtons([triClassArr[x % 8]],twoSchoolColors[0],"white");
       }
       else {
-        changeColorOfButtons([triClassArr[x]],twoSchoolColors[1],"white");
+        changeColorOfButtons([triClassArr[x % 8]],twoSchoolColors[1],"white");
       }
     }
   }
