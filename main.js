@@ -100,8 +100,8 @@ function showEightClasses(grade) {
     toggleObjects([classA,classB,classC,classD,classE,classF,classG,classH,header,backButton],"show");
     var classObjs = [classA,classB,classC,classD,classE,classF,classG,classH];
     checkClasses(classObjs);
-    for (var x = (grade - 9) * 8; x < (grade - 9) * 8 + 8; x++) {
-      if (myClasses[x] != undefined) {
+    for (var x = (gradeSelected - 9) * 8; x < (gradeSelected - 9) * 8 + 8; x++) {
+      if (myClasses[x]) {
         changeColorOfButtons([classObjs[x % 8]],twoSchoolColors[0],"white");
       }
       else {
@@ -115,11 +115,11 @@ function showEightClasses(grade) {
       checkClasses(triClassArr);
     }
     for (var x = (gradeSelected - 9) * 8; x < (gradeSelected - 9) * 8 + 15; x++) {
-      if (myClasses[x] != undefined) {
-        changeColorOfButtons([triClassArr[x % 8]],twoSchoolColors[0],"white");
+      if (myClasses[x]) {
+        changeColorOfButtons([triClassArr[x % 15]],twoSchoolColors[0],"white");
       }
       else {
-        changeColorOfButtons([triClassArr[x % 8]],twoSchoolColors[1],"white");
+        changeColorOfButtons([triClassArr[x % 15]],twoSchoolColors[1],"white");
       }
     }
   }
@@ -1626,7 +1626,7 @@ modalOk.onclick = function() {
   document.body.style.overflowY = "scroll";
   myClasses[((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)] = classes[savePlacement].name;
   saveClasses();
-  showEightClasses();
+  showEightClasses(gradeSelected);
   fadeInFadeOut(true,1000,"Class Added");
 }
 removeClass.onclick = function() {
@@ -1636,7 +1636,7 @@ removeClass.onclick = function() {
   myGrades[2 * (((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1))] = undefined;
   myGrades[2 * (((gradeSelected - 9) * (numberOfClasses/4)) + (classSelected - 1)) + 1] = undefined;
   saveClasses();
-  showEightClasses();
+  showEightClasses(gradeSelected);
   fadeInFadeOut(true,1000,"Class Removed");
 }
 function saveClasses() {
