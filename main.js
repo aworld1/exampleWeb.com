@@ -98,20 +98,29 @@ function showEightClasses(grade) {
   hideEverything();
   if (numberOfClasses == 32) {
     toggleObjects([classA,classB,classC,classD,classE,classF,classG,classH,header,backButton],"show");
-    checkClasses([classA,classB,classC,classD,classE,classF,classG,classH]);
-    changeColorOfButtons([classA,classB,classC,classD],twoSchoolColors[1],twoSchoolColors[0]);
-    changeColorOfButtons([classE,classF,classG,classH],twoSchoolColors[0],twoSchoolColors[1]);
+    var classObjs = [classA,classB,classC,classD,classE,classF,classG,classH];
+    checkClasses(classObjs);
+    for (var x = (gradeSelected - 9) * 8; x < (gradeSelected - 9) * 8 + 8; x++) {
+      if (myClasses[x]) {
+        changeColorOfButtons([classObjs[x]],twoSchoolColors[0],"white");
+      }
+      else {
+        changeColorOfButtons([classObjs[x]],twoSchoolColors[1],"white");
+      }
+    }
   }
   else if (numberOfClasses == 60) {
     toggleObjects([triClasses,header,backButton],"show");
     for (var x = 0; x < 15; x++) {
       checkClasses(triClassArr);
     }
-    for (var x = 0; x < 15; x++) {
-      changeColorOfButtons([triClassArr[x]],twoSchoolColors[0],twoSchoolColors[1]);
-    }
-    for (var x = 0; x < 5; x++) {
-      changeColorOfButtons([triClassArr[(x*3)+1]],twoSchoolColors[1],twoSchoolColors[0]);
+    for (var x = (gradeSelected - 9) * 8; x < (gradeSelected - 9) * 8 + 15; x++) {
+      if (myClasses[x]) {
+        changeColorOfButtons([triClassArr[x]],twoSchoolColors[0],"white");
+      }
+      else {
+        changeColorOfButtons([triClassArr[x]],twoSchoolColors[1],"white");
+      }
     }
   }
 }
@@ -1325,11 +1334,11 @@ function searchClasses() {
             buttons[buttons.length - 1].style.borderRadius = "2vh";
             if (buttons.length % 2 == 0) {
               buttons[buttons.length - 1].style.backgroundColor = twoSchoolColors[1];
-              buttons[buttons.length - 1].style.color = twoSchoolColors[0];
+              buttons[buttons.length - 1].style.color = "white";
             }
             else {
               buttons[buttons.length - 1].style.backgroundColor = twoSchoolColors[0];
-              buttons[buttons.length - 1].style.color = twoSchoolColors[1];
+              buttons[buttons.length - 1].style.color = "white";
             }
             buttons[buttons.length - 1].style.fontFamily = "monospace";
             buttons[buttons.length - 1].style.fontSize = "3.5vmin";
@@ -1368,12 +1377,12 @@ function createSchoolButton(schoolName) {
   buttons[buttons.length - 1].style.borderRadius = "2vh";
   if (buttons.length % 2 == 0) {
     buttons[buttons.length - 1].style.backgroundColor = twoSchoolColors[1];
-    buttons[buttons.length - 1].style.color = twoSchoolColors[0];
+    buttons[buttons.length - 1].style.color = "white";
     buttons[buttons.length - 1].className = "animated bounceInLeft";
   }
   else {
     buttons[buttons.length - 1].style.backgroundColor = twoSchoolColors[0];
-    buttons[buttons.length - 1].style.color = twoSchoolColors[1];
+    buttons[buttons.length - 1].style.color = "white";
     buttons[buttons.length - 1].className = "animated bounceInRight";
   }
   buttons[buttons.length - 1].style.fontFamily = "monospace";
@@ -2122,17 +2131,17 @@ function readSchoolFile() {
       case "Westview":
         filename = "http://planpalapp.com/westview.txt";
         numberOfClasses = 32;
-        twoSchoolColors = ["black","gold"];
+        twoSchoolColors = ["#006C91","#00A2DC"];
         break;
       case "Del Norte":
         filename = "http://planpalapp.com/delNorte.txt";
         numberOfClasses = 60;
-        twoSchoolColors = ["#1DF6FF","#0E7D00"];
+        twoSchoolColors = ["#006C91","#00A2DC"];
         break;
       case "Poway":
         filename = "http://planpalapp.com/poway.txt";
         numberOfClasses = 60;
-        twoSchoolColors = ["grey","lime"];
+        twoSchoolColors = ["#006C91","#00A2DC"];
         break;
     }
     var rawFile = new XMLHttpRequest();
@@ -2163,6 +2172,7 @@ document.body.style.overflowX = "hidden";
 function loadSchool() {
   hideEverything();
   toggleObjects([loadIcon],"show");
+  document.body.backgroundSize = "contain";
   readHomeFiles();
   readSchoolFile();
 }

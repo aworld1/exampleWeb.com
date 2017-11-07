@@ -1,7 +1,7 @@
 body {
-    background-color: azure;
-    background-image:url("background.jpg");
-    background-repeat: repeat;
+    background-color: #F4F4F4;
+    background-size: contain;
+    background-image:url("whiteback.jpg");
     overflow-x:hidden;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -56,7 +56,7 @@ body {
   font-family: "fantasy";
   font-size:6vmin;
   background-color: black;
-  color: gold;
+  color: white;
   border-radius: 2.5vh;
 }
 .triOne, .triTwo, .triThree {
@@ -76,29 +76,25 @@ body {
   margin-left:5.5vw;
 }
 #nine {
-    background-color:#FFEA40;
-    background-image:url("orange.jpg");
+    background-color:#00A2DC;
     background-position: center;
     margin-top: 10vh;
-    color:#776D20;
+    color:#FFFFFF;
 }
 #ten {
-    background-image:url("pink.gif");
+    background-color:#00A2DC;
     background-position: center;
-    background-color:hotpink;
-    color:#77206C;
+    color:#FFFFFF;
 }
 #eleven {
-    background-image:url("green.gif");
+    background-color:#00A2DC;
     background-position: center;
-    background-color:aquamarine;
-    color:#20775C;
+    color:#FFFFFF;
 }
 #twelve {
-    background-image:url("blue.gif");
+    background-color:#00A2DC;
     background-position: center;
-    background-color:#00A0FF;
-    color:#1B5374;
+    color:#FFFFFF;
 }
 #classA {
     margin-top: 10vh;
@@ -136,7 +132,7 @@ body {
   float:right;
   font-size:3vmin;
   background-color: white;
-  color: #5cb85c;
+  color: #00A2DC;
   border-radius: 3.5vh;
   display:inline;
   outline: none;
@@ -160,7 +156,7 @@ body {
   border: none;
 }
 .dropbtn {
-    background-color: #4CAF50;
+    background-color: #00A2DC;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -196,7 +192,7 @@ body {
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+    background-color: #0080AD;
 }
 
 .homeBox {
@@ -224,8 +220,8 @@ body {
   font-family: Verdana;
   text-align:center;
   font-size:7vmin;
-  border-color:darkgreen;
-  background-color:green;
+  border-color:#0080AD;
+  background-color:#00A2DC;
 }
 .credIcon {
   display: inline-block;
@@ -247,69 +243,11 @@ body {
   line-height:30vh;
   vertical-align: middle;
   margin-bottom:10vh;
-}
-#credHead {
   background: #001DDC; /* For browsers that do not support gradients */
   background: -webkit-linear-gradient(left, #001DDC , #73FFFE); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(right, #001DDC, #73FFFE); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(right, #001DDC, #73FFFE); /* For Firefox 3.6 to 15 */
   background: linear-gradient(to right, #001DDC , #73FFFE); /* Standard syntax */
-}
-#uncredHead {
-  background: #F29200; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(left, #F29200 , #FFDEAC); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(right, #F29200, #FFDEAC); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(right, #F29200, #FFDEAC); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to right, #F29200 , #FFDEAC); /* Standard syntax */
-}
-#verifyHead {
-  background: #059400; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(left, #059400 , #93FF8F); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(right, #059400, #93FF8F); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(right, #059400, #93FF8F); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to right, #059400 , #93FF8F); /* Standard syntax */
-}
-#gpaHead {
-  background: #036100; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(left, #036100 , #D9FFDD); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(right, #036100, #D9FFDD); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(right, #036100, #D9FFDD); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to right, #036100 , #D9FFDD); /* Standard syntax */
-}
-#optionHead {
-  background: #424242; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(left, #424242 , #FFFFFF); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(right, #424242, #FFFFFF); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(right, #424242, #FFFFFF); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to right, #424242 , #FFFFFF); /* Standard syntax */
-}
-#schoolHead {
-  background: #670062; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(left, #670062 , #2344D1); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(right, #670062, #2344D1); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(right, #670062, #2344D1); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to right, #670062 , #2344D1); /* Standard syntax */
-}
-#counselorHead {
-  background: #FF5DF7; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(left, #FF5DF7 , #72006C); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(right, #FF5DF7, #72006C); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(right, #FF5DF7, #72006C); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to right, #FF5DF7 , #72006C); /* Standard syntax */
-}
-#achievementHead {
-  background: #FF5DF7; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(left, #FF5DF7 , #72006C); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(right, #FF5DF7, #72006C); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(right, #FF5DF7, #72006C); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to right, #FF5DF7 , #72006C); /* Standard syntax */
-}
-#helpHead {
-  background: #001894; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(left, #001894 , #20E6FF); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(right, #001894, #20E6FF); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(right, #001894, #20E6FF); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to right, #001894 , #20E6FF); /* Standard syntax */
 }
 .gpaCirc {
   border-radius: 50%;
@@ -331,15 +269,15 @@ body {
 }
 #weightedGPACirc {
   margin-left:30vw;
-  border-color:darkgreen;
-  background-color:green;
-  color:white;
+  border-color:#0080AD;
+  background-color:#EDFFFF;
+  color:#00A2DC;
 }
 #unweightedGPACirc {
   margin-left:15vw;
-  border-color:gray;
-  background-color:white;
-  color:green;
+  border-color:#00A2DC;
+  background-color:#EDFFFF;
+  color:#0080AD;
 }
 #counselorEmailText {
   display:none;
@@ -365,7 +303,7 @@ body {
   height:10vh;
   margin-left:5vw;
   border-radius:4vh;
-  background-color:green;
+  background-color:#00A2DC;
   outline: none;
   font-size:5vmin;
   color:white;
@@ -381,7 +319,7 @@ body {
   width:30vw;
   height:10vh;
   border-radius:5vh;
-  background-color:green;
+  background-color:#00A2DC;
   color:white;
   font-size:4vmin;
   margin-bottom:5vh;
@@ -389,12 +327,12 @@ body {
 .counselorDesc {
   margin-left:18vw;
   font-size:3vmin;
-  color:green;
+  color:#00A2DC;
   max-width:calc(55vw + 10vh - 6vmin);
   background-color:white;
   border:solid;
   border-width:0.5vmin;
-  border-color:green;
+  border-color:#00A2DC;
   border-radius:3vmin;
   padding-left:4vmin;
   padding-right:2vmin;
@@ -459,7 +397,7 @@ body {
   float:right;
   margin-right:5vw;
   font-size:5vmin;
-  color:blue;
+  color:white;
 }
 .boldCredit {
   display: inline-block;
@@ -467,7 +405,7 @@ body {
   margin-left:3vw;
   text-align: left;
   font-size:5vmin;
-  color:brown;
+  color:white;
 }
 .achievement {
   width:28vw;
@@ -660,7 +598,7 @@ body {
 
 .modal-header {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: #00A2DC;
     color: white;
 }
 
@@ -671,6 +609,6 @@ body {
 
 .modal-footer {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: #00A2DC;
     color: white;
 }
