@@ -2,6 +2,7 @@ body {
     background-color: #F4F4F4;
     background-size: contain;
     background-image:url("whiteback.jpg");
+    background-size:100%;
     overflow-x:hidden;
     -webkit-touch-callout: none;
     -webkit-user-select: none;

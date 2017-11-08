@@ -1603,6 +1603,12 @@ window.onclick = function(event) {
         confirmModal.style.display = "none";
         document.body.style.overflowY = "scroll";
     }
+    else if (event.target.tagName != "SPAN" && event.target != menu) {
+      if (mainNav.style.display == "block") {
+        mainNav.style.display = "none";
+        menu.classList.toggle("open");
+      }
+    }
 }
 var typeConfirm = document.getElementById("typeConfirm");
 confirmOk.onclick = function () {
