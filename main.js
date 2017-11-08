@@ -1608,7 +1608,7 @@ window.onclick = function(event) {
         confirmModal.style.display = "none";
         document.body.style.overflowY = "scroll";
     }
-    else if (event.target.tagName != "SPAN" && event.target != menu && event.target != mainNav) {
+    else if (event.target.tagName != "SPAN" && event.target != menu && event.target.tagName != "I") {
       if (mainNav.style.display == "block") {
         mainNav.style.display = "none";
         menu.classList.toggle("open");
