@@ -11,6 +11,17 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
+#printButton {
+  width:10vmin;
+  height:10vmin;
+  position:absolute;
+  left:75%;
+  top:5%;
+  background-image:url("print.png");
+  background-size:contain;
+  border-radius:5vmin;
+  outline: none;
+}
 #header {
     width:15%;
     height:20vh;

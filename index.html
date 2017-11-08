@@ -340,7 +340,7 @@
       <p id="counselorDescA" class="counselorDesc">Enter in the email you would like to send your plan to</p>
       <input id="studentInput" type="search" placeholder="Email"></input><button id="studentButton" onclick="sendToCounselor()">OK</button><br/>
       <p id="counselorDescB" class="counselorDesc">Enter in the code you received from a PlanPal email</p>
-      <input id="counselorInput" type="search" placeholder="Plan Code"></input><button id="counselorButton" onclick="refreshToCode()">OK</button><button id="saveCounselor" onclick="confirmTask('saveClasses()')">SAVE</button><br/>
+      <input id="counselorInput" type="search" placeholder="Plan Code"></input><button id="counselorButton" onclick="refreshToCode()">OK</button><button id="saveCounselor" onclick="confirmTask('saveClasses(); saveGrades();')">SAVE</button><br/>
       <p class="counselorDesc" id="#revertDesc">Would you like to revert your classes back to before you inserted the code?</p>
       <button id="revertButton" onclick="confirmTask('parseClasses()');">Revert Classes</button>
     </div>
@@ -523,6 +523,7 @@ Check out my plan by going onto the PlanPal app and putting in the following cod
     <button class="semesterTwo" id="classG" onclick="showOptions(7)">Select Class</button>
     <button class="semesterOne" id="classD" onclick="showOptions(4)">Select Class</button>
     <button class="semesterTwo" id="classH" onclick="showOptions(8)">Select Class</button>
+    <button id="printButton"></button>
     <div id="triClasses">
       <div class="triRow">
         <button class="triOne" id="triClassA" onclick="showOptions(1)">Select Class</button>

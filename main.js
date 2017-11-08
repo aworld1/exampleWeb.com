@@ -13,6 +13,7 @@ var classG = document.getElementById("classG");
 var classH = document.getElementById("classH");
 var search = document.getElementById("search");
 var header = document.getElementById("header");
+var printButton = document.getElementById("printButton");
 var triClasses = document.getElementById("triClasses");
 var triOne = document.getElementsByClassName("triOne");
 var triTwo = document.getElementsByClassName("triTwo");
@@ -84,6 +85,9 @@ var triClassM = document.getElementById("triClassM");
 var triClassN = document.getElementById("triClassN");
 var triClassO = document.getElementById("triClassO");
 var triClassArr = [triClassA,triClassB,triClassC,triClassD,triClassE,triClassF,triClassG,triClassH,triClassI,triClassJ,triClassK,triClassL,triClassM,triClassN,triClassO];
+printButton.onclick = function() {
+  window.print();
+}
 function changeColorOfButtons(arr,colorOne,colorTwo) {
   for (var i = 0; i < arr.length; i++) {
     arr[i].style.backgroundColor = colorOne;
@@ -96,6 +100,7 @@ function showEightClasses(grade) {
     gradeSelected = grade;
   }
   hideEverything();
+  toggleObjects([printButton],"show");
   if (numberOfClasses == 32) {
     toggleObjects([classA,classB,classC,classD,classE,classF,classG,classH,header,backButton],"show");
     var classObjs = [classA,classB,classC,classD,classE,classF,classG,classH];
@@ -415,7 +420,7 @@ achievementInput.onkeyup = function () {
   achievementPage();
 }
 function hideEverything() {
-  toggleObjects([helpContain,achievementContainer,schoolHead,header,triClasses,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage,gpaPageContain,verifyHead,counselorContainer,optionsContain,popUpDiv],"hide");
+  toggleObjects([printButton,helpContain,achievementContainer,schoolHead,header,triClasses,nine,ten,eleven,twelve,classA,classB,classC,classD,classE,classF,classG,classH,search,searchImage,loadIcon,backButton,creditPage,universityCreditPage,gpaPageContain,verifyHead,counselorContainer,optionsContain,popUpDiv],"hide");
   for (var u = 0; u < buttons.length; u++) {
     toggleObjects([buttons[u]],"hide");
   }
@@ -1603,7 +1608,7 @@ window.onclick = function(event) {
         confirmModal.style.display = "none";
         document.body.style.overflowY = "scroll";
     }
-    else if (event.target.tagName != "SPAN" && event.target != menu) {
+    else if (event.target.tagName != "SPAN" && event.target != menu && event.target != mainNav) {
       if (mainNav.style.display == "block") {
         mainNav.style.display = "none";
         menu.classList.toggle("open");
@@ -1619,7 +1624,7 @@ confirmOk.onclick = function () {
     if (confirmTaskToDo == "parseClasses()") {
       fadeInFadeOut(true,1000,'Reverted Classes');
     }
-    else if (confirmTaskToDo == "saveClasses()") {
+    else if (confirmTaskToDo == "saveClasses(); saveGrades();") {
       fadeInFadeOut(true,1000,'Classes Saved');
     }
   }
