@@ -10,10 +10,13 @@ Add Classes#
 info#
 Credits#
 While regular credits are required for graduating high school, university credits are only needed if applying to a UC/CSU college.#
+warning#
+Notice#
+This apo does not ensure that all courses are accurate and meet A-G requirements. Please meet with your school counselor for more information.
 feature#
 Creator#
 The creator of PlanPal is Assaf Cohen-Arazi. The following program is patent pending.<br/>Copyright PlanPal 2017 All Rights Reserved.#
 warning#
 Remember#
-Remember to keep both GPAs up, weighted and unweighted#
+Remember to keep both GPAs up, weighted and unweighted.#
 *END*
