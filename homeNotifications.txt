@@ -1,6 +1,3 @@
-warning#
-Westview Logo Vandalized#
-Unfortunate news reports that the 'W' in Westview High School has been vandalized. The school is now working on repainting the 'W'.#
 info#
 AP Classes#
 AP classes boost your weighted GPA, but not your unweighted one. It's recommended not to take AP classes if you aren't ready for them.#
